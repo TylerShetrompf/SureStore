@@ -5,17 +5,13 @@
 <title>SureStore</title>
 </head>
 
-<body onload="loadLogin()">
-	<form id="LoginForm" onsubmit="return false">
-        
-	</form>
-
+<body id="App" onload="loadLogin()">
 	<script>
 		function loadLogin() {
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200){
-					document.getElementById("LoginForm").innerHTML = this.responseText;
+					document.getElementById("App").innerHTML = this.responseText;
 				}
 			};
 			xhttp.open("GET", "/pages/login.html", true);
