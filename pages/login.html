@@ -1,14 +1,22 @@
-<form id="LoginForm" onsubmit="return false">
-        <h1>Login Form</h1>
+<!-- The form itself -->
+<form id="LoginForm" onsubmit="return login()">
         <div class="FormRow">
-            <label for="Username">Username:</label>
-            <input type="text" size="15" id="Username" name="Username">
+            <input type="text" size="15" id="Username" name="Username" placeholder="Username">
         </div>
         <div class="FormRow">
-            <label for="Password">Password:</label>
-            <input type="password" size="15" id="Password" name="Password">
+            <input type="password" size="15" id="Password" name="Password" placeholder="Password">
         </div>
         <div class="FormRow" id="LoginButtonDiv">
-            <input type="submit" value="Login">
+            <input type="submit" value="Sign In">
         </div>
 </form>
+<!-- Script to pass authentication -->
+<script>
+	function Login() {
+		var data = new FormData(document.getElementById("LoginForm"));
+		fetch("auth.php", {method:"POST", body:data})
+		.then(res => res.text())
+		.then(txt => {
+			
+		})
+</script>  
