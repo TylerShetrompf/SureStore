@@ -10,6 +10,12 @@
 	input{
 		width: 50vh;
 	}
+	.help-block{
+		color: #FF0004;
+	}
+	button{
+		width: 50vh;
+	}
 	input[type=text], select {
 		padding: 12px 20px;
 		display: inline-block;
@@ -26,7 +32,7 @@
 		box-sizing: border-box;
 	}
 
-	input[type=submit] {
+	button[type=submit] {
 		background-color: #4CAF50;
 		color: white;
 		padding: 12px 20px;
@@ -37,7 +43,7 @@
 		box-sizing: border-box;
 	}
 
-	input[type=submit]:hover {
+	button[type=submit]:hover {
 		background-color: #45a049;
 	}
 
@@ -51,21 +57,26 @@
 <head>
 <meta charset="utf-8">
 <title>SureStore</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+	<!-- Script to pass authentication -->
+	<script src="/scripts/loginhandler.js"></script>
 </head>
-
 <!-- Tag body with ID App -->
-<body id="App" onload="loadLogin()">
-	<script>
-		function loadLogin() { 
-			var xhttp = new XMLHttpRequest(); 
-			xhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200){
-					document.getElementById("App").innerHTML = this.responseText; //Target the body
-				}
-			};
-			xhttp.open("GET", "/pages/login.html", true); //Replace body with contents of login.html
-			xhttp.send();
-    }
-	</script>
+<body id="App">
+	<!-- Logo -->
+	<img src="images/logo.png" alt="logo">
+
+	<!-- The form itself -->
+	<form id="LoginForm" action="/scripts/process.php" method="post">
+		<div id="FormUsername" class="FormRow">
+			<input type="text" size="15" class="form-control" id="username" name="username" placeholder="Username"/>
+		</div>
+		<div id="FormPassword" class="FormRow">
+			<input type="password" size="15" class="form-control" id="password" name="password" placeholder="Password"/>
+		</div>
+		<div class="FormRow">
+			<button type="submit" size="15" class="submitButton">Login</button>
+		</div>
+	</form>
 </body>
 </html>
