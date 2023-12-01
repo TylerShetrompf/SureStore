@@ -3,11 +3,15 @@
 <style>
 	body {
 		background-color: #0a4f8a;
+		display: grid;
+		place-items: center;
+		height: 30vh;
+	}
+	input{
+		width: 50vh;
 	}
 	input[type=text], select {
-		width: 30%;
 		padding: 12px 20px;
-		margin: 8px 0;
 		display: inline-block;
 		border: 1px solid #ccc;
 		border-radius: 100px;
@@ -15,9 +19,7 @@
 	}
 
 	input[type=password], select {
-		width: 30%;
 		padding: 12px 20px;
-		margin: 8px 0;
 		display: inline-block;
 		border: 1px solid #ccc;
 		border-radius: 100px;
@@ -25,14 +27,14 @@
 	}
 
 	input[type=submit] {
-		width: 30%;
 		background-color: #4CAF50;
 		color: white;
-		padding: 14px 20px;
-		margin: 8px 0;
-		border: none;
+		padding: 12px 20px;
+		border: 1px solid #ccc;
 		border-radius: 100px;
 		cursor: pointer;
+		display: inline-block;
+		box-sizing: border-box;
 	}
 
 	input[type=submit]:hover {
@@ -43,7 +45,6 @@
 		border-radius: 0px;
 		background-color: #0a4f8a;
 		padding: 4px;
-		margin: auto;
 	}
 
 </style>
