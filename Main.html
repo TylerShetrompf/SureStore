@@ -46,6 +46,21 @@
 	button[type=submit]:hover {
 		background-color: #45a049;
 	}
+	
+	button[type=register] {
+		background-color: #99AF4C;
+		color: white;
+		padding: 12px 20px;
+		border: 1px solid #ccc;
+		border-radius: 100px;
+		cursor: pointer;
+		display: inline-block;
+		box-sizing: border-box;
+	}
+	
+	button[type=register]:hover {
+		background-color: #75863A;
+	}
 
 	div {
 		border-radius: 0px;
@@ -71,7 +86,7 @@
 	<!-- Logo -->
 	<img src="images/logo.png" alt="logo" size="50%">
 
-	<!-- The form itself -->
+	<!-- The login form -->
 	<form id="LoginForm" action="/scripts/process.php" method="post">
 		<div id="FormUsername" class="FormRow">
 			<input type="text" size="15" class="form-control" id="username" name="username" placeholder="Username"/>
@@ -81,6 +96,13 @@
 		</div>
 		<div class="FormRow">
 			<button type="submit" size="15" class="submitButton">Login</button>
+		</div>
+	</form>
+	
+	<!-- Register button -->
+	<form id="Register" action="/scripts/register.php" method="post">
+		<div class="regButton">
+			<button type="register">Register</button>
 		</div>
 	</form>
 </body>
