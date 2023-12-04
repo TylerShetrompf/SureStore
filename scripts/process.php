@@ -1,21 +1,32 @@
 <?php
 
+// Initialize arrays for error messages and data
 $errors = [];
 $data = [];
 
-//Connect to Postgresql database
-$surestore_db = pg_connect("host=localhost dbname=SureStore user=postgres password=97DnXjPQSUu$925atBo!9WZuAf@7aaWQ");
+// Connect to Postgresql database
+$surestore_db = pg_pconnect("host=localhost dbname=SureStore user=postgres password=97DnXjPQSUu$925atBo!9WZuAf@7aaWQ");
 
-pg_close($connect);
-// Initialize arrays for error messages and data
+$userid = $_POST['username'];
 
-// Return error text if fields are empty
-if (empty($_POST['username'])) {
-    $errors['username'] = 'Username is required.';
-}
+// Retrieve username and password from database
+$query = pg_query_params($surestore_db, 'SELECT userid, userpw FROM sureusers WHERE userid = $1', array($userid));
 
-if (empty($_POST['password'])) {
-    $errors['password'] = 'Password is required.';
+// Fetch results as an array
+$results = pg_fetch_assoc($query);
+
+// Create variable for username and password
+$username = $results["userid"];
+$password = $results["userpw"];
+
+// Close DB connection
+pg_close($surestore_db);
+
+// Return error text if username or password is incorrect.
+ if (empty($userid)) {
+	$errors['password'] = 'Username or password is incorrect';
+} elseif($_POST['password'] != $password) {
+	$errors['password'] = 'Username or password is incorrect';
 }
 
 if (!empty($errors)) {
@@ -27,5 +38,3 @@ if (!empty($errors)) {
 }
 
 echo json_encode($data);
-
-?>
