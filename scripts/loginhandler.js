@@ -1,6 +1,6 @@
 // JavaScript Document to handle auth form
 $(document).ready(function () {
-	$("form").submit(function (event) {
+	$("#LoginForm").submit(function (event) {
 		var formData ={
 			username: $("#username").val(),
 			password: $("#password").val(),
