@@ -17,7 +17,10 @@ $results = pg_fetch_assoc($query);
 
 // Create variable for username and password
 $username = $results["userid"];
-$password = $results["userpw"];
+$dbpassword = $results["userpw"];
+
+// Hash the provided password
+$hashedpassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
 // Close DB connection
 pg_close($surestore_db);
@@ -25,7 +28,7 @@ pg_close($surestore_db);
 // Return error text if username or password is incorrect.
  if (empty($userid)) {
 	$errors['password'] = 'Username or password is incorrect';
-} elseif($_POST['password'] != $password) {
+} elseif(password_verify($hashedpassword,$dbpassword)) {
 	$errors['password'] = 'Username or password is incorrect';
 }
 
