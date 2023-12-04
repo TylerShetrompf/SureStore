@@ -14,26 +14,11 @@ $(document).ready(function () {
 			encode: true,
 		}).done(function (data){
 			console.log(data);
-			
 			if (!data.success) {
 				
-				if (data.errors.username) {
-					$("#FormUsername").addClass("has-error");
-					$("#FormUsername").append(
-						'<div class="help-block">' + data.errors.username + "</div>"
-					);
-				}
-				
-				if (data.errors.username) {
+				if (data.errors.password) {
 					$("#FormPassword").addClass("has-error");
 					$("#FormPassword").append(
-						'<div class="help-block">' + data.errors.password + "</div>"
-					);
-				}
-				
-				if (data.errors.database) {
-					$("#submitbutton").addClass("has-error");
-					$("#submitbutton").append(
 						'<div class="help-block">' + data.errors.password + "</div>"
 					);
 				}
