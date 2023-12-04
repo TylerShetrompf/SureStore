@@ -1,0 +1,69 @@
+/* SureStore CSS Style Sheet */
+
+body {
+	background-color: #0a4f8a;
+	display: grid;
+	place-items: center;
+	height: 30vh;
+}
+input{
+	width: 50vh;
+}
+.help-block{
+	color: #FF0004;
+}
+button{
+	width: 50vh;
+}
+input[type=text], select {
+	padding: 12px 20px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 100px;
+	box-sizing: border-box;
+}
+
+input[type=password], select {
+	padding: 12px 20px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 100px;
+	box-sizing: border-box;
+}
+
+button[type=submit] {
+	background-color: #4CAF50;
+	color: white;
+	padding: 12px 20px;
+	border: 1px solid #ccc;
+	border-radius: 100px;
+	cursor: pointer;
+	display: inline-block;
+	box-sizing: border-box;
+}
+
+button[type=submit]:hover {
+	background-color: #45a049;
+}
+
+button.reg {
+	background-color: #99AF4C;
+	color: white;
+	padding: 12px 20px;
+	border: 1px solid #ccc;
+	border-radius: 100px;
+	cursor: pointer;
+	display: inline-block;
+	box-sizing: border-box;
+}
+
+button.reg:hover {
+	background-color: #75863A;
+}
+
+div {
+	border-radius: 0px;
+	background-color: #0a4f8a;
+	padding: 4px;
+}/* CSS Document */
+
