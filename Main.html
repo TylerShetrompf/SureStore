@@ -1,74 +1,5 @@
 <!doctype html>
 <html>
-<style>
-	body {
-		background-color: #0a4f8a;
-		display: grid;
-		place-items: center;
-		height: 30vh;
-	}
-	input{
-		width: 50vh;
-	}
-	.help-block{
-		color: #FF0004;
-	}
-	button{
-		width: 50vh;
-	}
-	input[type=text], select {
-		padding: 12px 20px;
-		display: inline-block;
-		border: 1px solid #ccc;
-		border-radius: 100px;
-		box-sizing: border-box;
-	}
-
-	input[type=password], select {
-		padding: 12px 20px;
-		display: inline-block;
-		border: 1px solid #ccc;
-		border-radius: 100px;
-		box-sizing: border-box;
-	}
-
-	button[type=submit] {
-		background-color: #4CAF50;
-		color: white;
-		padding: 12px 20px;
-		border: 1px solid #ccc;
-		border-radius: 100px;
-		cursor: pointer;
-		display: inline-block;
-		box-sizing: border-box;
-	}
-
-	button[type=submit]:hover {
-		background-color: #45a049;
-	}
-	
-	button[type=register] {
-		background-color: #99AF4C;
-		color: white;
-		padding: 12px 20px;
-		border: 1px solid #ccc;
-		border-radius: 100px;
-		cursor: pointer;
-		display: inline-block;
-		box-sizing: border-box;
-	}
-	
-	button[type=register]:hover {
-		background-color: #75863A;
-	}
-
-	div {
-		border-radius: 0px;
-		background-color: #0a4f8a;
-		padding: 4px;
-	}
-
-</style>
 <head>
 <meta charset="utf-8">
 <title>SureStore</title>
@@ -77,9 +8,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <!-- Script to pass authentication -->
 <script src="/scripts/loginhandler.js"></script>
-
+<!-- Script to load registration -->
+<script src="/scripts/register.js"></script>
 <!-- Set tab icon -->
 <link rel="shortcut icon" href="https://www.surestore.store/images/favicon.ico">
+<!-- Include style sheet -->
+<link rel="stylesheet" href="/style/style.css">
 </head>
 <!-- Tag body with ID App -->
 <body id="App">
@@ -102,7 +36,7 @@
 	<!-- Register button -->
 	<form id="Register" method="post">
 		<div class="regButton">
-			<button type="register">Register</button>
+			<button type="submit" class="reg">Register</button>
 		</div>
 	</form>
 </body>
