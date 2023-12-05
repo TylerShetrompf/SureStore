@@ -1,0 +1,19 @@
+<img src="images/logo.png" alt="logo" size="25%">
+
+<form id="RegisterForm" actions="/scripts/register.php" method="post">
+	<div id="FormFirstName" class="FormRow">
+		<input type="text" size="15" class="form-control" id="firstname" name="firstname" pattern="[A-Za-z].{1,30}" title="Capital and lowercase letters only." placeholder="First Name"/>
+	</div>
+	<div id="FormLastName" class="FormRow">
+		<input type="text" size="15" class="form-control" id="lastname" name="lastname" pattern="[A-Za-z].{1,30}" title="Capital and lowercase letters only." placeholder="Last Name"/>
+	</div>
+	<div id="FormEmailAddress" class="FormRow">
+		<input type="text" size="15" id="email" class="form-control" name="email"  placeholder="Email Address"/>
+	</div>
+	<div id="FormPassword" class="FormRow">
+		<input type="password" size="15" id="password" class="form-control" name="password" placeholder="Password" />
+	</div>
+	<div id="RegisterButton" class="registerButton">
+		<button type="submit" size="15">Register</button>
+	</div>
+</form>
