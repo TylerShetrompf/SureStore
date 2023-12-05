@@ -23,6 +23,14 @@ input[type=text], select {
 	box-sizing: border-box;
 }
 
+input[type=email], select {
+	padding: 12px 20px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 100px;
+	box-sizing: border-box;
+}
+
 input[type=password], select {
 	padding: 12px 20px;
 	display: inline-block;
@@ -65,5 +73,4 @@ div {
 	border-radius: 0px;
 	background-color: #0a4f8a;
 	padding: 4px;
-}/* CSS Document */
-
+}
