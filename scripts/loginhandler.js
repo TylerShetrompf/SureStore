@@ -5,7 +5,7 @@ $(document).ready(function () {
 			username: $("#username").val(),
 			password: $("#password").val(),
 		};
-		
+
 		$.ajax({
 			type: "POST",
 			url: "/scripts/process.php",
@@ -13,7 +13,7 @@ $(document).ready(function () {
 			dataType: "json",
 			encode: true,
 		}).done(function (data){
-			console.log(data);
+			
 			if (!data.success) {
 				
 				if (data.errors.password) {
