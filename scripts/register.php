@@ -16,10 +16,6 @@ $userlast = $_POST['lastname'];
 $activated = 0;
 $actcode = rand(10000,99999);
 
-echo $userid;
-echo $userfirst;
-
-
 // Connect to Postgresql database
 $surestore_db = pg_pconnect("host=localhost dbname=SureStore user=postgres password=97DnXjPQSUu$925atBo!9WZuAf@7aaWQ");
 
@@ -38,9 +34,20 @@ if($checkuserresults){
 // If email is not in use, create entry in table.
 if(!$checkuserresults){
 	$createuserquery = pg_query_params($surestore_db, "INSERT INTO sureusers(userid, userpw, useracl, userfirst, userlast, activated, actcode) VALUES ($1, $2, $3, $4, $5, $6, $7)", array($userid, $userpw, $useracl, $userfirst, $userlast, $activated, $actcode));
+	
+	// Send registration code email
+	mail($userid, "Registration Key", $actcode, "From: admin@surestore.store");
 }
 
-echo $userid;
-echo $userfirst;
-
+// Close database connection
 pg_close($surestore_db);
+
+if (!empty($errors)) {
+    $data['success'] = false;
+    $data['errors'] = $errors;
+} else {
+    $data['success'] = true;
+    $data['message'] = 'Success!';
+}
+
+echo json_encode($data);
