@@ -26,7 +26,7 @@ $hashedpassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
 pg_close($surestore_db);
 
 // Return error text if username or password is incorrect.
- if (empty($userid)) {
+ if (empty($username)) {
 	$errors['password'] = 'Username or password is incorrect';
 } elseif(password_verify($hashedpassword,$dbpassword)) {
 	$errors['password'] = 'Username or password is incorrect';
