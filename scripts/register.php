@@ -31,12 +31,15 @@ if($checkuserresults){
 	$errors['username'] = 'Email already in use';
 }
 
+// Initialize variable for activation code email body
+$actmessage = "Please click the following link to activate your account: https://www.surestore.store/activate.php?actcode=$actcode&userid=$userid";
+
 // If email is not in use, create entry in table.
 if(!$checkuserresults){
 	$createuserquery = pg_query_params($surestore_db, "INSERT INTO sureusers(userid, userpw, useracl, userfirst, userlast, activated, actcode) VALUES ($1, $2, $3, $4, $5, $6, $7)", array($userid, $userpw, $useracl, $userfirst, $userlast, $activated, $actcode));
 	
 	// Send registration code email
-	mail($userid, "Registration Key", $actcode, "From: admin@surestore.store");
+	mail($userid, "Registration Key", $actmessage, "From: admin@surestore.store");
 }
 
 // Close database connection
