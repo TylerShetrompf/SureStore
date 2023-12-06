@@ -21,8 +21,12 @@ $(document).ready(function () {
 					$("#FormPassword").append(
 						'<div class="help-block">' + data.errors.password + "</div>"
 					);
+				} else if (data.errors.activation) {
+					$("#FormPassword").addClass("has-error");
+					$("#FormPassword").append(
+						'<div class="help-block">' + data.errors.activation + "</div>"
+					);
 				}
-				
 			}
 		});
 		
