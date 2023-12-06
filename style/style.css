@@ -73,3 +73,16 @@ div {
 	background-color: #0a4f8a;
 	padding: 4px;
 }
+
+/* Test for password val box */
+
+form ul.helper-text {
+padding: 12px 20px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	box-sizing: border-box;
+	color: #000000;
+	background: #AA4907;
+	width: 50vh;
+}
