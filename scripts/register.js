@@ -30,8 +30,8 @@ $(document).ready(function (){
 
 			if (!data.success) {
 				if (data.errors.username) {
-					$("#FormEmailAddress").addClass("has-error");
-					$("#FormEmailAddress").append(
+					$("#FormPassword").addClass("has-error");
+					$("#FormPassword").append(
 						'<div class="help-block">' + data.errors.username + "</div>"
 					);
 				}
