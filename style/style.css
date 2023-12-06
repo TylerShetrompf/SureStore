@@ -1,4 +1,34 @@
 /* SureStore CSS Style Sheet */
+.stylish-button {
+  background-color: initial;
+  background-image: linear-gradient(-180deg, #13AE0C, #0F8A0A);
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+  height: 44px;
+  line-height: 44px;
+  outline: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: top;
+  white-space: nowrap;
+  width: 100%;
+  z-index: 9;
+  border: 0;
+}
+
+.stylish-button:hover {
+  background: #0D7808;
+}
 
 body {
 	background-color: #0a4f8a;
@@ -7,23 +37,11 @@ body {
 	height: 30vh;
 }
 
-h1 {
-	padding: 12px 20px;
-	display: inline-block;
-	border: 1px solid #ccc;
-	border-radius: 20px;
-	box-sizing: border-box;
-	background-color: #5781A4;
-}
-
 input{
 	width: 50vh;
 }
 .help-block{
 	color: #FF0004;
-}
-button{
-	width: 50vh;
 }
 input[type=text], select {
 	padding: 12px 20px;
@@ -47,36 +65,6 @@ input[type=password], select {
 	border: 1px solid #ccc;
 	border-radius: 100px;
 	box-sizing: border-box;
-}
-
-button[type=submit] {
-	background-color: #4CAF50;
-	color: white;
-	padding: 12px 20px;
-	border: 1px solid #ccc;
-	border-radius: 100px;
-	cursor: pointer;
-	display: inline-block;
-	box-sizing: border-box;
-}
-
-button[type=submit]:hover {
-	background-color: #45a049;
-}
-
-button.reg {
-	background-color: #99AF4C;
-	color: white;
-	padding: 12px 20px;
-	border: 1px solid #ccc;
-	border-radius: 100px;
-	cursor: pointer;
-	display: inline-block;
-	box-sizing: border-box;
-}
-
-button.reg:hover {
-	background-color: #75863A;
 }
 
 div {
