@@ -42,6 +42,7 @@ input{
 }
 .help-block{
 	color: #FF0004;
+	background-color: #000000;
 }
 input[type=text], select {
 	padding: 12px 20px;
