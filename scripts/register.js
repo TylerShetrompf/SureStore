@@ -35,6 +35,10 @@ $(document).ready(function (){
 						'<div class="help-block">' + data.errors.username + "</div>"
 					);
 				}
+			} else {
+				$.get('/snippets/registrationsuccess.html', function(newHTMLdata) {
+					$("#App").html(newHTMLdata);
+				})
 			}
 			
 		});
