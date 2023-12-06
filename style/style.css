@@ -6,6 +6,16 @@ body {
 	place-items: center;
 	height: 30vh;
 }
+
+h1 {
+	padding: 12px 20px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 20px;
+	box-sizing: border-box;
+	background-color: #5781A4;
+}
+
 input{
 	width: 50vh;
 }
