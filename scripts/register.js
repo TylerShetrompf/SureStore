@@ -1,4 +1,4 @@
-// JavaScript Document to handle auth form
+// JavaScript Document to handle registration
 $(document).ready(function () {
 	$(".regButton").click(function () {
 		
@@ -29,6 +29,13 @@ $(document).ready(function (){
 		}).done(function (data) {
 
 			if (!data.success) {
+				
+				if (data.errors.password) {
+					$("#FormPassword").addClass("has-error");
+					$("#FormPassword").append(
+						'<div class="help-block">' + data.errors.password + "</div>"
+					);
+				}
 				if (data.errors.username) {
 					$("#FormPassword").addClass("has-error");
 					$("#FormPassword").append(
