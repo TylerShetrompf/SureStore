@@ -20,8 +20,8 @@ $username = $results["userid"];
 $dbpassword = $results["userpw"];
 $activated = $results["activated"];
 
-// Hash the provided password
-$hashedpassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
+// Set var for posted password
+$password = $_POST['password'];
 
 // Close DB connection
 pg_close($surestore_db);
@@ -29,7 +29,7 @@ pg_close($surestore_db);
 // Return error text if username or password is incorrect.
  if (empty($username)) {
 	$errors['password'] = 'Username or password is incorrect';
-} elseif(password_verify($hashedpassword,$dbpassword)) {
+} elseif(!password_verify($password,$dbpassword)) {
 	$errors['password'] = 'Username or password is incorrect';
 } elseif($activated != "t"){
 	$errors['activation'] = 'This account is not activated. Please check your email for an activation link.';
