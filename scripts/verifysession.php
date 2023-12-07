@@ -12,7 +12,6 @@ $query = pg_query_params($surestore_db, 'SELECT userid, sessionid FROM sureusers
 $results = pg_fetch_assoc($query);
 
 $useridresult = $results["userid"];
-echo($useridresult);
 $sessionidresult = $results["sessionid"];
 
 pg_close($surestore_db);
