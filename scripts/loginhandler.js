@@ -1,19 +1,5 @@
 // JavaScript to handle login
-$(document).ready(function () {
-	
-	// Check for sessionid cookie
-	const sessionidValue = document.cookie
-		.split("; ")
-		.find((row) => row.startsWith("sessionid="))
-		?.split("=")[1];
-		console.log(sessionidValue);
-	
-	// Check for userid cookie
-	const useridValue = document.cookie
-		.split("; ")
-		.find((row) => row.startsWith("userid="))
-		?.split("=")[1];
-	console.log(useridValue);
+$(document).ready(function () {	
 	// Grab formdata when login form is submitted
 	$("#LoginForm").submit(function (event) {
 		var formData ={
@@ -29,7 +15,6 @@ $(document).ready(function () {
 			dataType: "json",
 			encode: true,
 		}).done(function (data){
-			
 			// Check for errors
 			if (!data.success) {
 				
