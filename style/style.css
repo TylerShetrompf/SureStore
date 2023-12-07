@@ -77,8 +77,6 @@ div {
 	padding: 4px;
 }
 
-/* Test for password val box */
-
 form ul.helper-text {
 padding: 12px 20px;
 	display: inline-block;
@@ -88,4 +86,97 @@ padding: 12px 20px;
 	color: #000000;
 	background: #AA4907;
 	width: 50vh;
+}
+
+/* CSS for Mobile Devices */
+
+@media only screen and (max-width: 700px) {
+	.stylish-button {
+		background-color: initial;
+		background-image: linear-gradient(-180deg, #13AE0C, #0F8A0A);
+		border-radius: 5px;
+		box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
+		color: #FFFFFF;
+		cursor: pointer;
+		display: inline-block;
+		font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+		height: 44px;
+		line-height: 44px;
+		outline: 0;
+		overflow: hidden;
+		padding: 0 20px;
+		pointer-events: auto;
+		position: relative;
+		text-align: center;
+		touch-action: manipulation;
+		user-select: none;
+		-webkit-user-select: none;
+		vertical-align: top;
+		white-space: nowrap;
+		width: 90vw;
+		z-index: 9;
+		border: 0;
+	}
+
+	.stylish-button:hover {
+		background: #0D7808;
+	}
+
+	body {
+		background-color: #0a4f8a;
+		display: grid;
+		place-items: center;
+		height: 50vh;
+	}
+
+	input{
+		width: 90vw;
+	}
+	.mainButton{
+		width: 90vw;
+	}
+	.help-block{
+		color: #FF0004;
+		background-color: #000000;
+	}
+	input[type=text], select {
+		padding: 12px 20px;
+		display: inline-block;
+		border: 1px solid #ccc;
+		border-radius: 100px;
+		box-sizing: border-box;
+	}
+
+	input[type=email], select {
+		padding: 12px 20px;
+		display: inline-block;
+		border: 1px solid #ccc;
+		border-radius: 100px;
+		box-sizing: border-box;
+	}
+
+	input[type=password], select {
+		padding: 12px 20px;
+		display: inline-block;
+		border: 1px solid #ccc;
+		border-radius: 100px;
+		box-sizing: border-box;
+	}
+
+	div {
+		border-radius: 0px;
+		background-color: #0a4f8a;
+		padding: 4px;
+	}
+
+	form ul.helper-text {
+		padding: 12px 20px;
+		display: inline-block;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		box-sizing: border-box;
+		color: #000000;
+		background: #AA4907;
+		width: 90vw;
+	}
 }
