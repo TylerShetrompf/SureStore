@@ -33,7 +33,7 @@ $(document).ready(function () {
 			} else {
 				
 				// Load main menu
-				$.get('/snippets/mainmenu.html', function(newHTMLdata) {
+				$.get('/snippets/mainmenu.php', function(newHTMLdata) {
 					$("#App").html(newHTMLdata);
 				})
 			}
