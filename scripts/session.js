@@ -15,9 +15,11 @@ $(document).ready(function() {
 	};
 		
 	$.post("/scripts/verifysession.php", cookieData, function(data){
-		console.log(data);
-		$.get('/snippets/mainmenu.html', function(newHTMLdata) {
+		var returnsuccess = JSON.parse(data);
+		if (returnsuccess.success) {
+			$.get('/snippets/mainmenu.php', function(newHTMLdata) {
 				$("#App").html(newHTMLdata);
-		});
+			});
+		}
 	});
 });
