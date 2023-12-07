@@ -40,6 +40,9 @@ body {
 input{
 	width: 50vh;
 }
+.mainButton{
+	width: 50vh;
+}
 .help-block{
 	color: #FF0004;
 	background-color: #000000;
