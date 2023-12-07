@@ -1,5 +1,5 @@
 <?php
-	$surestore_db = pg_pconnect("host=localhost dbname=SureStore user=postgres password=97DnXjPQSUu$925atBo!9WZuAf@7aaWQ");
+	include '/var/www/html/scripts/connectdb.php';
 	pg_close($surestore_db);
 ?>
 

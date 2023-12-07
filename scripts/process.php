@@ -1,11 +1,11 @@
 <?php
 
+// Include connection to postgresql database
+include '/var/www/html/scripts/connectdb.php';
+
 // Initialize arrays for error messages and data
 $errors = [];
 $data = [];
-
-// Connect to Postgresql database
-$surestore_db = pg_pconnect("host=localhost dbname=SureStore user=postgres password=97DnXjPQSUu$925atBo!9WZuAf@7aaWQ");
 
 $userid = $_POST['username'];
 
@@ -41,6 +41,8 @@ if (!empty($errors)) {
     $data['success'] = false;
     $data['errors'] = $errors;
 } else {
+	
+	include '/var/www/html/scripts/connectdb.php';
 	// Create session cookie
 	$sessioncookiename = "sessionid";
 	$sessioncookieval = password_hash(($userid.time()), PASSWORD_DEFAULT);
@@ -51,9 +53,7 @@ if (!empty($errors)) {
 	$usercookieval = "$userid";
 	setcookie($usercookiename, $usercookieval, time() + (86400 * 7), "/");
 	
-	// Connect to DB and insert session cookie
-	$surestore_db = pg_pconnect("host=localhost dbname=SureStore user=postgres password=97DnXjPQSUu$925atBo!9WZuAf@7aaWQ");
-	
+	// Insert session cookie
 	$cookiequery = pg_query_params($surestore_db, "UPDATE sureusers SET sessionid = $1 WHERE userid = $2", array($sessioncookieval, $userid));
 	
 	pg_close($surestore_db);

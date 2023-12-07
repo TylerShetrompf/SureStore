@@ -3,7 +3,7 @@
 // Initialize arrays for error messages and data
 $data = [];
 
-$surestore_db = pg_pconnect("host=localhost dbname=SureStore user=postgres password=97DnXjPQSUu$925atBo!9WZuAf@7aaWQ");
+include '/var/www/html/scripts/connectdb.php';
 
 $userid = $_POST['userid'];
 $sessionid = $_POST['sessionid'];

@@ -32,7 +32,7 @@ if ($pwlength < 8){
 	$actcode = rand(10000,99999);
 	
 	// Connect to Postgresql database
-	$surestore_db = pg_pconnect("host=localhost dbname=SureStore user=postgres password=97DnXjPQSUu$925atBo!9WZuAf@7aaWQ");
+	include '/var/www/html/scripts/connectdb.php';
 
 	// Check if account exists with email
 	// Query for user check

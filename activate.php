@@ -32,7 +32,7 @@
 		$userid = $_GET['userid'];
 	
 		// Connect to DB
-		$surestore_db = pg_pconnect("host=localhost dbname=SureStore user=postgres password=97DnXjPQSUu$925atBo!9WZuAf@7aaWQ");
+		include '/var/www/html/scripts/connectdb.php';
 	
 		// Query to check that user exists with proper activation code
 		$checkuserquery = pg_query_params($surestore_db, "SELECT * FROM sureusers WHERE userid = $1 AND actcode = $2", array($userid, $actcode));
