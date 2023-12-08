@@ -11,15 +11,18 @@ $(document).ready(function () {
 
 $(document).ready(function () {
 	$("body").on("keyup", "#vaultsearchform", function () {
-		var query = $("#search").val();
+		var input ={
+			query: $("#search").val(),
+		};
 		$.ajax({
 			type: "POST",
 			url: "/scripts/vaultsearch.php",
-			data: query,
+			data: input,
 			dataType: "json",
 			encode: true,
-		}).done(function (data){
+		}).done(function (data){;
 			console.log(data);
+			$("#vaultsearchform").append(data);
 		})
 	});
 });
