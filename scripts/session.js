@@ -1,4 +1,5 @@
 // Javascript document for handling sessions
+// FOR SOME UNKNOWN REASON, THIS SCRIPT NEEDS TO BE INCLUDED LAST IN MAIN.HTML
 $(document).ready(function() {
 	// Check for sessionid cookie
 	const sessionidCookie = decodeURIComponent(document.cookie).split("; ");
