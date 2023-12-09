@@ -40,8 +40,12 @@ body {
 input{
 	width: 50vh;
 }
+select{
+	width: 50vh;
+}
 .mainButton{
 	width: 50vh;
+	padding: 12px 20px;
 }
 .help-block{
 	color: #FF0004;
@@ -132,8 +136,12 @@ padding: 12px 20px;
 	input{
 		width: 90vw;
 	}
+	select{
+		width: 90vw;
+	}
 	.mainButton{
 		width: 90vw;
+		padding: 12px 20px;
 	}
 	.help-block{
 		color: #FF0004;
