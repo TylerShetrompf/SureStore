@@ -8,9 +8,20 @@ $(document).ready(function () {
 	});
 });
 
-
 $(document).ready(function () {
-	$("body").on("keyup", "#vaultsearchform", function () {
+	$('.vaultSearch').select2({
+		ajax:{
+			url: '/scripts/vaultsearch2.php',
+			dataType: 'json',
+		},
+		placeholder: 'Search',
+		minimumInputLength: 1,
+	});
+});
+
+/*
+$(document).ready(function () {
+	$("body").on("keyup", "#search", function () {
 		var input ={
 			query: $("#search").val(),
 		};
@@ -22,7 +33,8 @@ $(document).ready(function () {
 			encode: true,
 		}).done(function (data){;
 			console.log(data);
-			$("#vaultsearchform").append(data);
+			// $("#vaultsearchform").append(data);
 		})
 	});
 });
+*/
