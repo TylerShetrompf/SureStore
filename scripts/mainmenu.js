@@ -4,20 +4,31 @@ $(document).ready(function () {
 		event.preventDefault();
 		$.get('/snippets/locator.html', function(data) {
 			$("#App").html(data);
+			
+			// Call initialize selct2 function so that select 2 registers box on load
+			initializeSelect2();
 		})
 	});
 });
 
-$(document).ready(function () {
+function initializeSelect2(){
 	$('.vaultSearch').select2({
-		ajax:{
-			url: '/scripts/vaultsearch2.php',
-			dataType: 'json',
-		},
-		placeholder: 'Search',
-		minimumInputLength: 1,
+		ajax: {
+			type: "POST",
+			url: '/scripts/vaultsearch.php',
+			data: function(term){
+				console.log(term);
+				return term;
+			},
+			dataType: "json",
+			encode: true,
+			processResults: function (data) {
+				console.log(data);
+				return data;
+			}
+		}
 	});
-});
+}
 
 /*
 $(document).ready(function () {
