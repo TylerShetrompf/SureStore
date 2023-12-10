@@ -17,13 +17,11 @@ function initializeSelect2(){
 			type: "POST",
 			url: '/scripts/vaultsearch.php',
 			data: function(term){
-				console.log(term);
 				return term;
 			},
 			dataType: "json",
 			encode: true,
 			processResults: function (data) {
-				console.log(data);
 				return data;
 			}
 		}
