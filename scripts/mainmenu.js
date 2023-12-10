@@ -29,23 +29,3 @@ function initializeSelect2(){
 		}
 	});
 }
-
-/*
-$(document).ready(function () {
-	$("body").on("keyup", "#search", function () {
-		var input ={
-			query: $("#search").val(),
-		};
-		$.ajax({
-			type: "POST",
-			url: "/scripts/vaultsearch.php",
-			data: input,
-			dataType: "json",
-			encode: true,
-		}).done(function (data){;
-			console.log(data);
-			// $("#vaultsearchform").append(data);
-		})
-	});
-});
-*/
