@@ -10,7 +10,7 @@ $results = [];
 $userinput = $_POST['term']."%";
 
 // Query
-$dbquery = pg_query_params($surestore_db, "select surecustomer.custfirst, surecustomer.custlast, sureorders.orderid, sureitems.itemvault from sureorders inner join surecustomer on sureorders.ordercust=surecustomer.custid inner join sureitems on sureorders.orderid=sureitems.itemorder WHERE sureorders.orderid like $1 OR surecustomer.custfirst like $1 OR surecustomer.custlast like $1 OR sureorders.orderid like $1", array($userinput));
+$dbquery = pg_query_params($surestore_db, "select surecustomer.custfirst, surecustomer.custlast, sureorders.orderid, sureitems.itemvault from sureorders inner join surecustomer on sureorders.ordercust=surecustomer.custid inner join sureitems on sureorders.orderid=sureitems.itemorder WHERE sureorders.orderid like $1 OR surecustomer.custfirst like $1 OR surecustomer.custlast like $1 OR sureitems.itemvault like $1", array($userinput));
 
 // Initialize ID variable
 $id = 1;
