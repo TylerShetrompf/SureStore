@@ -26,6 +26,15 @@
   border: 0;
 }
 
+h1 {
+	padding: 12px 20px;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 20px;
+	box-sizing: border-box;
+	background-color: #5781A4;
+}
+
 .stylish-button:hover {
   background: #0D7808;
 }
@@ -92,6 +101,25 @@ padding: 12px 20px;
 	width: 50vh;
 }
 
+.topnav {
+	background-color: #333;
+	overflow: hidden;
+	width: 50vh;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
 /* CSS for Mobile Devices */
 
 @media only screen and (max-width: 700px) {
@@ -186,5 +214,13 @@ padding: 12px 20px;
 		color: #000000;
 		background: #AA4907;
 		width: 90vw;
+	}
+	h1 {
+		padding: 12px 20px;
+		display: inline-block;
+		border: 1px solid #ccc;
+		border-radius: 20px;
+		box-sizing: border-box;
+		background-color: #5781A4;
 	}
 }
