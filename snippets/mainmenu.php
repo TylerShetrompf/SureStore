@@ -4,9 +4,8 @@
 ?>
 
 <div class="topnav">
-	<a href="#Home">Home</a>
-	<a href="#Locator">Locator</a>
-	<a href="#news">Logout</a>
+	<a href="#Home" class="navbutton">Home</a>
+	<a href="#Logout" class="navbutton">Logout</a>
 </div>
 <div class="mainMenu">
 	<form id="locatorButton" class="mainButton">
