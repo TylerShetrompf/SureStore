@@ -13,6 +13,7 @@ $(document).ready(function () {
 
 function initializeSelect2(){
 	$('.vaultSearch').select2({
+		placeholder: "Search by registration, customer name, or vault...",
 		ajax: {
 			type: "POST",
 			url: '/scripts/vaultsearch.php',
@@ -25,5 +26,8 @@ function initializeSelect2(){
 				return data;
 			}
 		}
+	});
+	$('.vaultSearch').on("select2:select", function(event) {	
+		console.log('Selecting');
 	});
 }
