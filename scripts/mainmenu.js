@@ -73,7 +73,6 @@ function initializeSelect2(){
 		// Assign values to associative array
 		var formData = {
 			orderid: content[0],
-			vault: content[1],
 		};
 		$.ajax({
 			type: "POST",
@@ -82,7 +81,7 @@ function initializeSelect2(){
 			dataType: "json",
 			encode: true,
 		}).done(function (data){
-			
+			console.log(data);
 		});
 	});
 }
