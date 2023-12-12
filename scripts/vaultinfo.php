@@ -10,26 +10,33 @@ $orderinfo = [];
 // Get variables from POST
 $orderid = $_POST["orderid"];
 
-// Query
+// Order id query
 $orderidquery = pg_query_params($surestore_db, "select * from sureorders where orderid = $1", array($orderid));
 
 $orderidqueryresult = pg_fetch_assoc($orderidquery);
 
+// Assign results from query to orderinfo array
 $orderinfo["custid"] = $orderidqueryresult["ordercust"];
 $orderinfo["datein"] = $orderidqueryresult["datein"];
 $orderinfo["dateout"] = $orderidqueryresult["dateout"];
 $orderinfo["ordermil"] = $orderidqueryresult["ordermil"];
 
+// Customer query
 $custquery = pg_query_params($surestore_db, "select * from surecustomer where custid = $1", array($orderinfo["custid"]));
 
 $custqueryresult = pg_fetch_assoc($custquery);
+
+// Assign results from query to orderinfo array
 $orderinfo["custfirst"] = $custqueryresult["custfirst"];
 $orderinfo["custlast"] = $custqueryresult["custlast"];
 
+// Assign orderinfo array to data array orderinfo value
 $data["orderinfo"] = $orderinfo;
 
+// Item query
 $itemquery = pg_query_params($surestore_db, "select * from sureitems where itemorder = $1", array($orderid));
 
+// Iterate through results, create a new entry in items array for each
 while ($itemqueryresult = pg_fetch_assoc($itemquery)) {
 	$entry = [];
 	$entry ["itemid"] = $itemqueryresult["itemid"];
@@ -40,10 +47,13 @@ while ($itemqueryresult = pg_fetch_assoc($itemquery)) {
 	array_push($items, $entry);
 }
 
+// Assign items array to data array items value
 $data["items"] = $items;
 
+// History query
 $historyquery = pg_query_params($surestore_db, "select * from surehistory where historder = $1", array($orderid));
 
+// Iterate through results, create a new entry in history array for each
 while ($historyqueryresult = pg_fetch_assoc($historyquery)) {
 	$entry = [];
 	$entry ["histid"] = $historyqueryresult["histid"];
@@ -52,8 +62,11 @@ while ($historyqueryresult = pg_fetch_assoc($historyquery)) {
 	array_push($history, $entry);
 }
 
+// Assign history array to data array history value
 $data["history"] = $history;
 
+// Echo back to ajax
 echo json_encode($data);
 
+// Close db connection
 pg_close($surestore_db);
