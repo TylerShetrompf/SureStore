@@ -26,30 +26,51 @@
 <!-- Tag body with ID App -->
 <body>
 	
-	<!-- App div -->
-	<div id="App" class="App">
+	<!-- Grid container div -->
+	<div class="grid-container">
 		
-		<!-- Logo -->
-		<img src="images/logoSmol.png" alt="logo" size="25%">
+		<!-- navbar div -->
+		<div class="navbar"></div>
+		
+		<!-- leftside div -->
+		<div class="leftside"></div>
+		
+		<!-- main div -->
+		<div class="main">
+			
+			<!-- App div -->
+			<div id="App" class="App">
+				
+				<!-- Logo -->
+				<img src="images/logoSmol.png" alt="logo" size="25%">
 
-		<!-- The login form -->
-		<form id="LoginForm" action="/scripts/process.php" method="post">
-			<div id="FormUsername" class="FormRow">
-				<input type="text" size="15" class="form-control" id="username" name="username" placeholder="Username"/>
-			</div>
-			<div id="FormPassword" class="FormRow">
-				<input type="password" size="15" class="form-control" id="password" name="password" placeholder="Password"/>
-			</div>
-			<div class="FormRow">
-				<button type="submit" size="15" class="stylish-button">Login</button>
-			</div>
-		</form>
+				<!-- The login form -->
+				<form id="LoginForm" class="LoginForm" action="/scripts/process.php" method="post">
+					<div id="FormUsername" class="FormRow">
+						<input type="text" size="15" class="form-control" id="username" name="username" placeholder="Username"/>
+					</div>
+					<div id="FormPassword" class="FormRow">
+						<input type="password" size="15" class="form-control" id="password" name="password" placeholder="Password"/>
+					</div>
+					<div class="loginButton">
+						<button type="submit" size="15" class="stylish-button">Login</button>
+					</div>
+				</form>
 
-		<!-- Register button -->
-		<div class="regButton">
-			<button type="button" class="stylish-button">Register</button>
+				<!-- Register button -->
+				<div class="regButton">
+					<button type="button" class="stylish-button">Register</button>
+				</div>
+				
+			</div>
+			
 		</div>
 		
+		<!-- rightside div -->
+		<div class="rightside"></div>
+		
+		<!-- footer div -->
+		<div class="footer"></div>
 	</div>
 </body>
 </html>
