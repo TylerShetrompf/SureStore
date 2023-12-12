@@ -4,27 +4,29 @@ include '/var/www/html/scripts/connectdb.php';
 
 // Initialize data and results arrays
 $data = [];
-$results = [];
 $items = [];
 $history = [];
+$orderinfo = [];
 // Get variables from POST
 $orderid = $_POST["orderid"];
-$vault = $_POST["vault"];
 
 // Query
 $orderidquery = pg_query_params($surestore_db, "select * from sureorders where orderid = $1", array($orderid));
 
 $orderidqueryresult = pg_fetch_assoc($orderidquery);
 
-$custid = $orderidquery["ordercust"];
+$orderinfo["custid"] = $orderidqueryresult["ordercust"];
+$orderinfo["datein"] = $orderidqueryresult["datein"];
+$orderinfo["dateout"] = $orderidqueryresult["dateout"];
+$orderinfo["ordermil"] = $orderidqueryresult["ordermil"];
 
-$datein = $orderidquery["datein"];
+$custquery = pg_query_params($surestore_db, "select * from surecustomer where custid = $1", array($orderinfo["custid"]));
 
-$dateout = $orderidquery["dateout"];
+$custqueryresult = pg_fetch_assoc($custquery);
+$orderinfo["custfirst"] = $custqueryresult["custfirst"];
+$orderinfo["custlast"] = $custqueryresult["custlast"];
 
-$ordermil = $orderidquery["ordermil"];
-
-$orderidquery = pg_query_params($surestore_db, "select * from sureorders where orderid = $1", array($orderid));
+$data["orderinfo"] = $orderinfo;
 
 $itemquery = pg_query_params($surestore_db, "select * from sureitems where itemorder = $1", array($orderid));
 
@@ -38,6 +40,8 @@ while ($itemqueryresult = pg_fetch_assoc($itemquery)) {
 	array_push($items, $entry);
 }
 
+$data["items"] = $items;
+
 $historyquery = pg_query_params($surestore_db, "select * from surehistory where historder = $1", array($orderid));
 
 while ($historyqueryresult = pg_fetch_assoc($historyquery)) {
@@ -47,3 +51,9 @@ while ($historyqueryresult = pg_fetch_assoc($historyquery)) {
 	$entry ["histime"] = $historyqueryresult["histime"];
 	array_push($history, $entry);
 }
+
+$data["history"] = $history;
+
+echo json_encode($data);
+
+pg_close($surestore_db);
