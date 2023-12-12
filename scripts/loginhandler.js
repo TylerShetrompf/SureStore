@@ -36,6 +36,11 @@ $(document).ready(function () {
 				$.get('/snippets/mainmenu.php', function(newHTMLdata) {
 					$("#App").html(newHTMLdata);
 				})
+				
+				// Load navbar
+				$.get('/snippets/navbar.html', function(newHTMLdata) {
+					$(".navbar").html(newHTMLdata);
+				})
 			}
 		});
 		
