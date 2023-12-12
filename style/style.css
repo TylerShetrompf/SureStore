@@ -1,4 +1,35 @@
 /* SureStore CSS Style Sheet */
+
+/* All Pages */
+.grid-container {
+	display: grid;
+	grid-template-areas:
+		'navbar navbar navbar'
+		'leftside main rightside'
+		'leftside main rightside'
+		'leftside main rightside'
+		'footer footer footer';
+	gap: 5px;
+	background-color: #0a4f8a;
+	padding: 10px;
+}
+
+.navbar {
+	display: flex;
+	grid-area: navbar;
+	justify-content: end;
+	background-color: #333;
+	background-image: linear-gradient(-180deg, #16252d, #101B21);
+}
+.leftside { grid-area: leftside; }
+.main { 
+	grid-area: main; 
+	place-items: center;
+	text-align: center;
+}
+.rightside { grid-area: rightside; }
+.footer { grid-area: footer; }
+
 .stylish-button {
   background-color: initial;
   background-image: linear-gradient(-180deg, #13AE0C, #0F8A0A);
@@ -21,92 +52,77 @@
   -webkit-user-select: none;
   vertical-align: top;
   white-space: nowrap;
-  width: 100%;
   z-index: 9;
   border: 0;
+}
+
+.stylish-button:hover {
+  background-image: linear-gradient(-180deg, #0F8A0A, #13AE0C);
 }
 
 body {
 	background-color: #0a4f8a;
 }
 
-.App {
-	background-color: #0a4f8a;
-	display: grid;
-	place-items: center;
-	height: 30vh;
-	align-content: center;
-}
-
-h1 {
-	padding: 12px 20px;
-	display: inline-block;
-	border: 1px solid #ccc;
-	border-radius: 20px;
-	box-sizing: border-box;
-	background-color: #5781A4;
-}
-
-.stylish-button:hover {
-  background: #0D7808;
-}
-
-input{
-	width: 50vh;
-}
-select{
-	width: 50vh;
-	padding: 12px 20px;
-}
-.mainButton{
-	width: 50vh;
-	padding: 12px 20px;
-}
 .help-block{
 	color: #FF0004;
 	background-color: #000000;
 }
+
 input[type=text], select {
 	padding: 12px 20px;
-	display: inline-block;
 	border: 1px solid #ccc;
 	border-radius: 100px;
-	box-sizing: border-box;
 }
 
 input[type=email], select {
 	padding: 12px 20px;
-	display: inline-block;
 	border: 1px solid #ccc;
 	border-radius: 100px;
-	box-sizing: border-box;
 }
 
 input[type=password], select {
 	padding: 12px 20px;
-	display: inline-block;
 	border: 1px solid #ccc;
 	border-radius: 100px;
-	box-sizing: border-box;
 }
 
-div {
-	border-radius: 0px;
-	background-color: #0a4f8a;
-	padding: 4px;
+/* Main.html */
+.FormRow {
+	margin: 10px;
 }
+
+.form-control {
+	width: 48vw;
+}
+
+.regButton .stylish-button {
+	width: 50vw;
+	margin: 10px;
+}
+
+.loginButton .stylish-button {
+	width: 50vw;
+	margin: 10px;
+}
+
+/* mainmenu.php */
+
+.mainButton{
+	padding: 12px 20px;
+}
+
+/* Registration.html */
 
 form ul.helper-text {
-padding: 12px 20px;
-	display: inline-block;
+	padding: 12px 20px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
-	box-sizing: border-box;
 	color: #000000;
 	background: #AA4907;
-	width: 50vh;
 }
 
+/* Topnav */
 .topnav {
 	overflow: hidden;
 	box-shadow: rgba(0, 0, 0, 0.1) 0 2px 4px;
@@ -134,6 +150,12 @@ padding: 12px 20px;
 	background-image: linear-gradient(-180deg, #16252d, #101B21);
 }
 
+.navbutton:hover {
+	background-color: #333;
+	background-image: linear-gradient(-180deg, #101B21, #16252d);
+}
+
+/* Select2 */
 .select2-selection__rendered {
 	line-height: 44px !important;
 }
