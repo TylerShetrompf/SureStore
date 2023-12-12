@@ -20,6 +20,7 @@ $(document).ready(function () {
 		})
 	});
 	
+	// Admin button
 	$("body").on("click", "#adminButton", function(event) {
 		event.preventDefault();
 		$.get('/snippets/admin.php', function(data) {
@@ -72,10 +73,16 @@ function initializeSelect2(){
 		// Assign values to associative array
 		var formData = {
 			orderid: content[0],
-			custfirst: content[1],
-			custlast: content[2],
-			vault: content[3],
+			vault: content[1],
 		};
-		console.log(formData);
+		$.ajax({
+			type: "POST",
+			url: "/scripts/vaultinfo.php",
+			data: formData,
+			dataType: "json",
+			encode: true,
+		}).done(function (data){
+			
+		});
 	});
 }
