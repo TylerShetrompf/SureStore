@@ -20,7 +20,13 @@
 	justify-content: end;
 	background-color: #333;
 	background-image: linear-gradient(-180deg, #16252d, #101B21);
+	flex-direction: row-reverse;
 }
+
+.navbar .topnav{
+	float: right;
+}
+
 .leftside { grid-area: leftside; }
 .main { 
 	grid-area: main; 
@@ -108,8 +114,15 @@ input[type=password], select {
 
 /* mainmenu.php */
 
-.mainButton{
-	padding: 12px 20px;
+.mainButton .stylish-button {
+	width: 50vw;
+	margin: 10px;
+}
+
+/* Locator.php */
+
+.vaultSearch {
+	width: 50vw;
 }
 
 /* Registration.html */
