@@ -26,6 +26,18 @@
   border: 0;
 }
 
+body {
+	background-color: #0a4f8a;
+}
+
+.App {
+	background-color: #0a4f8a;
+	display: grid;
+	place-items: center;
+	height: 30vh;
+	align-content: center;
+}
+
 h1 {
 	padding: 12px 20px;
 	display: inline-block;
@@ -37,14 +49,6 @@ h1 {
 
 .stylish-button:hover {
   background: #0D7808;
-}
-
-body {
-	background-color: #0a4f8a;
-	display: grid;
-	place-items: center;
-	height: 30vh;
-	align-content: center;
 }
 
 input{
@@ -172,8 +176,12 @@ padding: 12px 20px;
 	.stylish-button:hover {
 		background: #0D7808;
 	}
-
+	
 	body {
+		background-color: #0a4f8a;
+	}
+	
+	.App {
 		background-color: #0a4f8a;
 		display: grid;
 		place-items: center;
