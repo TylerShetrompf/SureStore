@@ -1,0 +1,1 @@
+// JavaScript Document to handle vault info
