@@ -8,14 +8,14 @@
 		'leftside main rightside'
 		'leftside main rightside'
 		'leftside main rightside'
-		'footer footer footer';
+		'bottom bottom bottom'
+		'copy copy copy';
 	gap: 5px;
 	background-color: #0a4f8a;
-	padding: 10px;
 }
 
 .navbar {
-	display: flex;
+	display: block;
 	grid-area: navbar;
 	justify-content: end;
 	background-color: #333;
@@ -27,14 +27,23 @@
 	float: right;
 }
 
-.leftside { grid-area: leftside; }
-.main { 
-	grid-area: main; 
+.leftside {
+	width: 30vw;
+	grid-area: leftside;
+}
+
+.main {
+	display: contents;
+	grid-area: main;
 	place-items: center;
 	text-align: center;
+	max-width: 30vw;
 }
-.rightside { grid-area: rightside; }
-.footer { grid-area: footer; }
+.rightside {grid-area: rightside;width: 30vw;}
+.bottom { grid-area: bottom; }
+.copy {
+	grid-area: copy; 
+}
 
 .stylish-button {
   background-color: initial;
@@ -68,6 +77,21 @@
 
 body {
 	background-color: #0a4f8a;
+	margin: 0;
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: #333;
+	background-image: linear-gradient(-180deg, #16252d, #101B21);
+	max-height: 4vh;
+	font-family: Inter,-apple-system,system-ui,Roboto,"Helvetica Neue",Arial,sans-serif;
+	text-align: center;
+	color: #f2f2f2;
+	padding: 14px;
 }
 
 .help-block{
@@ -99,30 +123,43 @@ input[type=password], select {
 }
 
 .form-control {
-	width: 48vw;
+	width: 33vw;
 }
 
 .regButton .stylish-button {
-	width: 50vw;
+	width: 33vw;
 	margin: 10px;
 }
 
 .loginButton .stylish-button {
-	width: 50vw;
+	width: 33vw;
 	margin: 10px;
 }
 
 /* mainmenu.php */
 
 .mainButton .stylish-button {
-	width: 50vw;
+	width: 33vw;
 	margin: 10px;
 }
 
 /* Locator.php */
 
 .vaultSearch {
-	width: 50vw;
+	width: 33vw !important;
+}
+
+/* vaultinfo */
+
+.leftform {
+	border-radius: 10px;
+	border-color: #5CADF3;
+	background-color: #FFFFFF;
+}
+
+.leftform h1{
+	place-items: center;
+	text-align: center;
 }
 
 /* Registration.html */
