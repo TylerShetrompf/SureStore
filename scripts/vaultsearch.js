@@ -45,6 +45,7 @@ function initializeSelect2(){
 		}).done(function (returndata){
 			$.get('/snippets/vaultinfoleft.html', function(data) {
 				$(".leftside").html(data);
+				initializeDataTables();
 			})
 			$.get('/snippets/vaultinforight.html', function(data) {
 				$(".rightside").html(data);
