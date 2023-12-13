@@ -39,7 +39,7 @@ $(document).ready(function () {
 				
 				// Load navbar
 				$.get('/snippets/navbar.html', function(newHTMLdata) {
-					$(".navbar").html(newHTMLdata);
+					$(".topbar").html(newHTMLdata);
 				})
 			}
 		});
