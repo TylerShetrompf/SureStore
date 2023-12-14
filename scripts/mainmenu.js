@@ -27,12 +27,5 @@ $(document).ready(function () {
 			$("#App").html(data);
 		})
 	});
-	
-	// Home nav button
-	$("body").on("click", "#homenav", function(event) {
-		event.preventDefault();
-		$.get('/snippets/mainmenu.php', function(data) {
-			$("#App").html(data);
-		})
-	});
+
 });
