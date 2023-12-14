@@ -22,8 +22,8 @@ $(document).ready(function() {
 				$("#App").html(newHTMLdata);
 			});
 			// Load navbar
-			$.get('/snippets/navbar.html', function(newHTMLdata) {
-				$(".navbar").html(newHTMLdata);
+			$.get('/snippets/navbar.html', function(newNAVdata) {
+				$("body").prepend(newNAVdata);
 			});
 		}
 	});
