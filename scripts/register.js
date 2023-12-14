@@ -1,6 +1,6 @@
 // JavaScript Document to handle registration
 $(document).ready(function () {
-	$(".regButton").click(function () {
+	$("#regButton").click(function () {
 		
 		$.get('/snippets/registration.html', function(data) {
 			$("#App").html(data);
