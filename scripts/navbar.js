@@ -5,7 +5,7 @@ $(document).ready(function () {
 	$("body").on("click", "#homenav", function(event) {
 		event.preventDefault();
 		$.get('/snippets/mainmenu.php', function(data) {
-			$("#App").html(data);
+			$("#rowmain").html(data);
 		})
 	});
 	
