@@ -5,7 +5,7 @@ $(document).ready(function () {
 	$("body").on("click", "#locButton", function(event) {
 		event.preventDefault();
 		$.get('/snippets/locator.php', function(data) {
-			$("#App").html(data);
+			$("#middle").html(data);
 			
 			// Call initialize selct2 function so that select 2 registers box on load
 			initializeSelect2();
@@ -16,7 +16,7 @@ $(document).ready(function () {
 	$("body").on("click", "#maintButton", function(event) {
 		event.preventDefault();
 		$.get('/snippets/maintenance.php', function(data) {
-			$("#App").html(data);
+			$("#middle").html(data);
 		})
 	});
 	
@@ -24,7 +24,7 @@ $(document).ready(function () {
 	$("body").on("click", "#adminButton", function(event) {
 		event.preventDefault();
 		$.get('/snippets/admin.php', function(data) {
-			$("#App").html(data);
+			$("#middle").html(data);
 		})
 	});
 
