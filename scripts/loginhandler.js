@@ -3,10 +3,9 @@ $(document).ready(function () {
 	// Grab formdata when login form is submitted
 	$("#LoginForm").submit(function (event) {
 		var formData ={
-			username: $("#username").val(),
+			username: $("#email").val(),
 			password: $("#password").val(),
 		};
-		
 		// ajax request for login processing script
 		$.ajax({
 			type: "POST",
