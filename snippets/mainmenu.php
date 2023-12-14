@@ -2,14 +2,12 @@
 	// PHP to check session
 	include '/var/www/html/scripts/reverifysession.php';
 ?>
-<div class="mainMenu">
-	<form id="locatorButton" class="mainButton">
-		<button type=button id="locButton" class="stylish-button">Locator</button>
-	</form>
-	<form id="maintbuttonform" class="mainButton">
-		<button type=button id="maintButton" class="stylish-button">Maintenance</button>
-	</form>
-	<form id="adminbuttonform" class="mainButton">
-		<button type=button id="adminButton" class="stylish-button">Admin</button>
-	</form>
+<div class="d-grid gap-2 my-2" id="locButton">
+	<button type="button" class="btn btn-success btn-lg btn-block">Locator</button>
+</div>
+<div class="d-grid gap-2 my-2" id="maintButton">
+	<button type="button" class="btn btn-success btn-lg btn-block">Maintenance</button>
+</div>
+<div class="d-grid gap-2 my-2" id="adminButton">
+	<button type="button" class="btn btn-success btn-lg btn-block">Admin</button>
 </div>
