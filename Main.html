@@ -2,19 +2,16 @@
 <html>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SureStore</title>
-
 <!-- Include JQuery -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <!-- Include Select2 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" integrity="sha512-nMNlpuaDPrqlEls3IX/Q56H36qvBASwb3ipuo3MxeWbsQB1881ox0cRv7UPTgBlriqoynt35KjEwgGUeUXIPnw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <!-- Include Bootstrap -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js" integrity="sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!--	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.min.js" integrity="sha512-WW8/jxkELe2CAiE4LvQfwm1rajOS8PHasCCx+knHG0gBHt8EXxS6T6tJRTGuDQVnluuAvMxWF4j8SNFDKceLFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>	
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
--->
 <!-- Include Datatables -->
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.css" />
@@ -30,64 +27,54 @@
 <script src="/scripts/register.js"></script>
 <!-- Script to handle sessions FOR SOME UNKNOWN REASON, THIS SCRIPT NEEDS TO BE INCLUDED LAST IN MAIN.HTML -->
 <script src="/scripts/session.js"></script>
+<!-- Include style sheet -->
+<link rel="stylesheet" href="/style/style2.css">
 <!-- Set tab icon -->
 <link rel="shortcut icon" href="https://www.surestore.store/images/favicon.ico">
-<!-- Include style sheet -->
-<link rel="stylesheet" href="/style/style.css">
 </head>
-<!-- Tag body with ID App -->
 <body>
 	
-	<!-- Grid container div -->
-	<div class="grid-container">
+	<!-- Bootstrap Container --> 
+	<div class="container">
 		
-		<!-- navbar div -->
-		<div class="topbar"></div>
-		
-		<!-- leftside div -->
-		<div class="leftside"></div>
-		
-		<!-- main div -->
-		<div class="main">
+		<!-- Main Row -->
+		<div class="row">
 			
-			<!-- App div -->
-			<div id="App" class="App">
+			<!-- 3 Columns in Main Row -->
+			
+			<!-- Left row -->
+			<div class="col-sm-4" id="left"></div>
+			
+			<!-- Middle row, id is App -->
+			<div class="col-sm-4" id="App">
 				
-				<!-- Logo -->
-				<img src="images/logoSmol.png" alt="logo" size="25%">
-
-				<!-- The login form -->
-				<form id="LoginForm" class="LoginForm" action="/scripts/process.php" method="post">
-					<div id="FormUsername" class="FormRow">
-						<input type="text" size="15" class="form-control" id="username" name="username" placeholder="Username"/>
+				<!-- SureStore Logo -->
+				<img class="mx-auto d-block" src="images/logoSmol.png" alt="SureStore Logo">
+				
+				<!-- The login Form -->
+				<form action="/scripts/process.php" id="LoginForm">
+					<div class="form-group my-2" id="FormUsername">
+						<input type="email" class="form-control" id="email" placeholder="Email">
 					</div>
-					<div id="FormPassword" class="FormRow">
-						<input type="password" size="15" class="form-control" id="password" name="password" placeholder="Password"/>
+					<div class="form-group my-2" id="FormPassword">
+						<input type="password" class="form-control" id="password" placeholder="Password">
 					</div>
-					<div class="loginButton">
-						<button type="submit" size="15" class="stylish-button">Login</button>
+					<div class="d-grid gap-2 my-2">
+						<button type="submit" class="btn btn-success btn-large btn-block">Submit</button>
+					</div>
+					
+					<!-- Register Button -->
+					<div class="d-grid gap-2 my-2" id="regButton">
+						<button type="button" class="btn btn-info btn-large btn-block">Register</button>
 					</div>
 				</form>
-
-				<!-- Register button -->
-				<div class="regButton">
-					<button type="button" class="stylish-button">Register</button>
-				</div>
+				
 				
 			</div>
 			
+			<!-- Right row -->
+			<div class="col-sm-4" id="right"></div>
 		</div>
-		
-		<!-- rightside div -->
-		<div class="rightside"></div>
-		
-		<!-- footer div -->
-		<div class="bottom"></div>
-		<footer>	
-			<div class="copy">
-				<span>&copy; SureStore.store</span>
-			</div>
-		</footer>
 	</div>
 </body>
 </html>
