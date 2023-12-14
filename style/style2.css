@@ -10,3 +10,14 @@ body {
 		color: #FF0004;
 		background-color: #000000;
 }
+
+footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	background-color: #333;
+	background-image: linear-gradient(-180deg, #16252d, #101B21); 
+	text-align: center;
+}
