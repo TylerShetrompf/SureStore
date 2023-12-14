@@ -3,9 +3,13 @@
 	include '/var/www/html/scripts/reverifysession.php';
 ?>
 
-<select class="vaultSearch" name="search" id="search">
+<!-- Select2 -->
+<div class="my-2">
+	<select class="form-select" name="search" id="search">
 </select>
-<h2> OR </h2>
-<form id="scanbuttonform" class="mainButton">
-	<button type="button" id="scanButton" class="stylish-button">Scan</button>
-</form>
+</div>
+
+<!-- Scan button -->
+<div class="d-grid gap-2 my-2" id="scanButton">
+	<button type="button" class="btn btn-success btn-lg btn-block">Scan</button>
+</div>
