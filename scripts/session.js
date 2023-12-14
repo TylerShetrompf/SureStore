@@ -19,7 +19,7 @@ $(document).ready(function() {
 		var returnsuccess = JSON.parse(data);
 		if (returnsuccess.success) {
 			$.get('/snippets/mainmenu.php', function(newHTMLdata) {
-				$("#App").html(newHTMLdata);
+				$("#middle").html(newHTMLdata);
 			});
 			// Load navbar
 			$.get('/snippets/navbar.html', function(newNAVdata) {
