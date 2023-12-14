@@ -38,7 +38,7 @@ $(document).ready(function () {
 				
 				// Load navbar
 				$.get('/snippets/navbar.html', function(newHTMLdata) {
-					$(".topbar").html(newHTMLdata);
+					$("body").prepend(newHTMLdata);
 				})
 			}
 		});
