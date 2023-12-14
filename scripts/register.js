@@ -3,7 +3,7 @@ $(document).ready(function () {
 	$("#regButton").click(function () {
 		
 		$.get('/snippets/registration.html', function(data) {
-			$("#App").html(data);
+			$("#middle").html(data);
 		})
 	});
 });
@@ -44,7 +44,7 @@ $(document).ready(function (){
 				}
 			} else {
 				$.get('/snippets/registrationsuccess.html', function(newHTMLdata) {
-					$("#App").html(newHTMLdata);
+					$("#middle").html(newHTMLdata);
 				})
 			}
 			
