@@ -118,7 +118,7 @@ function initializeItemTable(itemorderid){
 			],
 			onAddRow: function(datatable, rowdata, success, error) {
 				$.ajax({
-					url: '/scripts/itemadd.php',
+					url: '/scripts/editorscripts/itemadd.php',
 					type: 'POST',
 					dataType: 'json',
 					encode: true,
@@ -133,7 +133,7 @@ function initializeItemTable(itemorderid){
 			},
 			onDeleteRow: function(datatable, rowdata, success, error) {
 				$.ajax({
-					url: '/scripts/itemdel.php',
+					url: '/scripts/editorscripts/itemdel.php',
 					type: 'POST',
 					dataType: 'json',
 					encode: true,
@@ -166,7 +166,7 @@ function initializeItemTable(itemorderid){
 				}
 				
 				$.ajax({
-					url: '/scripts/itemedit.php',
+					url: '/scripts/itemediteditorscripts/.php',
 					type: 'POST',
 					dataType: 'json',
 					encode: true,
