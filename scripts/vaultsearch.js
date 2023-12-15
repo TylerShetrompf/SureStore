@@ -25,7 +25,7 @@ function initializeSelect2(){
 		event.preventDefault();
 		
 		// Set content variable
-		var content = $(".select2-selection__rendered").text();
+		var content = $("#select2-search-container").text();
 		
 		// Narrow content down to array
 		content = content.replace("Reg: ", "");
