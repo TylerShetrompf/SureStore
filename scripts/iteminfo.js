@@ -2,7 +2,6 @@
 
 // Initialize DataTables
 function initializeItemTable(itemorderid){
-	console.log(itemorderid);
 	// Define columns
 	var columnDefs = [
 		{
@@ -31,8 +30,6 @@ function initializeItemTable(itemorderid){
 	var formData ={
 		orderid: itemorderid,
 	};
-	console.log(formData);
-	
 	$.ajax({
 		url: '/scripts/iteminfo.php',
 		type: 'POST',
@@ -69,36 +66,54 @@ function initializeItemTable(itemorderid){
 					name: 'refresh'
 				}
 			],
-		onAddRow: function(datatable, rowdata, success, error) {
-            $.ajax({
-                // a tipycal url would be / with type='PUT'
-                url: url_ws_mock_ok,
-                type: 'GET',
-                data: rowdata,
-                success: success,
-                error: error
-            });
-        },
-        onDeleteRow: function(datatable, rowdata, success, error) {
-            $.ajax({
-                // a tipycal url would be /{id} with type='DELETE'
-                url: url_ws_mock_ok,
-                type: 'GET',
-                data: rowdata,
-                success: success,
-                error: error
-            });
-        },
-        onEditRow: function(datatable, rowdata, success, error) {
-            $.ajax({
-                // a tipycal url would be /{id} with type='POST'
-                url: url_ws_mock_ok,
-                type: 'GET',
-                data: rowdata,
-                success: success,
-                error: error
-            });
-        }
+			onAddRow: function(datatable, rowdata, success, error) {
+				console.log(rowdata);
+				$.ajax({
+					url: '/scripts/itemadd.php',
+					type: 'POST',
+					dataType: 'json',
+					encode: true,
+					data: rowdata,
+					success: success,
+					error: error
+				}).done(function(returndata){
+					if (returndata.errors){
+						alert("Item not found");
+					}
+				});
+			},
+			onDeleteRow: function(datatable, rowdata, success, error) {
+				$.ajax({
+					url: '/scripts/itemdel.php',
+					type: 'POST',
+					dataType: 'json',
+					encode: true,
+					data: rowdata,
+					success: success,
+					error: error
+				}).done(function(returndata){
+					if (returndata.errors){
+						alert("Item not found");
+					}
+				});
+			},
+			onEditRow: function(datatable, rowdata, success, error) {
+				console.log(rowdata);
+				$.ajax({
+					url: '/scripts/itemedit.php',
+					type: 'POST',
+					dataType: 'json',
+					encode: true,
+					data: rowdata,
+					success: success,
+					error: error
+				}).done(function(returndata){
+					console.log(returndata);
+					if (returndata.errors){
+						alert("Item not found");
+					}
+				});
+			}
 		});
 	});
 }
