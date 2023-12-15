@@ -30,15 +30,87 @@ if($itemidresult == false){
 	$data["errors"] = "itemid does not exist";
 	echo json_encode($data);
 } else {
-	if ($itemloose){
-		$itemupdatequery = pg_query_params($surestore_db, "UPDATE sureitems SET itemdesc = $1, itemloose = $2, itemvaulter = $3 WHERE itemid = $4", array($itemdesc, $itemloose, $itemvaulter, $itemid));
-		$itemidquery2 = pg_query_params($surestore_db, "select * from sureitems where itemid = $1", array($itemid));
-		$itemidresult2 = pg_fetch_assoc($itemidquery2);		
+	if ($itemvaulter){
+		if ($itemloose){
+
+			// update the item row
+			$itemupdatequery = pg_query_params($surestore_db, "UPDATE sureitems SET itemdesc = $1, itemloose = $2, itemvaulter = $3 WHERE itemid = $4", array($itemdesc, $itemloose, $itemvaulter, $itemid));
+
+			// Turn vaulterid into vaulter name
+			// Get new vaulterid
+			$itemidquery2 = pg_query_params($surestore_db, "select * from sureitems where itemid = $1", array($itemid));
+			// assign result to associative array
+			$itemidresult2 = pg_fetch_assoc($itemidquery2);	
+			// assign vaulter id to var
+			$vaulterid = $itemidresult2["itemvaulter"];
+			// query to get vaulters name
+			$vaulterquery = pg_query_params($surestore_db, "select * from surevaulters where vaulterid = $1", array($vaulterid));
+			// assign result to associative array
+			$vaulterqueryresult = pg_fetch_assoc($vaulterquery);
+			// Set itemvaulter in itemidresult2 to vaulter name
+			$itemidresult2["itemvaulter"] = $vaulterqueryresult["vaulterfirst"]." ".$vaulterqueryresult["vaulterlast"];
+		}
+		if ($itemvault){
+
+			// update the item row
+			$itemupdatequery = pg_query_params($surestore_db, "UPDATE sureitems SET itemdesc = $1, itemvault = $2, itemvaulter = $3 WHERE itemid = $4", array($itemdesc, $itemvault, $itemvaulter, $itemid));
+
+			// Turn vaulterid into vaulter name
+			// Get new vaulterid
+			$itemidquery2 = pg_query_params($surestore_db, "select * from sureitems where itemid = $1", array($itemid));
+			// assign result to associative array
+			$itemidresult2 = pg_fetch_assoc($itemidquery2);	
+			// assign vaulter id to var
+			$vaulterid = $itemidresult2["itemvaulter"];
+			// query to get vaulters name
+			$vaulterquery = pg_query_params($surestore_db, "select * from surevaulters where vaulterid = $1", array($vaulterid));
+			// assign result to associative array
+			$vaulterqueryresult = pg_fetch_assoc($vaulterquery);
+			// Set itemvaulter in itemidresult2 to vaulter name
+			$itemidresult2["itemvaulter"] = $vaulterqueryresult["vaulterfirst"]." ".$vaulterqueryresult["vaulterlast"];
+		}
 	} else {
-		$itemupdatequery = pg_query_params($surestore_db, "UPDATE sureitems SET itemdesc = $1, itemvault = $2, itemvaulter = $3 WHERE itemid = $4", array($itemdesc, $itemvault, $itemvaulter, $itemid));
-		$itemidquery2 = pg_query_params($surestore_db, "select * from sureitems where itemid = $1", array($itemid));
-		$itemidresult2 = pg_fetch_assoc($itemidquery2);
+		if ($itemloose){
+
+			// update the item row
+			$itemupdatequery = pg_query_params($surestore_db, "UPDATE sureitems SET itemdesc = $1, itemloose = $2 WHERE itemid = $3", array($itemdesc, $itemloose, $itemid));
+
+			// Turn vaulterid into vaulter name
+			// Get new vaulterid
+			$itemidquery2 = pg_query_params($surestore_db, "select * from sureitems where itemid = $1", array($itemid));
+			// assign result to associative array
+			$itemidresult2 = pg_fetch_assoc($itemidquery2);	
+			// assign vaulter id to var
+			$vaulterid = $itemidresult2["itemvaulter"];
+			// query to get vaulters name
+			$vaulterquery = pg_query_params($surestore_db, "select * from surevaulters where vaulterid = $1", array($vaulterid));
+			// assign result to associative array
+			$vaulterqueryresult = pg_fetch_assoc($vaulterquery);
+			// Set itemvaulter in itemidresult2 to vaulter name
+			$itemidresult2["itemvaulter"] = $vaulterqueryresult["vaulterfirst"]." ".$vaulterqueryresult["vaulterlast"];
+		}
+		if ($itemvault){
+
+			// update the item row
+			$itemupdatequery = pg_query_params($surestore_db, "UPDATE sureitems SET itemdesc = $1, itemvault = $2 WHERE itemid = $3", array($itemdesc, $itemvault, $itemid));
+
+			// Turn vaulterid into vaulter name
+			// Get new vaulterid
+			$itemidquery2 = pg_query_params($surestore_db, "select * from sureitems where itemid = $1", array($itemid));
+			// assign result to associative array
+			$itemidresult2 = pg_fetch_assoc($itemidquery2);	
+			// assign vaulter id to var
+			$vaulterid = $itemidresult2["itemvaulter"];
+			// query to get vaulters name
+			$vaulterquery = pg_query_params($surestore_db, "select * from surevaulters where vaulterid = $1", array($vaulterid));
+			// assign result to associative array
+			$vaulterqueryresult = pg_fetch_assoc($vaulterquery);
+			// Set itemvaulter in itemidresult2 to vaulter name
+			$itemidresult2["itemvaulter"] = $vaulterqueryresult["vaulterfirst"]." ".$vaulterqueryresult["vaulterlast"];
+		}
 	}
+
+	// Return row
 	echo json_encode($itemidresult2);
 }
 
