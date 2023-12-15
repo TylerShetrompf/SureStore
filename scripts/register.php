@@ -36,7 +36,7 @@ if ($pwlength < 8){
 
 	// Check if account exists with email
 	// Query for user check
-	$checkuserquery = pg_query_params($surestore_db, 'SELECT userid FROM sureusers WHERE userid = $1', array($userid));
+	$checkuserquery = pg_query_params($surestore_db, 'SELECT userid FROM sureusers WHERE LOWER(userid) = LOWER($1)', array($userid));
 	
 	// Results for user check as assoc array
 	$checkuserresults = pg_fetch_assoc($checkuserquery);

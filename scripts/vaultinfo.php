@@ -11,7 +11,7 @@ $orderinfo = [];
 $orderid = $_POST["orderid"];
 
 // Order id query
-$orderidquery = pg_query_params($surestore_db, "select * from sureorders where orderid = $1", array($orderid));
+$orderidquery = pg_query_params($surestore_db, "select * from sureorders where LOWER(orderid) = LOWER($1)", array($orderid));
 
 $orderidqueryresult = pg_fetch_assoc($orderidquery);
 
@@ -22,7 +22,7 @@ $orderinfo["dateout"] = $orderidqueryresult["dateout"];
 $orderinfo["ordermil"] = $orderidqueryresult["ordermil"];
 
 // Customer query
-$custquery = pg_query_params($surestore_db, "select * from surecustomer where custid = $1", array($orderinfo["custid"]));
+$custquery = pg_query_params($surestore_db, "select * from surecustomer where LOWER(custid) = LOWER($1)", array($orderinfo["custid"]));
 
 $custqueryresult = pg_fetch_assoc($custquery);
 
@@ -34,7 +34,7 @@ $orderinfo["custlast"] = $custqueryresult["custlast"];
 $data["orderinfo"] = $orderinfo;
 
 // Item query
-$itemquery = pg_query_params($surestore_db, "select * from sureitems where itemorder = $1", array($orderid));
+$itemquery = pg_query_params($surestore_db, "select * from sureitems where LOWER(itemorder) = LOWER($1)", array($orderid));
 
 // Iterate through results, create a new entry in items array for each
 while ($itemqueryresult = pg_fetch_assoc($itemquery)) {
@@ -51,7 +51,7 @@ while ($itemqueryresult = pg_fetch_assoc($itemquery)) {
 $data["items"] = $items;
 
 // History query
-$historyquery = pg_query_params($surestore_db, "select * from surehistory where historder = $1", array($orderid));
+$historyquery = pg_query_params($surestore_db, "select * from surehistory where LOWER(historder) = LOWER($1)", array($orderid));
 
 // Iterate through results, create a new entry in history array for each
 while ($historyqueryresult = pg_fetch_assoc($historyquery)) {

@@ -13,7 +13,7 @@ if ((!isset($_COOKIE["userid"])) or (!isset($_COOKIE["sessionid"]))) {
 	$sessionid = $_COOKIE['sessionid'];
 	
 	// Query for rows
-	$query = pg_query_params($surestore_db, 'SELECT userid, sessionid FROM sureusers WHERE userid = $1', array($userid));
+	$query = pg_query_params($surestore_db, 'SELECT userid, sessionid FROM sureusers WHERE LOWER(userid) = LOWER($1)', array($userid));
 	
 	// Get results to array
 	$results = pg_fetch_assoc($query);

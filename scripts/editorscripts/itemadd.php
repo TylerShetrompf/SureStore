@@ -13,7 +13,7 @@ $itemvaultername = $_POST["itemvaulter"];
 $vaulternamearray = explode(" ", $itemvaultername);
 $vaulterfirst = $vaulternamearray[0];
 $vaulterlast = $vaulternamearray[1];
-$vaulteridquery = pg_query_params($surestore_db, "select * from surevaulters where vaulterfirst = $1 AND vaulterlast = $2", array($vaulterfirst, $vaulterlast));
+$vaulteridquery = pg_query_params($surestore_db, "select * from surevaulters where LOWER(vaulterfirst) = LOWER($1) AND LOWER(vaulterlast) = LOWER($2)", array($vaulterfirst, $vaulterlast));
 $vaulteridresult = pg_fetch_assoc($vaulteridquery);
 $itemvaulter = $vaulteridresult["vaulterid"];
 

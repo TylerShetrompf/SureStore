@@ -10,7 +10,7 @@ $results = [];
 $userinput = $_POST['term']."%";
 
 // Query
-$dbquery = pg_query_params($surestore_db, "select * from surevault where vaultid  like $1", array($userinput));
+$dbquery = pg_query_params($surestore_db, "select * from surevault where LOWER(vaultid) like LOWER($1)", array($userinput));
 
 // Initialize ID variable
 $id = 1;

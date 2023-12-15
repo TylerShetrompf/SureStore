@@ -10,7 +10,7 @@ $results = [];
 $userinput = $_POST['term']."%";
 
 // Query
-$dbquery = pg_query_params($surestore_db, "select * from surevaulters where vaulterfirst like $1 OR vaulterlast like $1", array($userinput));
+$dbquery = pg_query_params($surestore_db, "select * from surevaulters where LOWER(vaulterfirst) like LOWER($1) OR LOWER(vaulterlast) like LOWER($1)", array($userinput));
 
 // Initialize ID variable
 $id = 1;

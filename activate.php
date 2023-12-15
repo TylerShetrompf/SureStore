@@ -21,12 +21,12 @@
 		include '/var/www/html/scripts/connectdb.php';
 	
 		// Query to check that user exists with proper activation code
-		$checkuserquery = pg_query_params($surestore_db, "SELECT * FROM sureusers WHERE userid = $1 AND actcode = $2", array($userid, $actcode));
+		$checkuserquery = pg_query_params($surestore_db, "SELECT * FROM sureusers WHERE LOWER(userid) = LOWER($1) AND actcode = $2", array($userid, $actcode));
 		$checkuserresults = pg_fetch_assoc($checkuserquery);
 
 		// Validate query
 		if($checkuserresults){
-			$actuserquery = pg_query_params($surestore_db, "UPDATE sureusers SET activated = 'TRUE' WHERE userid = $1 AND actcode = $2", array($userid, $actcode));
+			$actuserquery = pg_query_params($surestore_db, "UPDATE sureusers SET activated = 'TRUE' WHERE LOWER(userid) = LOWER($1) AND actcode = $2", array($userid, $actcode));
 			echo('<div class="container"><div class="row"><div class="col-sm-3"></div><div class="col-sm-6" id="body"><img class="mx-auto d-block" src="images/logoSmol.png" alt="SureStore Logo"><div class="bg-light rounded-3"><h1>Account Activated</h1><p>Your SureStore account is now activated!</p></div><div class="d-grid gap-2 my-2"><a href="https://surestore.store" class="btn btn-success btn-large btn-block">Return to login</a></div></div><div class="col-sm-3"></div><footer class="footer"><div class="container-fluid"><span class="text-white">&copy; SureStore.store</span></div></footer></div>');
 		} else {
 			echo('<div class="container"><div class="row"><div class="col-sm-3"></div><div class="col-sm-6" id="body"><img class="mx-auto d-block" src="images/logoSmol.png" alt="SureStore Logo"><div class="bg-danger rounded-3"><h1>Account Activation Failed :(</h1><p>Activation link is invalid.</p></div><div class="d-grid gap-2 my-2"><a href="https://surestore.store" class="btn btn-danger btn-large btn-block">Return to login</a></div></div><div class="col-sm-3"></div><footer class="footer"><div class="container-fluid"><span class="text-white">&copy; SureStore.store</span></div></footer></div>');

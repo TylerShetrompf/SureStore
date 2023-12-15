@@ -10,7 +10,7 @@ $data = [];
 $userid = $_POST['username'];
 
 // Retrieve username and password from database
-$query = pg_query_params($surestore_db, 'SELECT userid, userpw, activated FROM sureusers WHERE userid = $1', array($userid));
+$query = pg_query_params($surestore_db, 'SELECT userid, userpw, activated FROM sureusers WHERE LOWER(userid) = LOWER($1)', array($userid));
 
 // Fetch results as an array
 $results = pg_fetch_assoc($query);
@@ -54,7 +54,7 @@ if (!empty($errors)) {
 	setcookie($usercookiename, $usercookieval, time() + (86400 * 7), "/");
 	
 	// Insert session cookie
-	$cookiequery = pg_query_params($surestore_db, "UPDATE sureusers SET sessionid = $1 WHERE userid = $2", array($sessioncookieval, $userid));
+	$cookiequery = pg_query_params($surestore_db, "UPDATE sureusers SET sessionid = $1 WHERE LOWER(userid) = LOWER($2)", array($sessioncookieval, $userid));
 	
 	pg_close($surestore_db);
 	

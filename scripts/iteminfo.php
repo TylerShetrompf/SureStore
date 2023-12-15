@@ -9,7 +9,7 @@ $items = [];
 $orderid = $_POST["orderid"];
 
 // Item query
-$itemquery = pg_query_params($surestore_db, "select * from sureitems where itemorder = $1", array($orderid));
+$itemquery = pg_query_params($surestore_db, "select * from sureitems where LOWER(itemorder) = LOWER($1)", array($orderid));
 
 while ($itemqueryresult = pg_fetch_assoc($itemquery)) {
 	$entry = [];
