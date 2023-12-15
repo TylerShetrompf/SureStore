@@ -17,7 +17,12 @@ while ($itemqueryresult = pg_fetch_assoc($itemquery)) {
 	$entry ["itemdesc"] = $itemqueryresult["itemdesc"];
 	$entry ["itemvault"] = $itemqueryresult["itemvault"];
 	$entry ["itemloose"] = $itemqueryresult["itemloose"];
-	$entry ["itemvaulter"] = $itemqueryresult["itemvaulter"];
+	
+	// Get Vaulters name
+	$vaulterid = $itemqueryresult["itemvaulter"];
+	$vaulterquery = pg_query_params($surestore_db, "select * from surevaulters where vaulterid = $1", array($vaulterid));
+	$vaulterqueryresult = pg_fetch_assoc($vaulterquery);
+	$entry ["itemvaulter"] = $vaulterqueryresult["vaulterfirst"]." ".$vaulterqueryresult["vaulterlast"];
 	array_push($items, $entry);
 }
 
