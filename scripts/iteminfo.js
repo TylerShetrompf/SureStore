@@ -15,15 +15,66 @@ function initializeItemTable(itemorderid){
 		},
 		{
 			data: "itemvault",
-			title: "Item Vault"
+			title: "Item Vault",
+			type: "select",
+			select2: {
+				width: "100%",
+				placeholder: "Unchanged",
+				ajax: {
+					type: "POST",
+					url: '/scripts/select2scripts/vaultlist.php',
+					data: function(term){
+						return term;
+					},
+					dataType: "json",
+					encode: true,
+					processResults: function (data) {
+						return data;
+					}
+				}
+			}
 		},
 		{
 			data: "itemloose",
-			title: "Item Loose"
+			title: "Item Loose",
+			type: "select",
+			select2: {
+				width: "100%",
+				placeholder: "Unchanged",
+				ajax: {
+					type: "POST",
+					url: '/scripts/select2scripts/looselist.php',
+					data: function(term){
+						return term;
+					},
+					dataType: "json",
+					encode: true,
+					processResults: function (data) {
+						return data;
+					}
+				}
+			}
 		},
 		{
 			data: "itemvaulter",
-			title: "Vaulter"
+			title: "Vaulter",
+			type: "select",
+			select2: {
+				width: "100%",
+				placeholder: "Unchanged",
+				ajax: {
+					type: "POST",
+					url: '/scripts/select2scripts/vaulterlist.php',
+					data: function(term){
+						return term;
+					},
+					dataType: "json",
+					encode: true,
+					processResults: function (data) {
+						return data;
+					}
+				}
+			}
 		}
 	];
 	
@@ -37,7 +88,6 @@ function initializeItemTable(itemorderid){
 		dataType: "json",
 		encode: true,
 	}).done(function(data){
-		console.log(data);
 		$('#iteminfo').DataTable({
 			"sPaginationType": "full_numbers",
 			columns: columnDefs,
@@ -67,7 +117,6 @@ function initializeItemTable(itemorderid){
 				}
 			],
 			onAddRow: function(datatable, rowdata, success, error) {
-				console.log(rowdata);
 				$.ajax({
 					url: '/scripts/itemadd.php',
 					type: 'POST',
@@ -98,7 +147,24 @@ function initializeItemTable(itemorderid){
 				});
 			},
 			onEditRow: function(datatable, rowdata, success, error) {
-				console.log(rowdata);
+				if (rowdata["itemvault"] == null) {
+					rowdata["itemvault"] = $("tr.selected > td").eq(2).text();
+				} else {
+					rowdata["itemvault"] = $("#select2-itemvault-container").text();
+				}
+				
+				if (rowdata["itemloose"] == null) {
+					rowdata["itemloose"] = $("tr.selected > td").eq(3).text();
+				} else {
+					rowdata["itemloose"] = $("#select2-itemloose-container").text();
+				}
+				
+				if (rowdata["itemvaulter"] == null) {
+					rowdata["itemvaulter"] = $("tr.selected > td").eq(4).text();
+				} else {
+					rowdata["itemvaulter"] = $("#select2-itemvaulter-container").text();
+				}
+				
 				$.ajax({
 					url: '/scripts/itemedit.php',
 					type: 'POST',
@@ -108,7 +174,6 @@ function initializeItemTable(itemorderid){
 					success: success,
 					error: error
 				}).done(function(returndata){
-					console.log(returndata);
 					if (returndata.errors){
 						alert("Item not found");
 					}
