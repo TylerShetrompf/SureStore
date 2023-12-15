@@ -133,7 +133,6 @@ function initializeItemTable(itemorderid){
 				}
 				
 				rowdata["itemorder"] = itemorderid;
-				console.log(rowdata);
 				$.ajax({
 					url: '/scripts/editorscripts/itemadd.php',
 					type: 'POST',
@@ -149,12 +148,15 @@ function initializeItemTable(itemorderid){
 				});
 			},
 			onDeleteRow: function(datatable, rowdata, success, error) {
+				var delitemid ={
+					itemid: $("tr.selected > td").eq(0).text(),
+				}
 				$.ajax({
 					url: '/scripts/editorscripts/itemdel.php',
 					type: 'POST',
 					dataType: 'json',
 					encode: true,
-					data: rowdata,
+					data: delitemid,
 					success: success,
 					error: error
 				}).done(function(returndata){
