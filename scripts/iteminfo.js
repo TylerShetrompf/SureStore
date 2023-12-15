@@ -11,7 +11,8 @@ function initializeItemTable(itemorderid){
 		},
 		{
 			data: "itemdesc",
-			title: "Item Description"
+			title: "Item Description",
+			required: true
 		},
 		{
 			data: "itemvault",
@@ -58,6 +59,7 @@ function initializeItemTable(itemorderid){
 		{
 			data: "itemvaulter",
 			title: "Vaulter",
+			required: true,
 			type: "select",
 			select2: {
 				width: "100%",
@@ -117,6 +119,21 @@ function initializeItemTable(itemorderid){
 				}
 			],
 			onAddRow: function(datatable, rowdata, success, error) {
+				
+				if (rowdata["itemvault"] != null) {
+					rowdata["itemvault"] = $("#select2-itemvault-container").text();
+				}
+				
+				if (rowdata["itemloose"] != null) {
+					rowdata["itemloose"] = $("#select2-itemloose-container").text();
+				}
+				
+				if (rowdata["itemvaulter"] != null) {
+					rowdata["itemvaulter"] = $("#select2-itemvaulter-container").text();
+				}
+				
+				rowdata["itemorder"] = itemorderid;
+				console.log(rowdata);
 				$.ajax({
 					url: '/scripts/editorscripts/itemadd.php',
 					type: 'POST',
