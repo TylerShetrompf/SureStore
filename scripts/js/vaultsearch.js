@@ -36,6 +36,11 @@ function initializeSelect2(){
 		
 		// Assign values to associative array
 		var orderid = content[0];
+		
+		$.get('/snippets/vaultinfo/vaultinfo.html', function(data) {
+			$("#appcontainer").html(data);
+		})
+		
 		$.get('/snippets/vaultinfo/vaultinfoleft.html', function(data) {
 			$("#left").html(data);
 			initializeItemTable(orderid);

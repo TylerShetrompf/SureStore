@@ -33,7 +33,7 @@ $(document).ready(function () {
 				
 				// Load main menu
 				$.get('/snippets/mainmenu.php', function(newHTMLdata) {
-					$("#rowmain").html(newHTMLdata);
+					$("#appcontainer").html(newHTMLdata);
 				})
 				
 				// Load navbar
