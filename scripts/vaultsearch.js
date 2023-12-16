@@ -38,10 +38,12 @@ function initializeSelect2(){
 		var orderid = content[0];
 		$.get('/snippets/vaultinfo/vaultinfoleft.html', function(data) {
 			$("#left").html(data);
+			initializeItemTable(orderid);
 		})
-		$.get('/snippets/vaultinfo/vaultinfomiddle.html', function(data) {
+		$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
 			$("#middle").html(data);
+			initializeSelect2();
+			fillreginfo(orderid);
 		})
-		initializeItemTable(orderid);
 	});
 }
