@@ -1,5 +1,27 @@
 // JavaScript Document to handle vault search
 
+// Create reg button
+$(document).ready(function (){
+	$("body").on("submit", "#newregform", function(event){
+		event.preventDefault();
+		var orderid = $("#regidinput").val();
+		$.get('/snippets/vaultinfo/vaultinfo.html', function(data) {
+			$("#appcontainer").html(data);
+		})
+		
+		$.get('/snippets/vaultinfo/vaultinfoleft.html', function(data) {
+			$("#left").html(data);
+			initializeItemTable(orderid);
+		})
+		
+		$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
+			$("#middle").html(data);
+			initializeSelect2();
+			fillreginfo(orderid);
+		})
+	})
+});
+
 // Select2 stuff
 function initializeSelect2(){
 	$('#search').select2({
