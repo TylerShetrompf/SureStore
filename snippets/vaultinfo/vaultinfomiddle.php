@@ -43,12 +43,25 @@
 			<input type="date" class="form-control shadow-sm" id="regdateoutinput">
 			<small id="regdateoutHelp" class="form-text text-muted">Date Out (Optional)</small>
 		</div>
+		
+		<div class="row">
 
-		<!-- Military checkbox -->
-		<div class="form-check form-switch">
-			<input class="form-check-input" type="checkbox" id="milcheck" value="">
-			<label class="form-check-label" for="milcheck">Military</label>
+			<div class="col">
+				<div class="form-group" id="regweight">
+					<input type="input" class="form-control shadow-sm" id="regweightinput">
+					<small id="regweightHelp" class="form-text text-muted">Weight (Required)</small>
+				</div>
+			</div>
+			
+			<div class="col">
+				<!-- Military checkbox -->
+				<div class="form-check form-switch">
+					<input class="form-check-input" type="checkbox" id="milcheck" value="">
+					<label class="form-check-label" for="milcheck">Military</label>
+				</div>
+			</div>
 		</div>
+
 
 		<!-- submit button-->
 		<div class="d-grid gap-2 my-2">
