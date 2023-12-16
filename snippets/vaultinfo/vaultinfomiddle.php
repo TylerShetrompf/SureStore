@@ -12,39 +12,45 @@
 	<form action="/scripts/reginfo.php" id="reginfoform">
 
 		<!-- Reg# -->
-		<div class="form-group my-2 shadow-sm" id="reg">
-			<input type="input" class="form-control" id="reginput">
+		<div class="form-group my-2" id="reg">
+			<input type="input" class="form-control shadow-sm" id="reginput" required>
+			<small id="regHelp" class="form-text text-muted">Registration # (Required)</small>
 		</div>
 
 		<!-- Business Name -->
-		<div class="form-group my-2 shadow-sm" id="business">
-			<input type="input" class="form-control" id="businessinput">
+		<div class="form-group my-2" id="business">
+			<input type="input" class="form-control shadow-sm" id="businessinput">
+			<small id="businessHelp" class="form-text text-muted">Business Name (Optional)</small>
 		</div>
 
 		<!-- Customer First Name -->
-		<div class="form-group my-2 shadow-sm" id="regfirst">
-			<input type="input" class="form-control" id="regfirstinput">
+		<div class="form-group my-2" id="regfirst">
+			<input type="input" class="form-control shadow-sm" id="regfirstinput" required>
+			<small id="regfirstHelp" class="form-text text-muted">Customer's First Name (Required)</small>
 		</div>
 
 		<!-- Customer Last Name -->
-		<div class="form-group my-2 shadow-sm" id="reglast">
-			<input type="input" class="form-control" id="reglastinput">
+		<div class="form-group my-2" id="reglast">
+			<input type="input" class="form-control shadow-sm" id="reglastinput" required>
+			<small id="reglastHelp" class="form-text text-muted">Customer's Last Name (Required)</small>
 		</div>
 
 		<!-- Date checked in -->
-		<div class="form-group my-2 shadow-sm" id="regdatein">
-			<input type="date" class="form-control" id="regdateininput">
+		<div class="form-group my-2" id="regdatein">
+			<input type="date" class="form-control shadow-sm" id="regdateininput" required>
+			<small id="regdateinHelp" class="form-text text-muted">Date In  (Required)</small>
 		</div>
 
 		<!-- Date modified -->
-		<div class="form-group my-2 shadow-sm" id="regdatemod">
-			<input type="date" class="form-control" id="regdatemodinput">
+		<div class="form-group my-2" id="regdatemod">
+			<input type="date" class="form-control shadow-sm" id="regdatemodinput">
+			<small id="regdatemodHelp" class="form-text text-muted">Date Modified (Automatic)</small>
 		</div>
 
 		<!-- Date checked out -->
-		<div class="form-group my-2 shadow-sm" id="regdateout">
-			<input type="date" class="form-control" id="regdateoutinput">
-
+		<div class="form-group my-2" id="regdateout">
+			<input type="date" class="form-control shadow-sm" id="regdateoutinput">
+			<small id="regdateoutHelp" class="form-text text-muted">Date Out (Optional)</small>
 		</div>
 
 		<!-- Military checkbox -->
