@@ -2,13 +2,24 @@
 	// PHP to check session
 	include '/var/www/html/scripts/php/reverifysession.php';
 ?>
+<div class="bg-light px-2 my-2 border rounded">
+	<!-- Select2 -->
+	<div class="my-2">
+		<select class="form-select" name="search" id="search"></select>
+	</div>
 
-<!-- Select2 -->
-<div class="my-2">
-	<select class="form-select" name="search" id="search"></select>
-</div>
+	<h2 class="text-center">OR</h2>
 
-<!-- Scan button -->
-<div class="d-grid gap-2 my-2" id="scanButton">
-	<button type="button" class="btn btn-success btn-lg btn-block">Scan</button>
+	<!-- New Reg Form -->
+	<form id="newregform">
+		<div class="row mb-2">
+			<div class="col">
+				<input type="input" class="form-control shadow-sm" id="regidinput">
+			</div>
+			<div class="col">
+				<button type="submit" class="btn btn-success btn-large btn-block">Create Reg</button>
+			</div>
+		</div>
+	</form>
+
 </div>
