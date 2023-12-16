@@ -17,6 +17,25 @@ function fillreginfo(orderid){
 		$('#regweightinput').val(data["weight"]);
 	});
 	
+	$("#custidinput").select2({
+		theme: 'bootstrap-5',
+		width: "100%",
+		placeholder: "Select customer...",
+		ajax: {
+			type: "POST",
+			url: '/scripts/php/custinfo.php',
+			data: function(term){
+				return term;
+			},
+			dataType: "json",
+			encode: true,
+			processResults: function (data){
+				return data;
+			}
+		}
+	});
+	
+	
 	// Phone number masking
 	$('#cust-tn')
 
