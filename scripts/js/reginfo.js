@@ -10,7 +10,11 @@ function fillreginfo(orderid){
 		dataType: "json",
 		encode: true
 	}).done(function (data){
-		
+		console.log(data);
+		$('#reginput').val(data["orderid"]);
+		$('#regwhinput').val(data["orderwh"]);
+		$('#regdateininput').val(data["datein"]);
+		$('#regweightinput').val(data["weight"]);
 	});
 	
 	// Phone number masking
