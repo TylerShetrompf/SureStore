@@ -5,8 +5,8 @@ $data = [];
 
 include '/var/www/html/scripts/php/connectdb.php';
 
-$userid = $_POST['userid'];
-$sessionid = $_POST['sessionid'];
+$userid = $_COOKIE["userid"];
+$sessionid = $_COOKIE["sessionid"];
 $query = pg_query_params($surestore_db, 'SELECT userid, sessionid FROM sureusers WHERE LOWER(userid) = LOWER($1)', array($userid));
 
 $results = pg_fetch_assoc($query);
