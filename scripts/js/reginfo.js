@@ -6,6 +6,10 @@ function fillreginfo(orderid){
 	$.ajax({
 		url: "/scripts/php/reginfo.php"
 		type:"POST",
+		data: formData,
+		dataType: "json",
+		encode: true
+	}).done(function (data){
 		
-	})
+	});
 }
