@@ -6,7 +6,7 @@ if ((!isset($_COOKIE["userid"])) or (!isset($_COOKIE["sessionid"]))) {
 	die();
 } else {
 	//Include DB connection
-	include '/var/www/html/scripts/connectdb.php';
+	include '/var/www/html/scripts/php/connectdb.php';
 	
 	// Set variables to cookie values
 	$userid = $_COOKIE['userid'];

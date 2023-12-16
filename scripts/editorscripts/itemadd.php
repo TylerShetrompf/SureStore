@@ -1,7 +1,7 @@
 <?php
 
 // Include db connection
-include '/var/www/html/scripts/connectdb.php';
+include '/var/www/html/scripts/php/connectdb.php';
 
 $itemdesc = $_POST["itemdesc"];
 $itemvault = $_POST["itemvault"];

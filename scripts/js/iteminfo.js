@@ -84,7 +84,7 @@ function initializeItemTable(itemorderid){
 		orderid: itemorderid,
 	};
 	$.ajax({
-		url: '/scripts/iteminfo.php',
+		url: '/scripts/php/iteminfo.php',
 		type: 'POST',
 		data: formData,
 		dataType: "json",

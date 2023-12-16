@@ -22,7 +22,7 @@ $(document).ready(function (){
 		
 		$.ajax({
 			type: "POST",
-			url: "/scripts/register.php",
+			url: "/scripts/php/register.php",
 			data: formData,
 			dataType: "json",
 			encode: true,

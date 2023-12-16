@@ -18,7 +18,7 @@
 		$userid = $_GET['userid'];
 	
 		// Connect to DB
-		include '/var/www/html/scripts/connectdb.php';
+		include '/var/www/html/scripts/php/connectdb.php';
 	
 		// Query to check that user exists with proper activation code
 		$checkuserquery = pg_query_params($surestore_db, "SELECT * FROM sureusers WHERE LOWER(userid) = LOWER($1) AND actcode = $2", array($userid, $actcode));

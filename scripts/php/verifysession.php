@@ -3,7 +3,7 @@
 // Initialize arrays for error messages and data
 $data = [];
 
-include '/var/www/html/scripts/connectdb.php';
+include '/var/www/html/scripts/php/connectdb.php';
 
 $userid = $_POST['userid'];
 $sessionid = $_POST['sessionid'];

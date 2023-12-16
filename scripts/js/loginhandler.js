@@ -9,7 +9,7 @@ $(document).ready(function () {
 		// ajax request for login processing script
 		$.ajax({
 			type: "POST",
-			url: "/scripts/process.php",
+			url: "/scripts/php/process.php",
 			data: formData,
 			dataType: "json",
 			encode: true,

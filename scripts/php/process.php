@@ -1,7 +1,7 @@
 <?php
 
 // Include connection to postgresql database
-include '/var/www/html/scripts/connectdb.php';
+include '/var/www/html/scripts/php/connectdb.php';
 
 // Initialize arrays for error messages and data
 $errors = [];
@@ -42,7 +42,7 @@ if (!empty($errors)) {
     $data['errors'] = $errors;
 } else {
 	
-	include '/var/www/html/scripts/connectdb.php';
+	include '/var/www/html/scripts/php/connectdb.php';
 	// Create session cookie
 	$sessioncookiename = "sessionid";
 	$sessioncookieval = password_hash(($userid.time()), PASSWORD_DEFAULT);

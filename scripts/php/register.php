@@ -32,7 +32,7 @@ if ($pwlength < 8){
 	$actcode = rand(10000,99999);
 	
 	// Connect to Postgresql database
-	include '/var/www/html/scripts/connectdb.php';
+	include '/var/www/html/scripts/php/connectdb.php';
 
 	// Check if account exists with email
 	// Query for user check

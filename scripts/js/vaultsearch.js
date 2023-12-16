@@ -8,7 +8,7 @@ function initializeSelect2(){
 		placeholder: "Search by registration, customer name, or vault...",
 		ajax: {
 			type: "POST",
-			url: '/scripts/vaultsearch.php',
+			url: '/scripts/php/vaultsearch.php',
 			data: function(term){
 				return term;
 			},

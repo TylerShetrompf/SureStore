@@ -15,7 +15,7 @@ $(document).ready(function() {
 		sessionid: sessionidValue,
 	};
 		
-	$.post("/scripts/verifysession.php", cookieData, function(data){
+	$.post("/scripts/php/verifysession.php", cookieData, function(data){
 		var returnsuccess = JSON.parse(data);
 		if (returnsuccess.success) {
 			$.get('/snippets/mainmenu.php', function(newHTMLdata) {
