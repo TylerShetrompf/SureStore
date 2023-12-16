@@ -79,7 +79,7 @@
 			
 			<div class="col">
 				<div class="form-group my-1" id="custid">
-					<input type="input" class="form-control shadow-sm" id="custidinput" readonly>
+					<select class="form-select shadow-sm" name="custidinput" id="custidinput"></select>
 					<small id="custidHelp" class="form-text text-muted">ID</small>
 				</div>
 			</div>
