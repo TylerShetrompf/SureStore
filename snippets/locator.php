@@ -5,8 +5,7 @@
 
 <!-- Select2 -->
 <div class="my-2">
-	<select class="form-select" name="search" id="search">
-</select>
+	<select class="form-select" name="search" id="search"></select>
 </div>
 
 <!-- Scan button -->
