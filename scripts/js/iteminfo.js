@@ -141,7 +141,7 @@ function initializeItemTable(itemorderid){
 					error: error
 				}).done(function(returndata){
 					if (returndata.errors){
-						alert("Item not found");
+						alert("Item add found. Please contact system administrator.");
 					}
 				});
 			},
@@ -159,7 +159,7 @@ function initializeItemTable(itemorderid){
 					error: error
 				}).done(function(returndata){
 					if (returndata.errors){
-						alert("Item not found");
+						alert("Item delete failed. Please contact system administrator.");
 					}
 				});
 			},
@@ -196,7 +196,7 @@ function initializeItemTable(itemorderid){
 					error: error
 				}).done(function(returndata){
 					if (returndata.errors){
-						alert("Item not found");
+						alert("Item edit failed. Please contact system administrator.");
 					}
 				});
 			}
