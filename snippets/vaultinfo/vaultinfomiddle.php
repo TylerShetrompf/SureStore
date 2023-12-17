@@ -25,23 +25,26 @@
 				</div>
 			</div>
 		</div>
-
-		<!-- Date checked in -->
-		<div class="form-group my-2" id="regdatein">
-			<input type="date" class="form-control shadow-sm" id="regdateininput" required>
-			<small id="regdateinHelp" class="form-text text-muted">Date In  (Required)</small>
+		<div class="row">
+			<div class="col">
+				<!-- Date checked in -->
+				<div class="form-group my-2" id="regdatein">
+					<input type="date" class="form-control shadow-sm" id="regdateininput" required>
+					<small id="regdateinHelp" class="form-text text-muted">Date In  (Required)</small>
+				</div>
+			</div>
+			<div class="col">
+				<!-- Date checked out -->
+				<div class="form-group my-2" id="regdateout">
+					<input type="date" class="form-control shadow-sm" id="regdateoutinput">
+					<small id="regdateoutHelp" class="form-text text-muted">Date Out (Optional)</small>
+				</div>
+			</div>
 		</div>
-
 		<!-- Date modified -->
 		<div class="form-group my-2" id="regdatemod">
 			<input type="datetime-local" class="form-control shadow-sm" id="regdatemodinput" readonly>
 			<small id="regdatemodHelp" class="form-text text-muted">Date Last Modified (Automatic)</small>
-		</div>
-
-		<!-- Date checked out -->
-		<div class="form-group my-2" id="regdateout">
-			<input type="date" class="form-control shadow-sm" id="regdateoutinput">
-			<small id="regdateoutHelp" class="form-text text-muted">Date Out (Optional)</small>
 		</div>
 		
 		<div class="row">
