@@ -19,6 +19,7 @@ $(document).ready(function (){
 			$("#middle").html(data);
 			initializeSelect2();
 			fillreginfo(orderid);
+			fillcustinfo(orderid);
 		})
 	})
 });
