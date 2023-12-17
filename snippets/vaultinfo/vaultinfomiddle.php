@@ -49,7 +49,7 @@
 			<div class="col">
 				<!-- Order Weight -->
 				<div class="form-group" id="regweight">
-					<input type="input" class="form-control shadow-sm" id="regweightinput">
+					<input type="input" class="form-control shadow-sm" id="regweightinput" required>
 					<small id="regweightHelp" class="form-text text-muted">Weight (Required)</small>
 				</div>
 			</div>
