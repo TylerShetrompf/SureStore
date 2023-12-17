@@ -10,7 +10,6 @@ function fillreginfo(orderid){
 		dataType: "json",
 		encode: true
 	}).done(function (data){
-		
 		// Get modtime to correct format
 		var timestamp = data["timezone"];
 		timestamp = timestamp.replace(" ", "T");
@@ -22,11 +21,57 @@ function fillreginfo(orderid){
 		$('#regdatemodinput').val(timestamp);
 		$('#regweightinput').val(data["weight"]);
 		
+		// Check if order is closed
+		if (data["dateout"] != null){
+			$('#regdateoutinput').val(data["dateout"]);
+		}
+		
 		// Check if order is mil, toggle button if so
 		if (data["ordermil"] == "t") {
-			$("#milcheck").attr('checked', true);
+			$("#milcheck").attr("checked", true);
+		}
+	});
+
+	$("#milcheck").click(function (){
+		if ($("#milcheck").attr("checked") == "checked"){
+			$("#milcheck").attr("checked", false);
+		} else if ($("#milcheck").attr("checked") == undefined){
+			$("#milcheck").attr("checked", true);
 		}
 	});
 	
-
+	
+	$('#reginfoform').submit(function (event){
+		event.preventDefault();
+		
+		var regformdata ={
+			orderid: $('#reginput').val(),
+			orderwh: $('#regwhinput').val(),
+			datein: $('#regdateininput').val(),
+			weight: $('#regweightinput').val()
+		}
+		
+		if ($('#regdateoutinput').val() != ""){
+			regformdata["dateout"] = $('#regdateoutinput').val();
+		}
+		
+		// Check if ordermil box is ticked and if so add to regformdata
+		if ($("#milcheck").attr("checked") == "checked"){
+			regformdata["ordermil"] = true;
+		}
+		
+		$.ajax({
+			url: "/scripts/php/updatereginfo.php",
+			type: "POST",
+			data: regformdata,
+			dataType: "json",
+			encode: true
+		}).done(function (data){
+			if (data.errors){
+				
+			}
+		});
+		
+	});
+	
 }
