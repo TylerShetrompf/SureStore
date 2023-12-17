@@ -35,7 +35,7 @@
 		<!-- Date modified -->
 		<div class="form-group my-2" id="regdatemod">
 			<input type="datetime-local" class="form-control shadow-sm" id="regdatemodinput" readonly>
-			<small id="regdatemodHelp" class="form-text text-muted">Date Modified (Automatic)</small>
+			<small id="regdatemodHelp" class="form-text text-muted">Date Last Modified (Automatic)</small>
 		</div>
 
 		<!-- Date checked out -->
@@ -47,6 +47,7 @@
 		<div class="row">
 
 			<div class="col">
+				<!-- Order Weight -->
 				<div class="form-group" id="regweight">
 					<input type="input" class="form-control shadow-sm" id="regweightinput">
 					<small id="regweightHelp" class="form-text text-muted">Weight (Required)</small>
