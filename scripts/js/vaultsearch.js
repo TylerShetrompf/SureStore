@@ -11,6 +11,7 @@ $(document).ready(function (){
 		
 		$.get('/snippets/vaultinfo/vaultinfoleft.html', function(data) {
 			$("#left").html(data);
+		}).done(function(){
 			initializeItemTable(orderid);
 		})
 		
@@ -65,6 +66,7 @@ function initializeSelect2(){
 		
 		$.get('/snippets/vaultinfo/vaultinfoleft.html', function(data) {
 			$("#left").html(data);
+		}).done(function(){
 			initializeItemTable(orderid);
 		})
 		$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
