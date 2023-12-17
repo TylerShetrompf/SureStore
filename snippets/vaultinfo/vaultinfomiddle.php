@@ -8,7 +8,7 @@
 	<select class="form-select" name="search" id="search"></select>
 </div>
 
-<div class="bg-light px-2 my-2 border rounded">
+<div class="bg-light px-2 my-2 border rounded" id="reginfodiv">
 	<form action="/scripts/php/reginfo.php" id="reginfoform">
 		<div class="row">
 			<div class="col">
