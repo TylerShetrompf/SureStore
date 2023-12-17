@@ -78,12 +78,12 @@ function fillreginfo(orderid){
 				$.get('/snippets/vaultinfo/vaultinfoleft.html', function(data) {
 					$("#left").html(data);
 				}).done(function(){
-					initializeItemTable(orderid);
+					initializeItemTable(regformdata["orderid"]);
 				})
 				$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
 					$("#middle").html(data);
 					initializeSelect2();
-					fillreginfo(orderid);
+					fillreginfo(regformdata["orderid"]);
 				})
 			}
 		});
