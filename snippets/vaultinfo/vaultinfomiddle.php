@@ -34,7 +34,7 @@
 
 		<!-- Date modified -->
 		<div class="form-group my-2" id="regdatemod">
-			<input type="date" class="form-control shadow-sm" id="regdatemodinput">
+			<input type="datetime-local" class="form-control shadow-sm" id="regdatemodinput" readonly>
 			<small id="regdatemodHelp" class="form-text text-muted">Date Modified (Automatic)</small>
 		</div>
 
