@@ -45,6 +45,7 @@ function fillreginfo(orderid){
 		event.preventDefault();
 		
 		var regformdata ={
+			oldorderid: orderid,
 			orderid: $('#reginput').val(),
 			orderwh: $('#regwhinput').val(),
 			datein: $('#regdateininput').val(),
@@ -67,8 +68,23 @@ function fillreginfo(orderid){
 			dataType: "json",
 			encode: true
 		}).done(function (data){
-			if (data.errors){
-				
+			if (data["success"] == "false"){
+				$("#reginfodiv").append('<div class="alert alert-danger" role="alert">Update failed. Please contact system administrator.</div>')
+			} else {
+				$.get('/snippets/vaultinfo/vaultinfo.html', function(data) {
+					$("#appcontainer").html(data);
+				})
+		
+				$.get('/snippets/vaultinfo/vaultinfoleft.html', function(data) {
+					$("#left").html(data);
+				}).done(function(){
+					initializeItemTable(orderid);
+				})
+				$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
+					$("#middle").html(data);
+					initializeSelect2();
+					fillreginfo(orderid);
+				})
 			}
 		});
 		
