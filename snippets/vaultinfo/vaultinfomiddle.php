@@ -84,7 +84,7 @@
 			<div class="col">
 				<div class="form-group my-1" id="custid">
 					<select class="form-select shadow-sm" name="custidinput" id="custidinput"></select>
-					<small id="custidHelp" class="form-text text-muted">ID</small>
+					<small id="custidHelp" class="form-text text-muted">Select Existing Customer</small>
 				</div>
 			</div>
 			
