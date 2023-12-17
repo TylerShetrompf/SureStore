@@ -7,7 +7,7 @@ $(document).ready(function () {
 		$.get('/snippets/locator.php', function(data) {
 			$("#middle").html(data);
 			
-			// Call initialize selct2 function so that select 2 registers box on load
+			// Call initialize select2 function so that select2 registers box on load
 			initializeSelect2();
 		})
 	});
