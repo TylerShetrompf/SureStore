@@ -12,7 +12,6 @@ function initializeItemTable(itemorderid){
 		{
 			data: "itemdesc",
 			title: "Item Description",
-			required: true
 		},
 		{
 			data: "itemvault",
@@ -59,7 +58,6 @@ function initializeItemTable(itemorderid){
 		{
 			data: "itemvaulter",
 			title: "Vaulter",
-			required: true,
 			type: "select",
 			select2: {
 				width: "100%",
@@ -178,6 +176,10 @@ function initializeItemTable(itemorderid){
 					rowdata["itemloose"] = $("#select2-itemloose-container").text();
 				}
 				
+				if (rowdata["itemdesc"] == null) {
+					rowdata["itemdesc"] = $("tr.selected > td").eq(1).text();
+				} 
+				
 				if (rowdata["itemvaulter"] == null) {
 					rowdata["itemvaulter"] = $("tr.selected > td").eq(4).text();
 				} else {
@@ -185,7 +187,7 @@ function initializeItemTable(itemorderid){
 				}
 				
 				$.ajax({
-					url: '/scripts/itemediteditorscripts/.php',
+					url: '/scripts/editorscripts/itemedit.php',
 					type: 'POST',
 					dataType: 'json',
 					encode: true,
