@@ -17,6 +17,7 @@ $(document).ready(function (){
 		
 		$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
 			$("#middle").html(data);
+		}).done(function(){
 			initializeSelect2();
 			fillreginfo(orderid);
 			fillcustinfo(orderid);
@@ -72,8 +73,10 @@ function initializeSelect2(){
 		})
 		$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
 			$("#middle").html(data);
+		}).done(function(){
 			initializeSelect2();
 			fillreginfo(orderid);
+			fillcustinfo(orderid);
 		})
 	});
 }
