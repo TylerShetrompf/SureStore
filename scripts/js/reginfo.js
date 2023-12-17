@@ -10,10 +10,16 @@ function fillreginfo(orderid){
 		dataType: "json",
 		encode: true
 	}).done(function (data){
-		console.log(data);
+		
+		// Get modtime to correct format
+		var timestamp = data["timezone"];
+		timestamp = timestamp.replace(" ", "T");
+		
+		// Fill value fields with appropriate values
 		$('#reginput').val(data["orderid"]);
 		$('#regwhinput').val(data["orderwh"]);
 		$('#regdateininput').val(data["datein"]);
+		$('#regdatemodinput').val(timestamp);
 		$('#regweightinput').val(data["weight"]);
 	});
 	
