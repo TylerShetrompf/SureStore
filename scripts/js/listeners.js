@@ -286,7 +286,13 @@ $(document).ready(function () {
 	}); // end of listener for navbar logout button
 	
 	
-	
+	// Listener for navbar home button
+	$("body").on("click", "#homenav", function(event) {
+		event.preventDefault();
+		$.get('/snippets/mainmenu.php', function(data) {
+			$("#appcontainer").html(data);
+		})
+	}); // end of listener for navbar home button
 	
 	
 }) // End of document.ready
