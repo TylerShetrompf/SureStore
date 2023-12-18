@@ -1,5 +1,7 @@
-// JavaScript Document to handle new orders
-$(document).ready(function (){
+// JavaScript Document containing jquery listeners
+$(document).ready(function () {
+	
+	// Listener to handle create order submit
 	$("body").on("submit", "#neworderform", function (event){
 		event.preventDefault();
 		var formData ={
@@ -48,5 +50,13 @@ $(document).ready(function (){
 			}
 		});
 		
-	});
-});
+	}); // end of create order listener
+	
+	
+	
+	
+	
+	
+	
+	
+}) // End of document.ready
