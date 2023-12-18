@@ -58,7 +58,7 @@ if($itemidresult == false){
 				$data["errors"] = "error here";
 			} else {
 				// Log in surehistory
-				$updatetext = $userid." updated item ".$itemid." in order ".$orderid.".";
+				$updatetext = $userid." updated item ".$itemid." vaulter to be ".$itemidresult2["itemvaulter"]." in order ".$orderid.", and item location to be ". $itemloose.".";
 				$histquery = pg_query_params($surestore_db, "insert into surehistory(historder, histdesc) values($1, $2)", array($orderid,$updatetext));
 			}
 		}
@@ -85,7 +85,7 @@ if($itemidresult == false){
 				$data["errors"] = "error here";
 			} else {
 				// Log in surehistory
-				$updatetext = $userid." updated item ".$itemid." in order ".$orderid.".";
+				$updatetext = $userid." updated item ".$itemid." vaulter to be ".$itemidresult2["itemvaulter"]." in order ".$orderid.", and item location to be ". $itemvault.".";
 				$histquery = pg_query_params($surestore_db, "insert into surehistory(historder, histdesc) values($1, $2)", array($orderid,$updatetext));
 			}
 		}
@@ -113,7 +113,7 @@ if($itemidresult == false){
 				$data["errors"] = "error here";
 			} else {
 				// Log in surehistory
-				$updatetext = $userid." updated item ".$itemid." in order ".$orderid.".";
+				$updatetext = $userid." updated item ".$itemid." in order ".$orderid." item location to be ". $itemloose.".";
 				$histquery = pg_query_params($surestore_db, "insert into surehistory(historder, histdesc) values($1, $2)", array($orderid,$updatetext));
 			}
 			
@@ -141,7 +141,7 @@ if($itemidresult == false){
 				$data["errors"] = "error here";
 			} else {
 				// Log in surehistory
-				$updatetext = $userid." updated item ".$itemid." in order ".$orderid.".";
+				$updatetext = $userid." updated item ".$itemid." in order ".$orderid." item location to be ".$itemvault.".";
 				$histquery = pg_query_params($surestore_db, "insert into surehistory(historder, histdesc) values($1, $2)", array($orderid,$updatetext));
 			}
 		}
