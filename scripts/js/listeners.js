@@ -171,11 +171,7 @@ $(document).ready(function () {
 		}
 
 		// Allow numeric (and tab, backspace, delete) keys only
-		return (key == 8 || 
-				key == 9 ||
-				key == 46 ||
-				(key >= 48 && key <= 57) ||
-				(key >= 96 && key <= 105));
+		return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
 		
 	}).bind('focus click', function () {
 		$phone = $(this);
@@ -407,7 +403,55 @@ $(document).ready(function () {
 	}); // end of listener for registerform submissions
 	
 	
+	// Listener for new order form submissions
+	$("body").on("submit", "#newregform", function(event){
+		event.preventDefault();
+		var orderid = $("#regidinput").val();
+		$.get('/snippets/vaultinfo/vaultinfo.html', function(data) {
+			$("#appcontainer").html(data);
+		}).done(function(){
+			$.get('/snippets/vaultinfo/newordermiddle.php', function(data) {
+				$("#middle").html(data);
+			}).done(function(){
+				initordernew(orderid);
+			});
+		})
+
+	}); // end of listener for new order form submissions
 	
+	
+	// Listener for vault search selections
+	$('body').on("change", "#search", function(event) {
+		event.preventDefault();
+		
+		// Set content variable
+		var content = $("#select2-search-container").text();
+		
+		// Narrow content down to array
+		content = content.replace("Order: ", "");
+		content = content.replace(" Customer: ",",");
+		content = content.replace(" Vault: ",",");
+		content = content.replace(" ",",");
+		content = content.split(",");
+		
+		// Assign values to associative array
+		var orderid = content[0];
+		
+		
+		$.get('/snippets/vaultinfo/vaultinfo.html', function(data) {
+			$("#appcontainer").html(data);
+		}).done(function () {
+			$.get('/snippets/vaultinfo/vaultinfoleft.html', function(data) {
+				$("#left").html(data);
+			}).done(function() {
+				$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
+					$("#middle").html(data);
+				}).done(function (){
+					initorderfull(orderid);
+				})
+			})
+		})	
+	}); // end of listener for vault search selections
 	
 	
 }) // End of document.ready
