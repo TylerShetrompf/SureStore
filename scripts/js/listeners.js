@@ -273,6 +273,19 @@ $(document).ready(function () {
 	}); // end of listener for admin button
 	
 	
+	// Listener for navbar logout button
+	$("body").on("click", "#logoutnav", function(event){
+		event.preventDefault();
+		$.ajax({
+			type: "GET",
+			url: "/scripts/php/logout.php",
+			dataType: "json",
+			encode: true
+		});
+		location.reload();
+	}); // end of listener for navbar logout button
+	
+	
 	
 	
 	
