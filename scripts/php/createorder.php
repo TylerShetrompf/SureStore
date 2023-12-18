@@ -53,11 +53,11 @@ if (pg_affected_rows($custquery) == 0){
 		
 		// cust hist
 		$custhisttext = $userid." created customer ".$custfirst." ".$custlast.".";
-		$custhistquery = pg_query_params($surestore_db, "insert into surehist(histdesc, historder) values($1, $2)", array($custhisttext, $orderid));
+		$custhistquery = pg_query_params($surestore_db, "insert into surehistory(histdesc, historder) values($1, $2)", array($custhisttext, $orderid));
 		
 		// order hist
 		$orderhisttext = $userid." created order ".$orderid." "." with customer ".$custfirst." ".$custlast.".";
-		$custhistquery = pg_query_params($surestore_db, "insert into surehist(histdesc, historder) values($1, $2)", array($custhisttext, $orderid));
+		$custhistquery = pg_query_params($surestore_db, "insert into surehistory(histdesc, historder) values($1, $2)", array($custhisttext, $orderid));
 		
 		$data["success"] = "true";
 		echo json_encode($data);
