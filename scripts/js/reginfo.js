@@ -11,14 +11,14 @@ function fillreginfo(orderid){
 		encode: true
 	}).done(function (data){
 		// Get modtime to correct format
-		var timestamp = data["timezone"];
+		var timestamp = data["histtime"];
 		timestamp = timestamp.replace(" ", "T");
 		
 		// Fill value fields with appropriate values
 		$('#reginput').val(data["orderid"]);
 		$('#regwhinput').val(data["orderwh"]);
 		$('#regdateininput').val(data["datein"]);
-		$('#regdatemodinput').val(timestamp);
+		$('#regdatemodinput').val(data["histtime"]);
 		$('#regweightinput').val(data["weight"]);
 		
 		// Check if order is closed
@@ -80,10 +80,13 @@ function fillreginfo(orderid){
 				}).done(function(){
 					initializeItemTable(regformdata["orderid"]);
 				})
+				
 				$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
 					$("#middle").html(data);
+				}).done(function(){
 					initializeSelect2();
 					fillreginfo(regformdata["orderid"]);
+					fillcustinfo(regformdata["orderid"]);
 				})
 			}
 		});
