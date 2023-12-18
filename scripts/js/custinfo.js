@@ -1,6 +1,80 @@
-// JavaScript Document
+// JavaScript Document to handle custinfo
 
-$(document).ready(function (){		
+function custsearch() {	
+	// custid select2
+	$("#custidinput").select2({
+		theme: 'bootstrap-5',
+		width: "100%",
+		placeholder: "Select existing customer...",
+		ajax: {
+			type: "POST",
+			url: '/scripts/php/custinfo.php',
+			data: function(term){
+				return term;
+			},
+			dataType: "json",
+			encode: true,
+			processResults: function (data){
+				return data;
+			}
+		}
+	});
+	
+	// Select 2 for states
+	$('#custstateinput').select2({
+		theme: 'bootstrap-5',
+		placeholder: "Select state"
+	});
+	
+	// Select 2 for countries
+	$('#custcountryinput').select2({
+		theme: 'bootstrap-5',
+		placeholder: "Select country"
+	});
+	
+	$('#custidinput').on("change", function(event) {
+		event.preventDefault();
+		var content = $("#select2-custidinput-container").text();
+		content = content.replaceAll(" ", ",");
+		content = content.split(",");
+		var first = content[1];
+		var last = content[2];
+		
+		var formData ={
+			custfirst: first,
+			custlast: last
+		}
+		
+		$.ajax({
+			url: "/scripts/php/custsearch.php",
+			type: "POST",
+			data: formData,
+			dataType: "json",
+			encode: true
+		}).done(function (data){
+
+			// Set option on custstate search box
+			$('#custstateinput').select2({theme: 'bootstrap-5'}).val(data["custstate"]).trigger("change");
+
+			// Set option on custcountry search box
+			$('#custcountryinput').select2({theme: 'bootstrap-5'}).val(data["custcountry"]).trigger("change");
+
+			// Fill fields with appropriate values
+			$('#businessinput').val(data["custbusiness"]);
+			$('#cust-tn').val(data["custtn"]);
+			$('#custfirstinput').val(data["custfirst"]);
+			$('#custlastinput').val(data["custlast"]);
+			$('#custaddyinput').val(data["custaddress"]);
+			$('#custcityinput').val(data["custcity"]);
+			$('#custzipinput').val(data["custzip"]);
+			$('#hiddencustid').val(data["custid"]);
+		});
+		
+	});
+}
+
+$(document).ready(function (){
+	
 	$("body").on("submit", "#custinfoform", function (event){
 		event.preventDefault();
 		var custformdata ={
@@ -17,7 +91,6 @@ $(document).ready(function (){
 		if ($("#hiddencustid").val()) {
 			custformdata["custid"] = $("#hiddencustid").val();
 		}
-		console.log(custformdata);
 		$.ajax({
 			url: "/scripts/php/updatecustinfo.php",
 			type: "POST",
@@ -44,6 +117,7 @@ $(document).ready(function (){
 					initializeSelect2();
 					fillreginfo(custformdata["orderid"]);
 					fillcustinfo(custformdata["orderid"]);
+					custsearch();
 				})
 			}
 		});
@@ -113,37 +187,6 @@ function fillcustinfo(orderid){
 	var formData ={
 		orderid: orderid,
 	};
-	
-	// custid select2
-	$("#custidinput").select2({
-		theme: 'bootstrap-5',
-		width: "100%",
-		placeholder: "Select customer...",
-		ajax: {
-			type: "POST",
-			url: '/scripts/php/custinfo.php',
-			data: function(term){
-				return term;
-			},
-			dataType: "json",
-			encode: true,
-			processResults: function (data){
-				return data;
-			}
-		}
-	});
-	
-	// Select 2 for states
-	$('#custstateinput').select2({
-		theme: 'bootstrap-5',
-		placeholder: "Select state"
-	});
-	
-	// Select 2 for countries
-	$('#custcountryinput').select2({
-		theme: 'bootstrap-5',
-		placeholder: "Select country"
-	});
 	
 	// Get cust values
 	$.ajax({
