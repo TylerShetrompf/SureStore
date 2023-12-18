@@ -50,7 +50,7 @@ $(document).ready(function(){
 						$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
 							$("#middle").html(data);
 						}).done(function(){
-							initorderfull(orderid);
+							initorderfull(regformdata["orderid"]);
 						})
 					})
 				})
