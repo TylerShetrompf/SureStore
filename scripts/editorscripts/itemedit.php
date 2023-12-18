@@ -81,7 +81,7 @@ if($itemidresult == false){
 			// Set itemvaulter in itemidresult2 to vaulter name
 			$itemidresult2["itemvaulter"] = $vaulterqueryresult["vaulterfirst"]." ".$vaulterqueryresult["vaulterlast"];
 			
-			if(pg_affected_rows($itemupdatequery)){
+			if(pg_affected_rows($itemupdatequery) == 0){
 				$data["errors"] = "error here";
 			} else {
 				// Log in surehistory
@@ -109,7 +109,7 @@ if($itemidresult == false){
 			// Set itemvaulter in itemidresult2 to vaulter name
 			$itemidresult2["itemvaulter"] = $vaulterqueryresult["vaulterfirst"]." ".$vaulterqueryresult["vaulterlast"];
 			
-			if(pg_affected_rows($itemupdatequery)){
+			if(pg_affected_rows($itemupdatequery) == 0){
 				$data["errors"] = "error here";
 			} else {
 				// Log in surehistory
@@ -137,7 +137,7 @@ if($itemidresult == false){
 			// Set itemvaulter in itemidresult2 to vaulter name
 			$itemidresult2["itemvaulter"] = $vaulterqueryresult["vaulterfirst"]." ".$vaulterqueryresult["vaulterlast"];
 			
-			if(pg_affected_rows($itemupdatequery)){
+			if(pg_affected_rows($itemupdatequery) == 0){
 				$data["errors"] = "error here";
 			} else {
 				// Log in surehistory
