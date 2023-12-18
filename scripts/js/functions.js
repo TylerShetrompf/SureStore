@@ -252,6 +252,38 @@ function initordernew(orderid) {
 	$('#reginput').val(orderid);
 }
 
+// Function to fill order id fields
+function fillreginfo(orderid){
+	var formData ={
+		orderid: orderid,
+	};
+	$.ajax({
+		url: "/scripts/php/reginfo.php",
+		type: "POST",
+		data: formData,
+		dataType: "json",
+		encode: true
+	}).done(function (data){
+		
+		// Fill value fields with appropriate values
+		$('#reginput').val(data["orderid"]);
+		$("#hiddenorderid").val(data["orderid"]);
+		$('#regwhinput').val(data["orderwh"]);
+		$('#regdateininput').val(data["datein"]);
+		$('#regdatemodinput').val(data["histtime"]);
+		$('#regweightinput').val(data["weight"]);
+		
+		// Check if order is closed
+		if (data["dateout"] != null){
+			$('#regdateoutinput').val(data["dateout"]);
+		}
+		
+		// Check if order is mil, toggle button if so
+		if (data["ordermil"] == "t") {
+			$("#milcheck").attr("checked", true);
+		}
+	});	
+}
 
 // Function to fill customer id fields
 function fillcustinfo(orderid){
