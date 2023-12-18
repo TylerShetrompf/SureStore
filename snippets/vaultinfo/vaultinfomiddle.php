@@ -15,8 +15,9 @@
 				<!-- Reg# -->
 				<div class="form-group my-2" id="reg">
 					<input type="input" class="form-control shadow-sm" id="reginput" required>
-					<small id="regHelp" class="form-text text-muted">Registration # (Required)</small>
+					<small id="regHelp" class="form-text text-muted">Order # (Required)</small>
 				</div>
+				<input type="text" class="visually-hidden" id="hiddenorderid">
 			</div>
 			<div class="col">
 				<div class="form-group my-2" id="regwh">
