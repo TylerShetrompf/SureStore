@@ -75,7 +75,7 @@
 	</form>
 </div>
 
-<div class="bg-light px-2 my-2 border rounded">
+<div class="bg-light px-2 my-2 border rounded" id="custinfodiv">
 	
 	<form action="/scripts/php/custinfo.php" id="custinfoform">
 		
