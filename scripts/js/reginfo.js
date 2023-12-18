@@ -1,5 +1,7 @@
 // JavaScript Document for reginfo page
 $(document).ready(function(){
+	
+	// Handler for military check switch
 	$("body").on("click", "#milcheck", function (){
 		if ($("#milcheck").attr("checked") == "checked"){
 			$("#milcheck").attr("checked", false);
@@ -8,6 +10,7 @@ $(document).ready(function(){
 		}
 	});
 	
+	// handler for reg update form submissions
 	$('body').on("submit", "#reginfoform", function (event){
 		event.preventDefault();
 		
@@ -40,20 +43,16 @@ $(document).ready(function(){
 			} else {
 				$.get('/snippets/vaultinfo/vaultinfo.html', function(data) {
 					$("#appcontainer").html(data);
-				})
-		
-				$.get('/snippets/vaultinfo/vaultinfoleft.html', function(data) {
-					$("#left").html(data);
-				}).done(function(){
-					initializeItemTable(regformdata["orderid"]);
-				})
-				
-				$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
-					$("#middle").html(data);
-				}).done(function(){
-					initializeSelect2();
-					fillreginfo(regformdata["orderid"]);
-					fillcustinfo(regformdata["orderid"]);
+				}).done(function (){
+					$.get('/snippets/vaultinfo/vaultinfoleft.html', function(data) {
+						$("#left").html(data);
+					}).done(function(){
+						$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
+							$("#middle").html(data);
+						}).done(function(){
+							initorderfull(orderid);
+						})
+					})
 				})
 			}
 		});

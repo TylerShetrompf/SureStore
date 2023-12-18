@@ -1,38 +1,52 @@
 // JavaScript Document to handle custinfo
-
-function custsearch() {	
-	// custid select2
-	$("#custidinput").select2({
-		theme: 'bootstrap-5',
-		width: "100%",
-		placeholder: "Select existing customer...",
-		ajax: {
-			type: "POST",
-			url: '/scripts/php/custinfo.php',
-			data: function(term){
-				return term;
-			},
-			dataType: "json",
-			encode: true,
-			processResults: function (data){
-				return data;
-			}
+$(document).ready(function (){
+	
+	// Custinfo form submit handler
+	$("body").on("submit", "#custinfoform", function (event){
+		event.preventDefault();
+		var custformdata ={
+			custbusiness: $('#businessinput').val(),
+			custtn : $('#cust-tn').val(),
+			custfirst: $('#custfirstinput').val(),
+			custlast: $('#custlastinput').val(),
+			custaddress: $('#custaddyinput').val(),
+			custcity: $('#custcityinput').val(),
+			custzip: $('#custzipinput').val(),
+			orderid: $('#reginput').val(),
 		}
+		
+		if ($("#hiddencustid").val()) {
+			custformdata["custid"] = $("#hiddencustid").val();
+		}
+		$.ajax({
+			url: "/scripts/php/updatecustinfo.php",
+			type: "POST",
+			data: custformdata,
+			dataType: "json",
+			encode: true
+		}).done(function (data){
+			if (data["success"] == "false"){
+				$("#reginfodiv").append('<div class="alert alert-danger" role="alert">Update failed. Please contact system administrator.</div>')
+			} else {
+				$.get('/snippets/vaultinfo/vaultinfo.html', function(data) {
+					$("#appcontainer").html(data);
+				}).done(function (){
+					$.get('/snippets/vaultinfo/vaultinfoleft.html', function(data) {
+						$("#left").html(data);
+					}).done(function(){
+						$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
+							$("#middle").html(data);
+						}).done(function(){
+							initorderfull(custformdata["orderid"]);
+						})
+					})
+				})
+			}
+		});
 	});
 	
-	// Select 2 for states
-	$('#custstateinput').select2({
-		theme: 'bootstrap-5',
-		placeholder: "Select state"
-	});
-	
-	// Select 2 for countries
-	$('#custcountryinput').select2({
-		theme: 'bootstrap-5',
-		placeholder: "Select country"
-	});
-	
-	$('#custidinput').on("change", function(event) {
+	// Customer search select handler
+	$('body').on("change", "#custidinput", function(event) {
 		event.preventDefault();
 		var content = $("#select2-custidinput-container").text();
 		content = content.replaceAll(" ", ",");
@@ -72,8 +86,9 @@ function custsearch() {
 		
 	});
 	
-	// Phone number masking
-	$('#cust-tn').keydown(function (e) {
+		
+	// Phone number masking handler
+	$('body').on("keydown", '#cust-tn', function (e) {
 		var key = e.which || e.charCode || e.keyCode || 0;
 		$phone = $(this);
 
@@ -122,87 +137,5 @@ function custsearch() {
 			$phone.val('');
 		}
 	});
-}
-
-$(document).ready(function (){
 	
-	$("body").on("submit", "#custinfoform", function (event){
-		event.preventDefault();
-		var custformdata ={
-			custbusiness: $('#businessinput').val(),
-			custtn : $('#cust-tn').val(),
-			custfirst: $('#custfirstinput').val(),
-			custlast: $('#custlastinput').val(),
-			custaddress: $('#custaddyinput').val(),
-			custcity: $('#custcityinput').val(),
-			custzip: $('#custzipinput').val(),
-			orderid: $('#reginput').val(),
-		}
-		
-		if ($("#hiddencustid").val()) {
-			custformdata["custid"] = $("#hiddencustid").val();
-		}
-		$.ajax({
-			url: "/scripts/php/updatecustinfo.php",
-			type: "POST",
-			data: custformdata,
-			dataType: "json",
-			encode: true
-		}).done(function (data){
-			if (data["success"] == "false"){
-				$("#reginfodiv").append('<div class="alert alert-danger" role="alert">Update failed. Please contact system administrator.</div>')
-			} else {
-				$.get('/snippets/vaultinfo/vaultinfo.html', function(data) {
-					$("#appcontainer").html(data);
-				})
-		
-				$.get('/snippets/vaultinfo/vaultinfoleft.html', function(data) {
-					$("#left").html(data);
-				}).done(function(){
-					initializeItemTable(custformdata["orderid"]);
-				})
-				
-				$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
-					$("#middle").html(data);
-				}).done(function(){
-					initializeSelect2();
-					fillreginfo(custformdata["orderid"]);
-					fillcustinfo(custformdata["orderid"]);
-					custsearch();
-				})
-			}
-		});
-	});	
 });
-
-function fillcustinfo(orderid){
-	var formData ={
-		orderid: orderid,
-	};
-	
-	// Get cust values
-	$.ajax({
-		type: "POST",
-		url: '/scripts/php/custinfo.php',
-		data: formData,
-		dataType: "json",
-		encode: true
-	}).done(function (data){
-	
-		// Set option on custstate search box
-		$('#custstateinput').select2({theme: 'bootstrap-5'}).val(data["custstate"]).trigger("change");
-		
-		// Set option on custcountry search box
-		$('#custcountryinput').select2({theme: 'bootstrap-5'}).val(data["custcountry"]).trigger("change");
-		
-		// Fill fields with appropriate values
-		$('#businessinput').val(data["custbusiness"]);
-		$('#cust-tn').val(data["custtn"]);
-		$('#custfirstinput').val(data["custfirst"]);
-		$('#custlastinput').val(data["custlast"]);
-		$('#custaddyinput').val(data["custaddress"]);
-		$('#custcityinput').val(data["custcity"]);
-		$('#custzipinput').val(data["custzip"]);
-		$('#hiddencustid').val(data["custid"]);
-	});
-}

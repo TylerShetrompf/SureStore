@@ -1,44 +1,26 @@
 // JavaScript Document to handle vault search
-
 // Create reg button
 $(document).ready(function (){
+	
+	// New reg handler
 	$("body").on("submit", "#newregform", function(event){
 		event.preventDefault();
 		var orderid = $("#regidinput").val();
 		$.get('/snippets/vaultinfo/vaultinfo.html', function(data) {
 			$("#appcontainer").html(data);
-		})
-		$.get('/snippets/vaultinfo/newordermiddle.php', function(data) {
-			$("#middle").html(data);
 		}).done(function(){
-			initializeSelect2();
-			custsearch();
+			$.get('/snippets/vaultinfo/newordermiddle.php', function(data) {
+				$("#middle").html(data);
+			}).done(function(){
+				initordernew(orderid);
+			});
 		})
-	})
-});
 
-// Select2 stuff
-function initializeSelect2(){
-	$('#search').select2({
-		theme: 'bootstrap-5',
-		width: "100%",
-		placeholder: "Search by order, customer name, or vault...",
-		ajax: {
-			type: "POST",
-			url: '/scripts/php/vaultsearch.php',
-			data: function(term){
-				return term;
-			},
-			dataType: "json",
-			encode: true,
-			processResults: function (data) {
-				return data;
-			}
-		}
 	});
 	
+	// Vault search selection handler
 	// Grab selected content, format
-	$('#search').on("change", function(event) {
+	$('body').on("change", "#search", function(event) {
 		event.preventDefault();
 		
 		// Set content variable
@@ -54,22 +36,19 @@ function initializeSelect2(){
 		// Assign values to associative array
 		var orderid = content[0];
 		
+		
 		$.get('/snippets/vaultinfo/vaultinfo.html', function(data) {
 			$("#appcontainer").html(data);
-		})
-		
-		$.get('/snippets/vaultinfo/vaultinfoleft.html', function(data) {
-			$("#left").html(data);
-		}).done(function(){
-			initializeItemTable(orderid);
-		})
-		$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
-			$("#middle").html(data);
-		}).done(function(){
-			initializeSelect2();
-			fillreginfo(orderid);
-			fillcustinfo(orderid);
-			custsearch();
-		})
+		}).done(function () {
+			$.get('/snippets/vaultinfo/vaultinfoleft.html', function(data) {
+				$("#left").html(data);
+			}).done(function() {
+				$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
+					$("#middle").html(data);
+				}).done(function (){
+					initorderfull(orderid);
+				})
+			})
+		})	
 	});
-}
+});
