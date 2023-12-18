@@ -1,38 +1,6 @@
 // JavaScript Document for reginfo page
-function fillreginfo(orderid){
-	var formData ={
-		orderid: orderid,
-	};
-	$.ajax({
-		url: "/scripts/php/reginfo.php",
-		type: "POST",
-		data: formData,
-		dataType: "json",
-		encode: true
-	}).done(function (data){
-		// Get modtime to correct format
-		var timestamp = data["histtime"];
-		timestamp = timestamp.replace(" ", "T");
-		
-		// Fill value fields with appropriate values
-		$('#reginput').val(data["orderid"]);
-		$('#regwhinput').val(data["orderwh"]);
-		$('#regdateininput').val(data["datein"]);
-		$('#regdatemodinput').val(data["histtime"]);
-		$('#regweightinput').val(data["weight"]);
-		
-		// Check if order is closed
-		if (data["dateout"] != null){
-			$('#regdateoutinput').val(data["dateout"]);
-		}
-		
-		// Check if order is mil, toggle button if so
-		if (data["ordermil"] == "t") {
-			$("#milcheck").attr("checked", true);
-		}
-	});
-
-	$("#milcheck").click(function (){
+$(document).ready(function(){
+	$("body").on("click", "#milcheck", function (){
 		if ($("#milcheck").attr("checked") == "checked"){
 			$("#milcheck").attr("checked", false);
 		} else if ($("#milcheck").attr("checked") == undefined){
@@ -40,12 +8,11 @@ function fillreginfo(orderid){
 		}
 	});
 	
-	
-	$('#reginfoform').submit(function (event){
+	$('body').on("submit", "#reginfoform", function (event){
 		event.preventDefault();
 		
 		var regformdata ={
-			oldorderid: orderid,
+			oldorderid: $("#hiddenorderid").val(),
 			orderid: $('#reginput').val(),
 			orderwh: $('#regwhinput').val(),
 			datein: $('#regdateininput').val(),
@@ -92,5 +59,36 @@ function fillreginfo(orderid){
 		});
 		
 	});
-	
+});
+
+function fillreginfo(orderid){
+	var formData ={
+		orderid: orderid,
+	};
+	$.ajax({
+		url: "/scripts/php/reginfo.php",
+		type: "POST",
+		data: formData,
+		dataType: "json",
+		encode: true
+	}).done(function (data){
+		
+		// Fill value fields with appropriate values
+		$('#reginput').val(data["orderid"]);
+		$("#hiddenorderid").val(data["orderid"]);
+		$('#regwhinput').val(data["orderwh"]);
+		$('#regdateininput').val(data["datein"]);
+		$('#regdatemodinput').val(data["histtime"]);
+		$('#regweightinput').val(data["weight"]);
+		
+		// Check if order is closed
+		if (data["dateout"] != null){
+			$('#regdateoutinput').val(data["dateout"]);
+		}
+		
+		// Check if order is mil, toggle button if so
+		if (data["ordermil"] == "t") {
+			$("#milcheck").attr("checked", true);
+		}
+	});	
 }
