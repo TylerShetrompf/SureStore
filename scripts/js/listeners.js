@@ -242,6 +242,38 @@ $(document).ready(function () {
 	}); // end of login form submit listener
 	
 	
+	// Listener for locator button
+	$("body").on("click", "#locButton", function(event) {
+		event.preventDefault();
+		$.get('/snippets/locator.php', function(data) {
+			$("#middle").html(data);
+			
+			// Call initialize select2 function so that select2 registers box on load
+			initializeSelect2();
+			custsearch();
+		})
+	}); // end of listener for locator button
+	
+	
+	// Listener for maintenance button
+	$("body").on("click", "#maintButton", function(event) {
+		event.preventDefault();
+		$.get('/snippets/maintenance.php', function(data) {
+			$("#middle").html(data);
+		})
+	}); // end of listener for maintenance button
+	
+	
+	// Listener for admin button
+	$("body").on("click", "#adminButton", function(event) {
+		event.preventDefault();
+		$.get('/snippets/admin.php', function(data) {
+			$("#middle").html(data);
+		})
+	}); // end of listener for admin button
+	
+	
+	
 	
 	
 }) // End of document.ready
