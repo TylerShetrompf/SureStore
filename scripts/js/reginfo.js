@@ -36,7 +36,7 @@ $(document).ready(function(){
 			encode: true
 		}).done(function (data){
 			if (data["success"] == "false"){
-				$("#reginfodiv").append('<div class="alert alert-danger" role="alert">Update failed. Please contact system administrator.</div>')
+				$("#reginfodiv").append('<div class="alert alert-danger" role="alert">Update failed. Please contact system administrator.</div>');
 			} else {
 				$.get('/snippets/vaultinfo/vaultinfo.html', function(data) {
 					$("#appcontainer").html(data);
