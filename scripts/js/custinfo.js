@@ -13,6 +13,8 @@ $(document).ready(function (){
 			custcity: $('#custcityinput').val(),
 			custzip: $('#custzipinput').val(),
 			orderid: $('#reginput').val(),
+			custstate: $('#custstateinput').val(),
+			custcountry: $('#custcountryinput').val()
 		}
 		
 		if ($("#hiddencustid").val()) {
