@@ -19,7 +19,7 @@ $id = 1;
 while ($dbresult = pg_fetch_assoc($dbquery)) {
 	$entry = [];
 	$entry["id"] = $id;
-	$entry["text"] = "Reg: ".$dbresult["orderid"]." Cust: ".$dbresult["custfirst"]." ".$dbresult["custlast"]." Location: ".$dbresult["itemvault"].$dbresult["itemloose"];
+	$entry["text"] = "Order: ".$dbresult["orderid"]." Cust: ".$dbresult["custfirst"]." ".$dbresult["custlast"]." Location: ".$dbresult["itemvault"].$dbresult["itemloose"];
 	array_push($results, $entry);
 	$id++;
 }
