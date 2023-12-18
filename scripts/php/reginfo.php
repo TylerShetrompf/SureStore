@@ -13,3 +13,6 @@ $reginfoquery = pg_query_params($surestore_db, "select sureorders.orderid, sureo
 $reginforesults = pg_fetch_assoc($reginfoquery);
 
 echo json_encode($reginforesults);
+
+// Close DB connection
+pg_close($surestore_db);
