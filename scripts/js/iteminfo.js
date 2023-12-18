@@ -148,6 +148,7 @@ function initializeItemTable(itemorderid){
 			onDeleteRow: function(datatable, rowdata, success, error) {
 				var delitemid ={
 					itemid: $("tr.selected > td").eq(0).text(),
+					itemorder: itemorderid
 				}
 				$.ajax({
 					url: '/scripts/editorscripts/itemdel.php',
@@ -164,15 +165,19 @@ function initializeItemTable(itemorderid){
 				});
 			},
 			onEditRow: function(datatable, rowdata, success, error) {
-				if (rowdata["itemvault"] == null) {
+				if (rowdata["itemvault"] == null && rowdata["itemloose"] == null) {
 					rowdata["itemvault"] = $("tr.selected > td").eq(2).text();
+				} else if (rowdata["itemvault"] == null && rowdata["itemloose"] != null){
+					rowdata["itemvault"] = "";
 				} else {
 					rowdata["itemvault"] = $("#select2-itemvault-container").text();
 				}
 				
-				if (rowdata["itemloose"] == null) {
+				if (rowdata["itemloose"] == null && rowdata["itemvault"] == null) {
 					rowdata["itemloose"] = $("tr.selected > td").eq(3).text();
-				} else {
+				} else if (rowdata["itemloose"] == null && rowdata["itemvault"] != null){
+					rowdata["itemloose"] = "";
+				}  else {
 					rowdata["itemloose"] = $("#select2-itemloose-container").text();
 				}
 				
@@ -185,7 +190,7 @@ function initializeItemTable(itemorderid){
 				} else {
 					rowdata["itemvaulter"] = $("#select2-itemvaulter-container").text();
 				}
-				
+				rowdata["itemorder"] = itemorderid;
 				$.ajax({
 					url: '/scripts/editorscripts/itemedit.php',
 					type: 'POST',
