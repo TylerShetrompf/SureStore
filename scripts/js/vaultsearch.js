@@ -8,19 +8,11 @@ $(document).ready(function (){
 		$.get('/snippets/vaultinfo/vaultinfo.html', function(data) {
 			$("#appcontainer").html(data);
 		})
-		
-		$.get('/snippets/vaultinfo/vaultinfoleft.html', function(data) {
-			$("#left").html(data);
-		}).done(function(){
-			initializeItemTable(orderid);
-		})
-		
-		$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
+		$.get('/snippets/vaultinfo/newordermiddle.php', function(data) {
 			$("#middle").html(data);
 		}).done(function(){
 			initializeSelect2();
-			fillreginfo(orderid);
-			fillcustinfo(orderid);
+			custsearch();
 		})
 	})
 });
@@ -30,7 +22,7 @@ function initializeSelect2(){
 	$('#search').select2({
 		theme: 'bootstrap-5',
 		width: "100%",
-		placeholder: "Search by registration, customer name, or vault...",
+		placeholder: "Search by order, customer name, or vault...",
 		ajax: {
 			type: "POST",
 			url: '/scripts/php/vaultsearch.php',
@@ -53,7 +45,7 @@ function initializeSelect2(){
 		var content = $("#select2-search-container").text();
 		
 		// Narrow content down to array
-		content = content.replace("Reg: ", "");
+		content = content.replace("Order: ", "");
 		content = content.replace(" Customer: ",",");
 		content = content.replace(" Vault: ",",");
 		content = content.replace(" ",",");
@@ -77,6 +69,7 @@ function initializeSelect2(){
 			initializeSelect2();
 			fillreginfo(orderid);
 			fillcustinfo(orderid);
+			custsearch();
 		})
 	});
 }
