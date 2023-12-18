@@ -9,6 +9,7 @@ $(document).ready(function () {
 			
 			// Call initialize select2 function so that select2 registers box on load
 			initializeSelect2();
+			custsearch();
 		})
 	});
 	
