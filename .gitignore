@@ -11,3 +11,6 @@
 /Old Assets/registrationsuccess.v1.html
 /scripts/php/connectdb.php
 /scripts/js/nodeqr.js
+/scripts/js/node_modules/
+/scripts/js/package-lock.json
+/scripts/js/package.json
