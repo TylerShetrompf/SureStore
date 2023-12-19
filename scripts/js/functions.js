@@ -1,5 +1,77 @@
 // JavaScript Document containing functions
 
+// Function to initialize various aspects of order screen
+function initorderfull(orderid) {
+	fillreginfo(orderid);
+	fillcustinfo(orderid);
+	initializeSelect2();
+	custsearch();
+	initializeItemTable(orderid);
+	initLocvaultTab(orderid);
+	// prepend O. for orderqr
+	var QRid = "O." + orderid;
+	// Call to GenQR function for QRCode
+	GenQR(QRid);
+	$(window).on('resize', function () {
+		GenQR(QRid);
+	})
+}
+
+// Function to initialize various aspects of NEW order screen
+function initordernew(orderid) {
+	initializeSelect2();
+	custsearch();
+	$('#reginput').val(orderid);
+}
+
+// Function to initialize DataTables for locatortab
+function initLocvaultTab(orderid) {
+	// Define columns
+	var columnDefs = [
+		{
+			orderable: false,
+			data: "itemvault",
+			title: "Vault"
+		},
+		{
+			orderable: false,
+			data: "itemdesc",
+			title: "Item Description",
+		},
+		{
+			orderable: false,
+			data: "itemvaulter",
+			title: "Item Vaulter",
+		}
+	];
+	
+	var formData ={
+		orderid: orderid,
+	};
+	
+	$.ajax({
+		url: '/scripts/php/locvault.php',
+		type: 'POST',
+		data: formData,
+		dataType: "json",
+		encode: true,
+	}).done(function (data){
+		console.log(formData);
+		console.log(data);
+		$('#locatorvaults').DataTable({
+			"sPaginationType": "full_numbers",
+			columns: columnDefs,
+			data: data,
+			select: 'single',
+			searching: false,
+			lengthChange: false,
+			paging: false,
+			pageLength: -1,
+		});
+	})
+}
+
+
 // Function to initialize DataTables for itemid table
 function initializeItemTable(itemorderid) {
 	// Define columns
@@ -114,6 +186,10 @@ function initializeItemTable(itemorderid) {
 				{
 					text: 'Refresh',
 					name: 'refresh'
+				},
+				{
+					text: 'Print Locator',
+					name: 'print'
 				}
 			],
 			onAddRow: function(datatable, rowdata, success, error) {
@@ -207,7 +283,7 @@ function initializeItemTable(itemorderid) {
 			}
 		});
 	});
-}
+} // End of function to initialize DataTables for itemid table
 
 // Function to initialize select2 for vaultsearch 
 function initializeSelect2(){
@@ -230,22 +306,6 @@ function initializeSelect2(){
 	});
 }
 
-// Function to initialize various aspects of order screen
-function initorderfull(orderid) {
-	fillreginfo(orderid);
-	fillcustinfo(orderid);
-	initializeSelect2();
-	custsearch();
-	initializeItemTable(orderid);
-}
-
-// Function to initialize various aspects of NEW order screen
-function initordernew(orderid) {
-	initializeSelect2();
-	custsearch();
-	$('#reginput').val(orderid);
-}
-
 // Function to fill order id fields
 function fillreginfo(orderid){
 	var formData ={
@@ -259,13 +319,18 @@ function fillreginfo(orderid){
 		encode: true
 	}).done(function (data){
 		
-		// Fill value fields with appropriate values
+		// Fill form value fields with appropriate values
 		$('#reginput').val(data["orderid"]);
 		$("#hiddenorderid").val(data["orderid"]);
 		$('#regwhinput').val(data["orderwh"]);
 		$('#regdateininput').val(data["datein"]);
 		$('#regdatemodinput').val(data["histtime"]);
 		$('#regweightinput').val(data["weight"]);
+		
+		// Fill locator sheet with appropriate values
+		$("#locorderid").text("Orderid: " + data["orderid"]);
+		$("#locorderweight").text("Weight: " + data["weight"]);
+		$("#locin").text("Order in: " + data["datein"]);
 		
 		// Check if order is closed
 		if (data["dateout"] != null){
@@ -300,7 +365,7 @@ function fillcustinfo(orderid){
 		// Set option on custcountry search box
 		$('#custcountryinput').select2({theme: 'bootstrap-5'}).val(data["custcountry"]).trigger("change");
 		
-		// Fill fields with appropriate values
+		// Fill form fields with appropriate values
 		$('#businessinput').val(data["custbusiness"]);
 		$('#cust-tn').val(data["custtn"]);
 		$('#custfirstinput').val(data["custfirst"]);
@@ -309,6 +374,10 @@ function fillcustinfo(orderid){
 		$('#custcityinput').val(data["custcity"]);
 		$('#custzipinput').val(data["custzip"]);
 		$('#hiddencustid').val(data["custid"]);
+		
+		// Fill locator sheet with appropriate values
+		$("#loccustname").text("Customer: " + data["custfirst"] + " " + data["custlast"]);
+		
 	});
 }
 
