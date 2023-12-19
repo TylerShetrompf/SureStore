@@ -1,11 +1,5 @@
 // JavaScript Document containing functions
 
-// Function to initialize datatables for vault listing
-function initializeOrderTables(orderid){
-	// Define columns
-	
-}
-
 // Function to initialize DataTables for itemid table
 function initializeItemTable(itemorderid) {
 	// Define columns
