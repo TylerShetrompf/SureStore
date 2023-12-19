@@ -19,3 +19,10 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+LICENSE FOR Select2 CAN BE FOUND AT https://raw.githubusercontent.com/select2/select2/master/LICENSE.md
+
+LICENSE FOR altEditor CAN BE FOUND AT https://www.surestore.store/scripts/altEditor/LICENSE.txt
+
+LICENSE FOR DataTables CAN BE FOUND AT https://raw.githubusercontent.com/DataTables/DataTables/master/license.txt
+
