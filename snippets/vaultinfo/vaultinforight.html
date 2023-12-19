@@ -1,9 +1,33 @@
-<div class="bg-light my-2 border rounded">
+<div class="bg-light my-2 border rounded" id="reglocatorsheet">
 	
-	<!-- Canvas for QR code -->
-	<canvas id="qrcanvas"></canvas>
+	<form id="reglocatorform">
+		<div class="row">
+			<div class="col-4" id="qrcol">
+				<!-- Canvas for QR code -->
+				<canvas id="qrcanvas"></canvas>
+			</div>
+			
+			<div class="col-8">
+				<h4 class="text-center" id="locorderid"></h6>
+				<h5 id="loccustname"></h5>
+				<h5 id="locorderweight"></h5>
+				<h5 id="locin"></h5>
+			</div>
+		</div>
+		<div class="row">
+			<h6 class="text-center">Items and Vaults</h6>
+			<table id="locatorvaults" class="display" style="width:100%"></table>
+		</div>
+		<div class="row">
+			<h6 class="text-center">Loose Items</h6>
+			<table id="locatorloose" class="display" style="width:100%"></table>
+		</div>
+	</form>
+
 	
-	<div class="d-grid gap-2 my-2">
-		<button type="submit" class="btn btn-success btn-large btn-block">Update Order Info</button>
-	</div>
+	
+
+</div>
+<div class="d-grid gap-2 my-2">
+	<input type="button" value="Print Locator Sheet" class="btn btn-success btn-large btn-block">
 </div>
