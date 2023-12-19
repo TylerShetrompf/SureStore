@@ -1,4 +1,4 @@
-(function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.GenQR = f()}})(function(){var define,module,exports;return (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 'use strict';
 
 /******************************************************************************
@@ -2890,60 +2890,16 @@ exports.qrToImageData = function qrToImageData (imgData, qr, opts) {
 
 },{}],30:[function(require,module,exports){
 // make a qr code and return it as a url
-$('document').ready(function(){
 	
-		// Listener for vault search selections
-	$('body').on("change", "#search", function(event) {
-		event.preventDefault();
-		
-		// Set content variable
-		var content = $("#select2-search-container").text();
-		
-		// Narrow content down to array
-		content = content.replace("Order: ", "");
-		content = content.replace(" Customer: ",",");
-		content = content.replace(" Vault: ",",");
-		content = content.replace(" ",",");
-		content = content.split(",");
-		
-		// Assign values to associative array
-		var orderid = content[0];
-		
-		
-		$.get('/snippets/vaultinfo/vaultinfo.html', function(data) {
-			$("#appcontainer").html(data);
-		}).done(function () {
-			$.get('/snippets/vaultinfo/vaultinfoleft.html', function(data) {
-				$("#left").html(data);
-			}).done(function() {
-				$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
-					$("#middle").html(data);
-				}).done(function (){
-					$.get('/snippets/vaultinfo/vaultinforight.html', function(data) {
-						$("#right").html(data);
-						initorderfull(orderid);
-						var width = $('#right').width();
-						width = width/4;
-						var QRCode = require('qrcode');
-						var canvas = document.getElementById('qrcanvas');
-						QRCode.toCanvas(canvas, orderid, { width: width }, function (error) {
-							if (error) console.error(error)
-						})
-						$(window).on('resize', function () {
-							width = $('#right').width();
-							width = width/4;
-							QRCode.toCanvas(canvas, orderid, { width: width }, function (error) {
-								if (error) console.error(error)
-								console.log('resize success!');
-							})
-						})
-					})
-				})
-			})
-		})	
-	}); // end of listener for vault search selections
+module.exports = function genqr(orderid) {
 	
-})
-
-
-},{"qrcode":3}]},{},[30]);
+	var width = $('#qrcol').width();
+	var QRCode = require('qrcode');
+	var canvas = document.getElementById('qrcanvas');
+	QRCode.toCanvas(canvas, orderid, { width: width }, function (error) {
+		if (error) console.error(error)
+	})
+	
+}
+},{"qrcode":3}]},{},[30])(30)
+});
