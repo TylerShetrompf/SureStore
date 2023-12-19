@@ -2923,11 +2923,19 @@ $('document').ready(function(){
 						$("#right").html(data);
 						initorderfull(orderid);
 						var width = $('#right').width();
+						width = width/4;
 						var QRCode = require('qrcode');
 						var canvas = document.getElementById('qrcanvas');
 						QRCode.toCanvas(canvas, orderid, { width: width }, function (error) {
 							if (error) console.error(error)
-							console.log('success!');
+						})
+						$(window).on('resize', function () {
+							width = $('#right').width();
+							width = width/4;
+							QRCode.toCanvas(canvas, orderid, { width: width }, function (error) {
+								if (error) console.error(error)
+								console.log('resize success!');
+							})
 						})
 					})
 				})
