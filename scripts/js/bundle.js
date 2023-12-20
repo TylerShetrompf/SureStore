@@ -2893,12 +2893,10 @@ exports.qrToImageData = function qrToImageData (imgData, qr, opts) {
 	
 module.exports = function genqr(orderid) {
 	
-	var width = $('#qrcol').width();
+	var width = '500';
 	var QRCode = require('qrcode');
-	var canvas = document.getElementById('qrcanvas');
-	QRCode.toCanvas(canvas, orderid, { width: width }, function (error) {
-		if (error) console.error(error)
-	})
+	var dataurl = QRCode.toDataURL(orderid, { width: width });
+	return dataurl;
 	
 }
 },{"qrcode":3}]},{},[30])(30)
