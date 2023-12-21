@@ -29,10 +29,11 @@ function initpdforder (orderid) {
 			dataType: "json",
 			encode: true,
 		}).done(function (results){
-			var width = $('#reginfodiv').width();
-			var height = $('#reginfodiv').height();
+			var width = $('#printbtn').width();
+			var height = $('#middle').height();
 			$('#pdfframe').attr('style','width:' + width + 'px; height:' + height + 'px;');
-			$('#pdfframe').attr('src', 'https://docs.google.com/gview?url=https://surestore.store/images/QR/' + results + '&embedded=true');
+			$('#pdfframe').attr('src', 'https://docs.google.com/gview?url=https://surestore.store/QR/' + results + '&embedded=true');
+
 		})
 	})
 }
