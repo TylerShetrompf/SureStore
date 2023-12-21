@@ -7,13 +7,33 @@ function initorderfull(orderid) {
 	initializeSelect2();
 	custsearch();
 	initializeItemTable(orderid);
-	initLocvaultTab(orderid);
-	// prepend O. for orderqr
-	var QRid = "O." + orderid;
+	initpdforder(orderid);
 	// Call to GenQR function for QRCode
-	GenQR(QRid);
-	$(window).on('resize', function () {
-		GenQR(QRid);
+}
+
+// Function to handle qr and pdf generation for orders
+function initpdforder (orderid) {
+	
+	// prepend O. for orderqr
+	var QRid = "O_" + orderid;
+	
+	GenQR(QRid).then(function(result){
+		var qrformdata = {
+			dataurl: result,
+			orderid: orderid
+		}
+		$.ajax({
+			url: '/scripts/php/pdfgen.php',
+			type: 'POST',
+			data: qrformdata,
+			dataType: "json",
+			encode: true,
+		}).done(function (results){
+			var width = $('#reginfodiv').width();
+			var height = $('#reginfodiv').height();
+			$('#pdfframe').attr('style','width:' + width + 'px; height:' + height + 'px;');
+			$('#pdfframe').attr('src', 'https://docs.google.com/gview?url=https://surestore.store/images/QR/' + results + '&embedded=true');
+		})
 	})
 }
 
@@ -24,7 +44,7 @@ function initordernew(orderid) {
 	$('#reginput').val(orderid);
 }
 
-// Function to initialize DataTables for locatortab
+// Function to initialize DataTables for vault locatortab
 function initLocvaultTab(orderid) {
 	// Define columns
 	var columnDefs = [
@@ -56,8 +76,6 @@ function initLocvaultTab(orderid) {
 		dataType: "json",
 		encode: true,
 	}).done(function (data){
-		console.log(formData);
-		console.log(data);
 		$('#locatorvaults').DataTable({
 			"sPaginationType": "full_numbers",
 			columns: columnDefs,
@@ -71,6 +89,50 @@ function initLocvaultTab(orderid) {
 	})
 }
 
+// Function to initialize DataTables for loose locatortab
+function initLoclooseTab(orderid) {
+	// Define columns
+	var columnDefs = [
+		{
+			orderable: false,
+			data: "itemloose",
+			title: "Loose"
+		},
+		{
+			orderable: false,
+			data: "itemdesc",
+			title: "Item Description",
+		},
+		{
+			orderable: false,
+			data: "itemvaulter",
+			title: "Item Vaulter",
+		}
+	];
+	
+	var formData ={
+		orderid: orderid,
+	};
+	
+	$.ajax({
+		url: '/scripts/php/locloose.php',
+		type: 'POST',
+		data: formData,
+		dataType: "json",
+		encode: true,
+	}).done(function (data){
+		$('#locatorloose').DataTable({
+			"sPaginationType": "full_numbers",
+			columns: columnDefs,
+			data: data,
+			select: 'single',
+			searching: false,
+			lengthChange: false,
+			paging: false,
+			pageLength: -1,
+		});
+	})
+}
 
 // Function to initialize DataTables for itemid table
 function initializeItemTable(itemorderid) {
