@@ -1,6 +1,12 @@
 // JavaScript Document containing jquery listeners
 $(document).ready(function () {
 	
+	// Listener for pdf print button
+	$('body').on( "click", "#printbtn", function(event){
+		event.preventDefault();
+		var orderid = $("#reginput").val();
+		const pdfWindow = window.open('https://surestore.store/QR/' + orderid + '.pdf').print();
+	}); // end of listener for pdf print button
 	
 	// Listener for vault search selections
 	$('body').on("change", "#search", function(event) {
