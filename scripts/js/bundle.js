@@ -2893,7 +2893,7 @@ exports.qrToImageData = function qrToImageData (imgData, qr, opts) {
 	
 module.exports = function genqr(orderid) {
 	
-	var width = '500';
+	var width = '300';
 	var QRCode = require('qrcode');
 	var dataurl = QRCode.toDataURL(orderid, { width: width });
 	return dataurl;
