@@ -8,6 +8,7 @@ function initorderfull(orderid) {
 	custsearch();
 	initializeItemTable(orderid);
 	initpdforder(orderid);
+	initializeHistTable(orderid);
 }
 
 // Function to handle qr and pdf generation for orders
@@ -45,24 +46,17 @@ function initordernew(orderid) {
 	$('#reginput').val(orderid);
 }
 
-// Function to initialize DataTables for vault locatortab
-function initLocvaultTab(orderid) {
-	// Define columns
+// Function to initialize DataTables for orderhist table
+function initializeHistTable(orderid) {
 	var columnDefs = [
 		{
-			orderable: false,
-			data: "itemvault",
-			title: "Vault"
+			data: "histtime",
+			title: "Date & Time",
+			type: "readonly"
 		},
 		{
-			orderable: false,
-			data: "itemdesc",
-			title: "Item Description",
-		},
-		{
-			orderable: false,
-			data: "itemvaulter",
-			title: "Item Vaulter",
+			data: "histdesc",
+			title: "Description"
 		}
 	];
 	
@@ -70,69 +64,21 @@ function initLocvaultTab(orderid) {
 		orderid: orderid,
 	};
 	
+	$("#histheading").text("Order: " + orderid + " History");
+	
 	$.ajax({
-		url: '/scripts/php/locvault.php',
+		url: '/scripts/php/orderhist.php',
 		type: 'POST',
 		data: formData,
 		dataType: "json",
 		encode: true,
-	}).done(function (data){
-		$('#locatorvaults').DataTable({
-			"sPaginationType": "full_numbers",
+	}).done(function(data){
+		$('#histtab').DataTable({
 			columns: columnDefs,
 			data: data,
-			select: 'single',
-			searching: false,
-			lengthChange: false,
-			paging: false,
-			pageLength: -1,
+			select: 'single'
 		});
-	})
-}
-
-// Function to initialize DataTables for loose locatortab
-function initLoclooseTab(orderid) {
-	// Define columns
-	var columnDefs = [
-		{
-			orderable: false,
-			data: "itemloose",
-			title: "Loose"
-		},
-		{
-			orderable: false,
-			data: "itemdesc",
-			title: "Item Description",
-		},
-		{
-			orderable: false,
-			data: "itemvaulter",
-			title: "Item Vaulter",
-		}
-	];
-	
-	var formData ={
-		orderid: orderid,
-	};
-	
-	$.ajax({
-		url: '/scripts/php/locloose.php',
-		type: 'POST',
-		data: formData,
-		dataType: "json",
-		encode: true,
-	}).done(function (data){
-		$('#locatorloose').DataTable({
-			"sPaginationType": "full_numbers",
-			columns: columnDefs,
-			data: data,
-			select: 'single',
-			searching: false,
-			lengthChange: false,
-			paging: false,
-			pageLength: -1,
-		});
-	})
+	});
 }
 
 // Function to initialize DataTables for itemid table
