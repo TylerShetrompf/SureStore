@@ -76,6 +76,35 @@
 	</form>
 </div>
 
+<!-- Show history button -->
+<div class="d-grid gap-2 my-2">
+	<button type="button" class="btn btn-success btn-large btn-block" data-bs-toggle="modal" data-bs-target="#histModal">Order History</button>
+</div>
+
+<!-- History Modal -->
+<div class="modal" id="histModal">
+	<div class="bg-light px-2 my-2 border rounded" id="histmodaldiv">
+		<div class="modal-dialog">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h4 class="modal-title">Modal Heading</h4>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+
+				<!-- Modal Body -->
+				<div class="modal-body">Modal Body</div>
+				<!-- Modal Footer -->
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="bg-light px-2 my-2 border rounded" id="custinfodiv">
 	
 	<form action="/scripts/php/updatecustinfo.php" id="custinfoform">
