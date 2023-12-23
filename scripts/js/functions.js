@@ -8,7 +8,6 @@ function initorderfull(orderid) {
 	custsearch();
 	initializeItemTable(orderid);
 	initpdforder(orderid);
-	// Call to GenQR function for QRCode
 }
 
 // Function to handle qr and pdf generation for orders
@@ -17,6 +16,7 @@ function initpdforder (orderid) {
 	// prepend O. for orderqr
 	var QRid = "O_" + orderid;
 	
+	// Call to GenQR function for QRCode
 	GenQR(QRid).then(function(result){
 		var qrformdata = {
 			dataurl: result,
