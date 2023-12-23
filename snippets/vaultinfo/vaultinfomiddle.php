@@ -89,12 +89,14 @@
 
 				<!-- Modal Header -->
 				<div class="modal-header">
-					<h4 class="modal-title">Modal Heading</h4>
+					<h4 class="modal-title" id="histheading"></h4>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 				</div>
 
 				<!-- Modal Body -->
-				<div class="modal-body">Modal Body</div>
+				<div class="modal-body">
+					<table id="histtab" class="display" style="width:100%"></table>
+				</div>
 				<!-- Modal Footer -->
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
