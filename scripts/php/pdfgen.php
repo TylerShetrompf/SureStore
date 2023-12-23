@@ -145,3 +145,5 @@ if (file_exists($imgname)) {
 	$pdf->Output('F', $pdfpath);
 	echo json_encode($pdfname);
 }
+
+pg_close($surestore_db);
