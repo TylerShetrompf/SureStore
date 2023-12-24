@@ -78,7 +78,7 @@
 
 <!-- Show history button -->
 <div class="d-grid gap-2 my-2">
-	<button type="button" class="btn btn-success btn-large btn-block" data-bs-toggle="modal" data-bs-target="#histModal">Order History</button>
+	<button type="button" class="btn btn-secondary btn-large btn-block" data-bs-toggle="modal" data-bs-target="#histModal">Order History</button>
 </div>
 
 <!-- History Modal -->
