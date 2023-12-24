@@ -15,11 +15,11 @@ function initorderfull(orderid) {
 function initpdforder (orderid) {
 	
 	// prepend O. for orderqr
-	var QRid = "O_" + orderid;
+	let QRid = "O_" + orderid;
 	
 	// Call to GenQR function for QRCode
 	GenQR(QRid).then(function(result){
-		var qrformdata = {
+		let qrformdata = {
 			dataurl: result,
 			orderid: orderid
 		}
@@ -30,13 +30,65 @@ function initpdforder (orderid) {
 			dataType: "json",
 			encode: true,
 		}).done(function (results){
-			var width = $('#printbtn').width();
-			var height = $('#middle').height();
+			let width = $('#printbtn').width();
+			let height = $('#middle').height();
 			$('#pdfframe').attr('style','width:' + width + 'px; height:' + height + 'px;');
 			$('#pdfframe').attr('src', 'https://docs.google.com/gview?url=https://surestore.store/QR/' + results + '&embedded=true');
 
 		})
 	})
+}
+
+function pdfallorder (orderid) {
+	
+	// prepend O. for orderqr
+	let QRid = "O_" + orderid;
+	
+	// array for item ajax form
+	let itemformdata = {
+		orderid: orderid,
+	}
+	
+	// Array to fill with item qr codes
+	let qrformdata = {
+		orderid: orderid,
+	}
+	
+	let itemqr = {};
+	
+	$.ajax({
+		url: '/scripts/php/iteminfo.php',
+		type: "POST",
+		data: itemformdata,
+		dataType: "json",
+		encode: true
+	}).done(function (results){
+		for (let item of results) {
+			let itemQRid = "I_" + item["itemid"];
+			GenQR(itemQRid).then(function(qrresult){
+				let itemid = item["itemid"];
+				itemqr[itemid] = qrresult;
+			})
+		}
+		qrformdata["itemQR"] = itemqr;
+		GenQR(QRid).then(function(result){
+			qrformdata["orderqr"] = result;
+			console.log(qrformdata);
+			$.ajax({
+				url: '/scripts/php/pdfgenall.php',
+				type: 'POST',
+				data: qrformdata,
+				dataType: "json",
+				encode: true,
+			}).done(function (results){
+				console.log(results);
+			})
+		}) 
+		
+	});
+	
+	// Call to GenQR function for QRCode
+
 }
 
 // Function to initialize various aspects of NEW order screen
@@ -48,7 +100,7 @@ function initordernew(orderid) {
 
 // Function to initialize DataTables for orderhist table
 function initializeHistTable(orderid) {
-	var columnDefs = [
+	let columnDefs = [
 		{
 			data: "histtime",
 			title: "Date & Time",
@@ -60,7 +112,7 @@ function initializeHistTable(orderid) {
 		}
 	];
 	
-	var formData ={
+	let formData ={
 		orderid: orderid,
 	};
 	
@@ -84,7 +136,7 @@ function initializeHistTable(orderid) {
 // Function to initialize DataTables for itemid table
 function initializeItemTable(itemorderid) {
 	// Define columns
-	var columnDefs = [
+	let columnDefs = [
 		{
 			data: "itemid",
 			title: "ID",
@@ -159,7 +211,7 @@ function initializeItemTable(itemorderid) {
 		}
 	];
 	
-	var formData ={
+	let formData ={
 		orderid: itemorderid,
 	};
 	$.ajax({
@@ -231,7 +283,7 @@ function initializeItemTable(itemorderid) {
 				});
 			},
 			onDeleteRow: function(datatable, rowdata, success, error) {
-				var delitemid ={
+				let delitemid ={
 					itemid: $("tr.selected > td").eq(0).text(),
 					itemorder: itemorderid
 				}
@@ -317,7 +369,7 @@ function initializeSelect2(){
 
 // Function to fill order id fields
 function fillreginfo(orderid){
-	var formData ={
+	let formData ={
 		orderid: orderid,
 	};
 	$.ajax({
@@ -355,7 +407,7 @@ function fillreginfo(orderid){
 
 // Function to fill customer id fields
 function fillcustinfo(orderid){
-	var formData ={
+	let formData ={
 		orderid: orderid,
 	};
 	
