@@ -4,16 +4,26 @@ $(document).ready(function () {
 	// Listener for pdf print button
 	$('body').on( "click", "#printbtn", function(event){
 		event.preventDefault();
-		var orderid = $("#reginput").val();
+		let orderid = $("#reginput").val();
 		const pdfWindow = window.open('https://surestore.store/QR/' + orderid + '.pdf').print();
 	}); // end of listener for pdf print button
+	
+	// Listener for pdf print ALL button
+	$('body').on( "click", "#printallbtn", function(event){
+		event.preventDefault();
+		let orderid = $("#reginput").val();
+		pdfallorder(orderid);
+		/*
+		const pdfWindow = window.open('https://surestore.store/QR/' + orderid + 'all.pdf').print();
+		*/
+	}); // end of listener for pdf print ALL button
 	
 	// Listener for vault search selections
 	$('body').on("change", "#search", function(event) {
 		event.preventDefault();
 		
 		// Set content variable
-		var content = $("#select2-search-container").text();
+		let content = $("#select2-search-container").text();
 		
 		// Narrow content down to array
 		content = content.replace("Order: ", "");
@@ -23,7 +33,7 @@ $(document).ready(function () {
 		content = content.split(",");
 		
 		// Assign values to associative array
-		var orderid = content[0];
+		let orderid = content[0];
 		
 		
 		$.get('/snippets/vaultinfo/vaultinfo.html', function(data) {
@@ -48,7 +58,7 @@ $(document).ready(function () {
 	// Listener to handle create order submit
 	$("body").on("submit", "#neworderform", function (event){
 		event.preventDefault();
-		var formData ={
+		let formData ={
 			custbusiness: $('#businessinput').val(),
 			custtn : $('#cust-tn').val(),
 			custfirst: $('#custfirstinput').val(),
@@ -100,7 +110,7 @@ $(document).ready(function () {
 	// Listener to handle custinfo form submit
 	$("body").on("submit", "#custinfoform", function (event){
 		event.preventDefault();
-		var custformdata ={
+		let custformdata ={
 			custbusiness: $('#businessinput').val(),
 			custtn : $('#cust-tn').val(),
 			custfirst: $('#custfirstinput').val(),
@@ -147,13 +157,13 @@ $(document).ready(function () {
 	// Customer search select listener
 	$('body').on("change", "#custidinput", function(event) {
 		event.preventDefault();
-		var content = $("#select2-custidinput-container").text();
+		let content = $("#select2-custidinput-container").text();
 		content = content.replaceAll(" ", ",");
 		content = content.split(",");
-		var first = content[1];
-		var last = content[2];
+		let first = content[1];
+		let last = content[2];
 		
-		var formData ={
+		let formData ={
 			custfirst: first,
 			custlast: last
 		}
@@ -188,7 +198,7 @@ $(document).ready(function () {
 	
 	// Phone number masking listener
 	$('body').on("keydown", '#cust-tn', function (e) {
-		var key = e.which || e.charCode || e.keyCode || 0;
+		let key = e.which || e.charCode || e.keyCode || 0;
 		$phone = $(this);
 
 		// Don't let them remove the starting '('
@@ -222,7 +232,7 @@ $(document).ready(function () {
 		if ($phone.val().length === 0) {
 			$phone.val('(');
 		} else {
-			var val = $phone.val();
+			let val = $phone.val();
 			$phone.val('').val(val); // Ensure cursor remains at the end
 		}
 	}).blur(function () {
@@ -236,7 +246,7 @@ $(document).ready(function () {
 	
 	// Login form submit listener
 	$("#LoginForm").submit(function (event) {
-		var formData ={
+		let formData ={
 			username: $("#email").val(),
 			password: $("#password").val(),
 		};
@@ -348,7 +358,7 @@ $(document).ready(function () {
 	$('body').on("submit", "#reginfoform", function (event){
 		event.preventDefault();
 		
-		var regformdata ={
+		let regformdata ={
 			oldorderid: $("#hiddenorderid").val(),
 			orderid: $('#reginput').val(),
 			orderwh: $('#regwhinput').val(),
@@ -407,7 +417,7 @@ $(document).ready(function () {
 		
 		event.preventDefault();
 		
-		var formData ={
+		let formData ={
 			firstname: $("#firstname").val(),
 			lastname: $("#lastname").val(),
 			email: $("#email").val(),
@@ -449,7 +459,7 @@ $(document).ready(function () {
 	// Listener for new order form submissions
 	$("body").on("submit", "#newregform", function(event){
 		event.preventDefault();
-		var orderid = $("#regidinput").val();
+		let orderid = $("#regidinput").val();
 		$.get('/snippets/vaultinfo/vaultinfo.html', function(data) {
 			$("#appcontainer").html(data);
 		}).done(function(){
