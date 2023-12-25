@@ -13,9 +13,7 @@ $(document).ready(function () {
 		event.preventDefault();
 		let orderid = $("#reginput").val();
 		pdfallorder(orderid);
-		/*
-		const pdfWindow = window.open('https://surestore.store/QR/' + orderid + 'all.pdf').print();
-		*/
+		const pdfWindow = window.open('https://surestore.store/QR/' + orderid + '.pdf').print();
 	}); // end of listener for pdf print ALL button
 	
 	// Listener for vault search selections
