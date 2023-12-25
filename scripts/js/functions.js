@@ -250,7 +250,8 @@ function initializeItemTable(itemorderid) {
 				},
 				{
 					text: 'Print Locator',
-					name: 'print'
+					name: 'print',
+					className : 'itemlocprint'
 				}
 			],
 			onAddRow: function(datatable, rowdata, success, error) {
