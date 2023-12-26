@@ -1,6 +1,6 @@
 <?php
 // PHP to check session
-//include '/var/www/html/scripts/php/reverifysession.php';
+include '/var/www/html/scripts/php/reverifysession.php';
 
 // Include db connection
 include '/var/www/html/scripts/php/connectdb.php';
@@ -13,9 +13,8 @@ $userquery = pg_query_params($surestore_db, 'select useracl from sureusers where
 
 $userresult = pg_fetch_assoc($userquery);
 
-echo(
-		
-'<div class="row" id="rowmain">
+echo('
+<div class="row" id="rowmain">
 
 		
 		<!-- Scanner Modal -->
