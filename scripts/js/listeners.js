@@ -13,8 +13,14 @@ $(document).ready(function () {
 		event.preventDefault();
 		let orderid = $("#reginput").val();
 		pdfallorder(orderid);
-		const pdfWindow = window.open('https://surestore.store/QR/' + orderid + '.pdf').print();
 	}); // end of listener for pdf print ALL button
+	
+	// Listener to print item locator
+	$('body').on("click", ".itemlocprint", function(event) {
+		event.preventDefault();
+		let itemid = $("tr.selected > td").eq(0).text();
+		pdfitem(itemid);
+	}); // end of listener to print item locator
 	
 	// Listener for vault search selections
 	$('body').on("change", "#search", function(event) {
