@@ -313,6 +313,7 @@ $(document).ready(function () {
 		event.preventDefault();
 		$.get('/snippets/maintenance.php', function(data) {
 			$("#middle").html(data);
+			initializeAllHistTable();
 		})
 	}); // end of listener for maintenance button
 	
