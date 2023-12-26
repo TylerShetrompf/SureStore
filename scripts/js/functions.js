@@ -11,6 +11,63 @@ function initorderfull(orderid) {
 	initializeHistTable(orderid);
 }
 
+// Function to initialize QR scanner
+function initializeQRscanner() {
+	
+	$("#modbody").html('<div id="qrscanner"><video id="qrscanner-video"></video></div>');
+	const videoElem = document.getElementById('qrscanner-video');
+	const qrScanner = new QrScanner(
+		videoElem,
+		result => processScan(result, qrScanner),
+		{
+			highlightScanRegion: true,
+        	highlightCodeOutline: true,
+		}
+	);
+	qrScanner.start();
+	
+	// Listener for scan close button
+	$('body').on("click", "#closescan", function(){
+		qrScanner.stop();
+	}); // end of listener for scan clsoe button
+}
+
+// Function to process QR scan 
+function processScan(result, qrScanner) {
+	$('#scanModal').modal('toggle');
+	qrScanner.stop();
+	let resString = result["data"];
+	let resArray = resString.split("_");
+	let resType = resArray[0];
+	let resID = resArray[1];
+	console.log(resString);
+	if(resType == "O") {
+		
+		let orderid = resID;
+		$.get('/snippets/vaultinfo/vaultinfo.php', function(data) {
+			$("#appcontainer").html(data);
+		}).done(function () {
+			$.get('/snippets/vaultinfo/vaultinfoleft.php', function(data) {
+				$("#left").html(data);
+			}).done(function() {
+				$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
+					$("#middle").html(data);
+				}).done(function (){
+					$.get('/snippets/vaultinfo/vaultinforight.php', function(data) {
+						$("#right").html(data);
+						initorderfull(orderid);						
+					})
+				})
+			})
+		})	
+	}
+	if(resType == "I") {
+		let itemid = resID;
+		
+	}
+	
+}
+
 // Function to handle qr and pdf generation for orders
 function initpdforder (orderid) {
 	
