@@ -317,6 +317,11 @@ $(document).ready(function () {
 		})
 	}); // end of listener for maintenance button
 	
+	// Listener for scan button
+	$('body').on("click", "#scanButton", function(event){
+		event.preventDefault();
+		initializeQRscanner();
+	}); // end of listener for scan button
 	
 	// Listener for admin button
 	$("body").on("click", "#adminButton", function(event) {
