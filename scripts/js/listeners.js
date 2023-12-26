@@ -1,6 +1,28 @@
 // JavaScript Document containing jquery listeners
 $(document).ready(function () {
 	
+	// Listener for Order Info button on item menu
+	$('body').on("click", "#infoOrder", function(event) {
+		event.preventDefault();
+		let orderid = $("#itemorder").val();
+		$.get('/snippets/vaultinfo/vaultinfo.php', function(data) {
+			$("#appcontainer").html(data);
+		}).done(function () {
+			$.get('/snippets/vaultinfo/vaultinfoleft.php', function(data) {
+				$("#left").html(data);
+			}).done(function() {
+				$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
+					$("#middle").html(data);
+				}).done(function (){
+					$.get('/snippets/vaultinfo/vaultinforight.php', function(data) {
+						$("#right").html(data);
+						initorderfull(orderid);						
+					})
+				})
+			})
+		})	
+	});
+	
 	// Listener for pdf print button
 	$('body').on( "click", "#printbtn", function(event){
 		event.preventDefault();
