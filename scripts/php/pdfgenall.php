@@ -1,5 +1,6 @@
 <?php
-
+// PHP to check session
+include '/var/www/html/scripts/php/reverifysession.php';
 // FPDF
 require('/var/www/html/scripts/php/fpdf.php');
 
