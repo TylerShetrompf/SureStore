@@ -63,7 +63,27 @@ function processScan(result, qrScanner) {
 	}
 	if(resType == "I") {
 		let itemid = resID;
-		
+		$.get('/snippets/itemmenu.php', function(data) {
+			$("#appcontainer").html(data);
+		}).done(function() {
+			$("#hiddenitemid").val(itemid);
+			let formData = {
+				itemid: itemid
+			}
+			$.ajax({
+				url: '/scripts/php/itemmenuinfo.php',
+				type: 'POST',
+				data: formData,
+				dataType: "json",
+				encode: true,
+			}).done(function (results) {
+				$("#itemorder").val(results["itemorder"]);
+				$("#itemcust").val(results["itemcust"]);
+				$("#itemloc").val(results["itemloc"]);
+				$("#itemvaulter").val(results["itemvaulter"]);
+				$("#itemdesc").val(results["itemdesc"]);
+			});
+		})
 	}
 	
 }
