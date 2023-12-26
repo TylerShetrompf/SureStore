@@ -16,6 +16,10 @@
 		<div class="d-grid gap-2 my-2" id="locButton">
 			<button type="button" class="btn btn-success btn-lg btn-block">Locator</button>
 		</div>
+		
+		<div class="d-grid gap-2 my-2" id="scanButton">
+			<button type="button" class="btn btn-success btn-lg btn-block">Scan</button>
+		</div>
 
 		<div class="d-grid gap-2 my-2" id="maintButton">
 			<button type="button" class="btn btn-success btn-lg btn-block">Maintenance</button>
