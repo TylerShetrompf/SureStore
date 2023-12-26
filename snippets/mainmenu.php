@@ -1,9 +1,10 @@
 <?php
-	// PHP to check session
-	include '/var/www/html/scripts/php/reverifysession.php';
-?>
+// PHP to check session
+include '/var/www/html/scripts/php/reverifysession.php';
 
-<div class="row" id="rowmain">
+echo(
+		
+'<div class="row" id="rowmain">
 
 	<!-- 3 Columns in Main Row -->
 
@@ -19,19 +20,25 @@
 		
 		<div class="d-grid gap-2 my-2" id="scanButton">
 			<button type="button" class="btn btn-success btn-lg btn-block">Scan</button>
-		</div>
-
+		</div>'
+);
+echo ('	
 		<div class="d-grid gap-2 my-2" id="maintButton">
-			<button type="button" class="btn btn-success btn-lg btn-block">Maintenance</button>
-		</div>
-
+			<button type="button" class="btn btn-warning btn-lg btn-block">Maintenance</button>
+		</div>'
+);
+echo ('	
 		<div class="d-grid gap-2 my-2" id="adminButton">
-			<button type="button" class="btn btn-success btn-lg btn-block">Admin</button>
-		</div>
+			<button type="button" class="btn btn-danger btn-lg btn-block">Admin</button>
+		</div>'
+);
 
+echo ('	
 	</div>
 
 	<!-- Right row -->
 	<div class="col-sm-4" id="right"></div>
 	
-</div>
+</div>'
+);
+?>

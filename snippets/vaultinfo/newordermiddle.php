@@ -1,8 +1,7 @@
 <?php
 	// PHP to check session
 	include '/var/www/html/scripts/php/reverifysession.php';
-?>
-
+	echo('
 <div class="bg-light px-2 my-2 border rounded" id="neworderdiv">
 	<form action="/scripts/php/reginfo.php" id="neworderform">
 		<div class="row">
@@ -94,7 +93,7 @@
 				<!-- Customer First Name -->
 				<div class="form-group mb-1" id="custfirst">
 					<input type="input" class="form-control shadow-sm" id="custfirstinput" required>
-					<small id="custfirstHelp" class="form-text text-muted">Customer's First Name</small>
+					<small id="custfirstHelp" class="form-text text-muted">Customer\'s First Name</small>
 				</div>
 			</div>
 			
@@ -102,7 +101,7 @@
 				<!-- Customer Last Name -->
 				<div class="form-group mb-1" id="custlast">
 					<input type="input" class="form-control shadow-sm" id="custlastinput" required>
-					<small id="custlastHelp" class="form-text text-muted">Customer's Last Name</small>
+					<small id="custlastHelp" class="form-text text-muted">Customer\'s Last Name</small>
 				</div>
 			</div>
 		</div>
@@ -256,7 +255,7 @@
 						<option value="CD">Congo, Democratic Republic of the Congo</option>
 						<option value="CK">Cook Islands</option>
 						<option value="CR">Costa Rica</option>
-						<option value="CI">Cote D'Ivoire</option>
+						<option value="CI">Cote D\'Ivoire</option>
 						<option value="HR">Croatia</option>
 						<option value="CU">Cuba</option>
 						<option value="CW">Curacao</option>
@@ -319,12 +318,12 @@
 						<option value="KZ">Kazakhstan</option>
 						<option value="KE">Kenya</option>
 						<option value="KI">Kiribati</option>
-						<option value="KP">Korea, Democratic People's Republic of</option>
+						<option value="KP">Korea, Democratic People\'s Republic of</option>
 						<option value="KR">Korea, Republic of</option>
 						<option value="XK">Kosovo</option>
 						<option value="KW">Kuwait</option>
 						<option value="KG">Kyrgyzstan</option>
-						<option value="LA">Lao People's Democratic Republic</option>
+						<option value="LA">Lao People\'s Democratic Republic</option>
 						<option value="LV">Latvia</option>
 						<option value="LB">Lebanon</option>
 						<option value="LS">Lesotho</option>
@@ -465,4 +464,5 @@
 		</div>
 		
 	</form>
-</div>
+</div>')
+?>

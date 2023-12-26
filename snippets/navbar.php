@@ -1,3 +1,10 @@
+<?php
+
+// PHP to check session
+include '/var/www/html/scripts/php/reverifysession.php';
+
+echo ('
+
 <div class="navbar navbar-expand-lg navbar-dark bg-dark">
 	<div class="navbar-brand mx-3">
 		<img src="images/logoTiny.png" alt="logo" size="25%">
@@ -14,3 +21,7 @@
 		</ul>
 	</div>
 </div>
+
+');
+
+?>

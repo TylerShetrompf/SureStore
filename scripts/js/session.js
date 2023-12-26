@@ -13,7 +13,7 @@ $(document).ready(function(){
 			})
 				
 			// Load navbar
-			$.get('/snippets/navbar.html', function(newHTMLdata) {
+			$.get('/snippets/navbar.php', function(newHTMLdata) {
 				$("body").prepend(newHTMLdata);
 			})
 		}

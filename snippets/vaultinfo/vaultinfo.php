@@ -1,3 +1,7 @@
+<?php
+// PHP to check session
+include '/var/www/html/scripts/php/reverifysession.php';
+echo('
 <!-- Main Row -->
 <div class="row" id="rowmain">
 
@@ -19,3 +23,5 @@
 	<div class="col-sm-4 order-2" id="bottommid"></div>
 	<div class="col-sm-4 order-3" id="bottomright"></div>
 </div>
+');
+?>

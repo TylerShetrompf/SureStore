@@ -40,16 +40,16 @@ $(document).ready(function () {
 		let orderid = content[0];
 		
 		
-		$.get('/snippets/vaultinfo/vaultinfo.html', function(data) {
+		$.get('/snippets/vaultinfo/vaultinfo.php', function(data) {
 			$("#appcontainer").html(data);
 		}).done(function () {
-			$.get('/snippets/vaultinfo/vaultinfoleft.html', function(data) {
+			$.get('/snippets/vaultinfo/vaultinfoleft.php', function(data) {
 				$("#left").html(data);
 			}).done(function() {
 				$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
 					$("#middle").html(data);
 				}).done(function (){
-					$.get('/snippets/vaultinfo/vaultinforight.html', function(data) {
+					$.get('/snippets/vaultinfo/vaultinforight.php', function(data) {
 						$("#right").html(data);
 						initorderfull(orderid);						
 					})
@@ -87,11 +87,11 @@ $(document).ready(function () {
 			if (data["success"] == "false") {
 				$("#neworderdiv").prepend('<div class="alert alert-danger" role="alert"><h4 class="alert-heading">ERROR</h4><p>ORDER CREATION OR CUSTOMER CREATION HAS FAILED. YOUR CHANGES MAY NOT HAVE BEEN SAVED.</p><hr><p class="mb-0">PLEASE CONTACT SYSTEM ADMINISTRATOR.</p></div>');
 			} else {
-				$.get('/snippets/vaultinfo/vaultinfo.html', function(data) {
+				$.get('/snippets/vaultinfo/vaultinfo.php', function(data) {
 					$("#appcontainer").html(data);
 				})
 
-				$.get('/snippets/vaultinfo/vaultinfoleft.html', function(data) {
+				$.get('/snippets/vaultinfo/vaultinfoleft.php', function(data) {
 					$("#left").html(data);
 				}).done(function(){
 					initializeItemTable(formData["orderid"]);
@@ -140,10 +140,10 @@ $(document).ready(function () {
 			if (data["success"] == "false"){
 				$("#reginfodiv").append('<div class="alert alert-danger" role="alert">Update failed. Please contact system administrator.</div>')
 			} else {
-				$.get('/snippets/vaultinfo/vaultinfo.html', function(data) {
+				$.get('/snippets/vaultinfo/vaultinfo.php', function(data) {
 					$("#appcontainer").html(data);
 				}).done(function (){
-					$.get('/snippets/vaultinfo/vaultinfoleft.html', function(data) {
+					$.get('/snippets/vaultinfo/vaultinfoleft.php', function(data) {
 						$("#left").html(data);
 					}).done(function(){
 						$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
@@ -285,7 +285,7 @@ $(document).ready(function () {
 				})
 				
 				// Load navbar
-				$.get('/snippets/navbar.html', function(newHTMLdata) {
+				$.get('/snippets/navbar.php', function(newHTMLdata) {
 					$("body").prepend(newHTMLdata);
 				})
 			}
@@ -389,10 +389,10 @@ $(document).ready(function () {
 			if (data["success"] == "false"){
 				$("#reginfodiv").append('<div class="alert alert-danger" role="alert">Update failed. Please contact system administrator.</div>');
 			} else {
-				$.get('/snippets/vaultinfo/vaultinfo.html', function(data) {
+				$.get('/snippets/vaultinfo/vaultinfo.php', function(data) {
 					$("#appcontainer").html(data);
 				}).done(function (){
-					$.get('/snippets/vaultinfo/vaultinfoleft.html', function(data) {
+					$.get('/snippets/vaultinfo/vaultinfoleft.php', function(data) {
 						$("#left").html(data);
 					}).done(function(){
 						$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
@@ -464,7 +464,7 @@ $(document).ready(function () {
 	$("body").on("submit", "#newregform", function(event){
 		event.preventDefault();
 		let orderid = $("#regidinput").val();
-		$.get('/snippets/vaultinfo/vaultinfo.html', function(data) {
+		$.get('/snippets/vaultinfo/vaultinfo.php', function(data) {
 			$("#appcontainer").html(data);
 		}).done(function(){
 			$.get('/snippets/vaultinfo/newordermiddle.php', function(data) {
