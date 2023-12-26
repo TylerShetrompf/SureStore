@@ -73,22 +73,42 @@ function pdfallorder (orderid) {
 		qrformdata["itemQR"] = itemqr;
 		GenQR(QRid).then(function(result){
 			qrformdata["orderqr"] = result;
-			console.log(qrformdata);
 			$.ajax({
 				url: '/scripts/php/pdfgenall.php',
 				type: 'POST',
 				data: qrformdata,
 				dataType: "json",
 				encode: true,
-			}).done(function (results){
-				console.log(results);
-			})
+			}).done(function (){
+				const pdfWindow = window.open('https://surestore.store/QR/' + orderid + '.pdf').print();
+			});
 		}) 
-		
 	});
 	
 	// Call to GenQR function for QRCode
 
+}
+
+// Function to print item pdf
+function pdfitem(itemid) {
+	
+	// prepend I_ for itemqr
+	let itemQR = "I_" + itemid;
+	let formData ={
+		itemid: itemid,
+	}
+	GenQR(itemQR).then(function(qrresult){
+		formData["itemqr"] = qrresult;
+		$.ajax({
+			url: "/scripts/php/itempdf.php",
+			type: "POST",
+			data: formData,
+			dataType: "json",
+			encode: true
+		}).done(function (){
+			const pdfWindow = window.open('https://surestore.store/QR/' + itemid + '.pdf').print();
+		});
+	});
 }
 
 // Function to initialize various aspects of NEW order screen
