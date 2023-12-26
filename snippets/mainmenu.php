@@ -17,6 +17,32 @@ echo(
 		
 '<div class="row" id="rowmain">
 
+		
+		<!-- Scanner Modal -->
+		<div class="modal" id="scanModal">
+			<div class="bg-light px-2 my-2 border rounded" id="histmodaldiv">
+				<div class="modal-dialog">
+					<div class="modal-content">
+
+						<!-- Modal Header -->
+						<div class="modal-header">
+							<button type="button" id="closescan" class="btn-close" data-bs-dismiss="modal"></button>
+						</div>
+
+						<!-- Modal Body -->
+						<div class="modal-body" id="modbody">
+						
+						</div>
+						<!-- Modal Footer -->
+						<div class="modal-footer">
+							<button type="button" id="closescan" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
 	<!-- 3 Columns in Main Row -->
 
 	<!-- Left row -->
@@ -29,10 +55,12 @@ echo(
 			<button type="button" class="btn btn-success btn-lg btn-block">Locator</button>
 		</div>
 		
-		<div class="d-grid gap-2 my-2" id="scanButton">
-			<button type="button" class="btn btn-success btn-lg btn-block">Scan</button>
-		</div>'
-);
+		<!-- Show Scanner button -->
+		<div class="d-grid gap-2 my-2">
+			<button type="button" class="btn btn-success btn-large btn-block" data-bs-toggle="modal" id="scanButton" data-bs-target="#scanModal">Scan</button>
+		</div>
+		
+');
 
 if ($userresult["useracl"] >= "2") {
 	
