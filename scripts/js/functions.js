@@ -153,6 +153,36 @@ function initializeHistTable(orderid) {
 	});
 }
 
+// Function to initialize datatables for all hist table
+function initializeAllHistTable() {
+	let columnDefs = [
+		{
+			data: "histtime",
+			title: "Date & Time",
+			type: "readonly"
+		},
+		{
+			data: "histdesc",
+			title: "Description"
+		}
+	];
+	
+	$("#histheading").text("All History");
+	
+	$.ajax({
+		url: '/scripts/php/allhist.php',
+		type: 'POST',
+		dataType: "json",
+		encode: true,
+	}).done(function(data){
+		$('#histtab').DataTable({
+			columns: columnDefs,
+			data: data,
+			select: 'single'
+		});
+	});
+}
+
 // Function to initialize DataTables for itemid table
 function initializeItemTable(itemorderid) {
 	// Define columns
