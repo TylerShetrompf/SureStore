@@ -31,3 +31,6 @@ https://raw.githubusercontent.com/DataTables/DataTables/master/license.txt
 
 LICENSE FOR FPDF CAN BE FOUND AT:
 https://raw.githubusercontent.com/Setasign/FPDF/master/license.txt
+
+LICENSE FOR qr-scanner CAN BE FOUND AT:
+https://raw.githubusercontent.com/nimiq/qr-scanner/master/LICENSE
