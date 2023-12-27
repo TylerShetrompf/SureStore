@@ -1,6 +1,15 @@
 // JavaScript Document containing jquery listeners
 $(document).ready(function () {
 	
+	// Listener for vault and loose manage button
+	$("body").on("click", "#manageLocButton", function(event) {
+		event.preventDefault();
+		$.get("/snippets/manageloc.php", function(data) {
+			$("#appcontainer").html(data);
+			initManageLoc();
+		})
+	}); // end of listener for vault and loose manage button
+	
 	// Listener for Order Info button on item menu
 	$('body').on("click", "#infoOrder", function(event) {
 		event.preventDefault();
