@@ -30,5 +30,7 @@ if ($loctype == "V") {
 $updatetext = $userid." moved item ".$itemid." in order ".$orderid." to location ". $locid;
 $histquery = pg_query_params($surestore_db, "insert into surehistory(historder, histdesc) values($1, $2)", array($orderid,$updatetext));
 
+echo json_encode("success");
+
 // Close DB connection
 pg_close($surestore_db);
