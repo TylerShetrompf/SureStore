@@ -46,12 +46,26 @@ $(document).ready(function () {
 		pdfallorder(orderid);
 	}); // end of listener for pdf print ALL button
 	
-	// Listener to print item locator
+	// Listener for print item locator
 	$('body').on("click", ".itemlocprint", function(event) {
 		event.preventDefault();
 		let itemid = $("tr.selected > td").eq(0).text();
 		pdfitem(itemid);
 	}); // end of listener to print item locator
+	
+	// Listener for print vault locator
+	$('body').on("click", ".vaultlocprint", function(event) {
+		event.preventDefault();
+		let locid = $("tr.selected > td").eq(0).text();
+		pdfvault(locid);
+	}); // end of listener to print vault locator
+	
+	// Listener for print loose locator
+	$('body').on("click", ".looselocprint", function(event) {
+		event.preventDefault();
+		let locid = $("tr.selected > td").eq(0).text();
+		pdfloose(locid);
+	}); // end of listener to print vault locator
 	
 	// Listener for vault search selections
 	$('body').on("change", "#search", function(event) {
