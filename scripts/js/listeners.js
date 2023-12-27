@@ -345,6 +345,12 @@ $(document).ready(function () {
 		initializeQRscanner();
 	}); // end of listener for scan button
 	
+	// Listener for itemmenu scan button
+	$('body').on("click", "#scanLocButton", function(event){
+		event.preventDefault();
+		initializeQRlocUpdate();
+	}); // end of listener itemmenu for scan button
+	
 	// Listener for admin button
 	$("body").on("click", "#adminButton", function(event) {
 		event.preventDefault();
