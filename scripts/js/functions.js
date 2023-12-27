@@ -30,6 +30,53 @@ function initializeQRscanner() {
 	$('body').on("click", "#closescan", function(){
 		qrScanner.stop();
 	}); // end of listener for scan clsoe button
+} // end of function to initialize qr scanner
+
+// Function to initialize QR scanner for location update
+function initializeQRlocUpdate() {
+	
+	$("#modbody").html('<div id="qrscanner"><video id="qrscanner-video"></video></div>');
+	const videoElem = document.getElementById('qrscanner-video');
+	const qrScanner = new QrScanner(
+		videoElem,
+		result => locUpdate(result, qrScanner),
+		{
+			highlightScanRegion: true,
+        	highlightCodeOutline: true,
+		}
+	);
+	qrScanner.start();
+	
+	// Listener for scan close button
+	$('body').on("click", "#closescan", function(){
+		qrScanner.stop();
+	}); // end of listener for scan clsoe button
+} // end of function to initialize QR scanner for location update
+
+// function to update location of item
+function locupdate(result, qrScanner) {
+	$('#scanModal').modal('toggle');
+	qrScanner.stop();
+	
+	let resString = result["data"];
+	let resArray = resString.split("_");
+	let resType = resArray[0];
+	let resID = resArray[1];
+	let formData = {
+		itemid: $("#hiddenitemid").val(),
+		locid: resID,
+		loctype: resType
+	}
+	if (resType == "L" || resType == "V"){
+
+		$.ajax({
+			url: '/scripts/php/updateloc.php',
+			type: 'POST',
+			data: formData,
+			dataType: "json",
+			encode: true,
+		});
+	}
 }
 
 // Function to process QR scan 
