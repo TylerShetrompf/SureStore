@@ -15,3 +15,6 @@ $updatetext = $userid." deleted item ".$itemid." from order ".$orderid.".";
 $histquery = pg_query_params($surestore_db, "insert into surehistory(historder, histdesc) values($1, $2)", array($itemorder,$updatetext));
 
 echo json_encode($deletequeryresult);
+
+// Close DB connection
+pg_close($surestore_db);
