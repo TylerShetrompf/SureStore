@@ -16,7 +16,7 @@ echo ('
 	<div class="collapse navbar-collapse" id="navbarnav">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item mx-3"><a class="nav-link" href="#Home" id="homenav">Home</a></li>
-			<li class="nav-item mx-3"><a class="nav-link" href="#Scan" id="scannav">Scan</a></li>
+			<li class="nav-item mx-3"><a class="nav-link" href="#Scan" id="scanButton" data-bs-toggle="modal" data-bs-target="#scanModal">Scan</a></li>
 			<li class="nav-item mx-3"><a class="nav-link" href="https://surestore.store" id="logoutnav">Logout</a></li>
 		</ul>
 	</div>
