@@ -4,9 +4,9 @@
 include '/var/www/html/scripts/php/reverifysession.php';
 
 echo ('
-<div class="bg-light px-2 my-2 border rounded" id="reginfodiv">
-	<div class="d-grid gap-2 my-2" id="addVaultButton">
-		<button type="button" class="btn btn-success btn-lg btn-block">Add Vaults</button>
+<div class="bg-light px-2 my-2 border rounded" id="maintdiv">
+	<div class="d-grid gap-2 my-2" id="manageLocButton">
+		<button type="button" class="btn btn-success btn-lg btn-block">Manage Vaults and Loose</button>
 	</div>
 
 	<div class="d-grid gap-2 my-2" id="reportsButton">
