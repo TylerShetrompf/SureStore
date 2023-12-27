@@ -11,6 +11,295 @@ function initorderfull(orderid) {
 	initializeHistTable(orderid);
 }
 
+// function to initialize manage loc page and tables
+function initManageLoc() {
+	// Define columns for vault table
+	let columnDefsVault = [
+		{
+			data: "vaultid",
+			title: "Vault ID"
+		},
+		{
+			data: "vaultwh",
+			title: "Vault Warehouse",
+			type: "select",
+			select2:{
+				width: "100%",
+				placeholder: "Unchanged",
+				ajax: {
+					type: "POST",
+					url: '/scripts/select2scripts/whlist.php',
+					data: function(term) {
+						return term;
+					},
+					dataType: "json",
+					encode: true,
+					processResults: function(data) {
+						return data;
+					}
+				}
+				
+			}
+		}
+	];
+	
+	// define columns for loose table
+	let columnDefsLoose = [
+		{
+			data: "looseid",
+			title: "Loose ID"
+		},
+		{
+			data: "loosewh",
+			title: "Loose Warehouse",
+			type: "select",
+			select2:{
+				width: "100%",
+				placeholder: "Unchanged",
+				ajax: {
+					type: "POST",
+					url: '/scripts/select2scripts/whlist.php',
+					data: function(term) {
+						return term;
+					},
+					dataType: "json",
+					encode: true,
+					processResults: function(data) {
+						return data;
+					}
+				}
+				
+			}
+		}
+	];
+	
+	// ajax for vault table
+	$.ajax({
+		url: '/scripts/php/vaulttab.php',
+		type: 'POST',
+		dataType: "json",
+		encode: true,
+	}).done(function (data){
+		$("#vaulttab").DataTable({
+			"sPaginationType": "full_numbers",
+			columns: columnDefsVault,
+			data: data,
+			dom: 'Bfrtip',
+			select: 'single',
+			responsive: true,
+			altEditor: true,
+			buttons: [
+				{
+					text: 'Add',
+					name: 'add'
+				},
+				{
+					extend: 'selected',
+					text: 'Edit',
+					name: 'edit'
+				},
+				{
+					extend: 'selected',
+					text: 'Delete',
+					name: 'delete'
+				},
+				{
+					text: 'Refresh',
+					name: 'refresh'
+				},
+				{
+					text: 'Print Locator',
+					name: 'print',
+					className : 'itemlocprint'
+				}
+			],
+			onAddRow: function(datatable, rowdata, success, error){
+				rowdata["vaultwh"] = $("#select2-vaultwh-container").text();
+				$.ajax({
+					url: '/scripts/editorscripts/vaultadd.php',
+					type: 'POST',
+					dataType: 'json',
+					encode: true,
+					data: rowdata,
+					success: success,
+					error: error
+				}).done(function (returndata){
+					if (returndata.errors){
+						alert("Vault add failed. Please contact system administrator.");
+					}
+				});
+			},
+			onDeleteRow: function(datatable, rowdata, success, error) {
+				
+				// assign vaultid to be passed
+				let delvaultid = {
+					vaultid: $("tr.selected > td").eq(0).text()
+				}
+				
+				// ajax for delete
+				$.ajax({
+					url: '/scripts/editorscripts/vaultdel.php',
+					type: 'POST',
+					dataType: 'json',
+					encode: true,
+					data: delvaultid,
+					success: success,
+					error: error
+				}).done(function(returndata) {
+					if (returndata.errors){
+						alert("Vault delete failed. Please contact system administrator.");
+					}
+				});
+				
+			},
+			onEditRow: function(datatable, rowdata, success, error) {
+				if (rowdata["vaultwh"] != null){
+					rowdata["vaultwh"] = $("#select2-vaultwh-container").text();
+				}
+				// assign values for empty edits
+				if (rowdata["vaultid"] == null) {
+					rowdata["vaultid"] = $("tr.selected > td").eq(0).text();
+				} else {
+					rowdata["oldid"] = $("tr.selected > td").eq(0).text();
+				}
+				if (rowdata["vaultwh"] == null) {
+					rowdata["vaultwh"] = $("tr.selected > td").eq(1).text();
+				} else {
+					rowdata["oldwh"] = $("tr.selected > td").eq(1).text();
+				}
+				
+				// ajax for vault edit
+				$.ajax({
+					url: '/scripts/editorscripts/vaultedit.php',
+					type: 'POST',
+					dataType: 'json',
+					encode: true,
+					data: rowdata,
+					success: success,
+					error: error
+				}).done(function(returndata) {
+					if (returndata.errors){
+						alert("Vault edit failed. Please contact system administrator.");
+					}
+				});
+			}
+		});
+	});
+	
+	// ajax for loose table
+	$.ajax({
+		url: '/scripts/php/loosetab.php',
+		type: 'POST',
+		dataType: "json",
+		encode: true,
+	}).done(function (data){
+		$("#loosetab").DataTable({
+			"sPaginationType": "full_numbers",
+			columns: columnDefsLoose,
+			data: data,
+			dom: 'Bfrtip',
+			select: 'single',
+			responsive: true,
+			altEditor: true,
+			buttons: [
+				{
+					text: 'Add',
+					name: 'add'
+				},
+				{
+					extend: 'selected',
+					text: 'Edit',
+					name: 'edit'
+				},
+				{
+					extend: 'selected',
+					text: 'Delete',
+					name: 'delete'
+				},
+				{
+					text: 'Refresh',
+					name: 'refresh'
+				},
+				{
+					text: 'Print Locator',
+					name: 'print',
+					className : 'itemlocprint'
+				}
+			],
+			onAddRow: function(datatable, rowdata, success, error){
+				rowdata["loosewh"] = $("#select2-loosewh-container").text();
+				$.ajax({
+					url: '/scripts/editorscripts/looseadd.php',
+					type: 'POST',
+					dataType: 'json',
+					encode: true,
+					data: rowdata,
+					success: success,
+					error: error
+				}).done(function (returndata){
+					if (returndata.errors){
+						alert("Loose add failed. Please contact system administrator.");
+					}
+				});
+			},
+			onDeleteRow: function(datatable, rowdata, success, error) {
+				
+				// assign looseid to be passed
+				let dellooseid = {
+					looseid: $("tr.selected > td").eq(0).text()
+				}
+				
+				// ajax for delete
+				$.ajax({
+					url: '/scripts/editorscripts/loosedel.php',
+					type: 'POST',
+					dataType: 'json',
+					encode: true,
+					data: dellooseid,
+					success: success,
+					error: error
+				}).done(function(returndata) {
+					if (returndata.errors){
+						alert("Loose delete failed. Please contact system administrator.");
+					}
+				});
+				
+			},
+			onEditRow: function(datatable, rowdata, success, error) {
+				if (rowdata["loosewh"] != null){
+					rowdata["loosewh"] = $("#select2-loosewh-container").text();
+				}
+				// assign values for empty edits
+				if (rowdata["looseid"] == null) {
+					rowdata["looseid"] = $("tr.selected > td").eq(0).text();
+				} else {
+					rowdata["oldid"] = $("tr.selected > td").eq(0).text();
+				}
+				if (rowdata["loosewh"] == null) {
+					rowdata["loosewh"] = $("tr.selected > td").eq(1).text();
+				} else {
+					rowdata["oldwh"] = $("tr.selected > td").eq(1).text();
+				}
+				
+				// ajax for loose edit
+				$.ajax({
+					url: '/scripts/editorscripts/looseedit.php',
+					type: 'POST',
+					dataType: 'json',
+					encode: true,
+					data: rowdata,
+					success: success,
+					error: error
+				}).done(function(returndata) {
+					if (returndata.errors){
+						alert("Loose edit failed. Please contact system administrator.");
+					}
+				});
+			}
+		});
+	});
+} // end of function to initialize manage loc page and tables
+
 // Function to initialize QR scanner
 function initializeQRscanner() {
 	
@@ -453,7 +742,7 @@ function initializeItemTable(itemorderid) {
 					error: error
 				}).done(function(returndata){
 					if (returndata.errors){
-						alert("Item add found. Please contact system administrator.");
+						alert("Item add failed. Please contact system administrator.");
 					}
 				});
 			},
