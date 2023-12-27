@@ -343,8 +343,8 @@ function initializeQRlocUpdate() {
 } // end of function to initialize QR scanner for location update
 
 // function to update location of item
-function locupdate(result, qrScanner) {
-	$('#scanModal').modal('toggle');
+function locUpdate(result, qrScanner) {
+	$('#scanLocModal').modal('toggle');
 	qrScanner.stop();
 	
 	let resString = result["data"];
@@ -356,15 +356,35 @@ function locupdate(result, qrScanner) {
 		locid: resID,
 		loctype: resType
 	}
+	console.log(formData);
 	if (resType == "L" || resType == "V"){
-
+		console.log("correct type");
 		$.ajax({
 			url: '/scripts/php/updateloc.php',
 			type: 'POST',
 			data: formData,
 			dataType: "json",
 			encode: true,
-		});
+		}).done(function () {
+			console.log("ajax success");
+			let orderid = $("#itemorder").val();
+			$.get('/snippets/vaultinfo/vaultinfo.php', function(data) {
+				$("#appcontainer").html(data);
+			}).done(function () {
+				$.get('/snippets/vaultinfo/vaultinfoleft.php', function(data) {
+					$("#left").html(data);
+				}).done(function() {
+					$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
+						$("#middle").html(data);
+					}).done(function (){
+						$.get('/snippets/vaultinfo/vaultinforight.php', function(data) {
+							$("#right").html(data);
+							initorderfull(orderid);						
+						})
+					})
+				})
+			})	
+		})
 	}
 }
 
