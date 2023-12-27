@@ -110,7 +110,7 @@ function initManageLoc() {
 				{
 					text: 'Print Locator',
 					name: 'print',
-					className : 'itemlocprint'
+					className : 'vaultlocprint'
 				}
 			],
 			onAddRow: function(datatable, rowdata, success, error){
@@ -223,7 +223,7 @@ function initManageLoc() {
 				{
 					text: 'Print Locator',
 					name: 'print',
-					className : 'itemlocprint'
+					className : 'looselocprint'
 				}
 			],
 			onAddRow: function(datatable, rowdata, success, error){
@@ -500,6 +500,46 @@ function pdfallorder (orderid) {
 	
 	// Call to GenQR function for QRCode
 
+}
+
+// Function to print vault pdf
+function pdfvault(vaultid) {
+	let locQR = "V_" + vaultid;
+	let formData ={
+		locid: vaultid,
+	}
+	GenQR(locQR).then(function(qrresult) {
+		formData["locqr"] = qrresult;
+		$.ajax({
+			url: "/scripts/php/locpdf.php",
+			type: "POST",
+			data: formData,
+			dataType: "json",
+			encode: true
+		}).done(function (){
+			const pdfWindow = window.open('https://surestore.store/QR/' + vaultid + '.pdf').print();
+		});
+	})
+}
+
+// Function to print loose pdf
+function pdfloose(looseid) {
+	let locQR = "L_" + looseid;
+	let formData ={
+		locid: looseid,
+	}
+	GenQR(locQR).then(function(qrresult) {
+		formData["locqr"] = qrresult;
+		$.ajax({
+			url: "/scripts/php/locpdf.php",
+			type: "POST",
+			data: formData,
+			dataType: "json",
+			encode: true
+		}).done(function (){
+			const pdfWindow = window.open('https://surestore.store/QR/' + looseid + '.pdf').print();
+		});
+	})
 }
 
 // Function to print item pdf
