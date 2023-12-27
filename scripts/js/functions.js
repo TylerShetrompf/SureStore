@@ -356,9 +356,7 @@ function locUpdate(result, qrScanner) {
 		locid: resID,
 		loctype: resType
 	}
-	console.log(formData);
 	if (resType == "L" || resType == "V"){
-		console.log("correct type");
 		$.ajax({
 			url: '/scripts/php/updateloc.php',
 			type: 'POST',
@@ -366,7 +364,6 @@ function locUpdate(result, qrScanner) {
 			dataType: "json",
 			encode: true,
 		}).done(function () {
-			console.log("ajax success");
 			let orderid = $("#itemorder").val();
 			$.get('/snippets/vaultinfo/vaultinfo.php', function(data) {
 				$("#appcontainer").html(data);
@@ -396,7 +393,6 @@ function processScan(result, qrScanner) {
 	let resArray = resString.split("_");
 	let resType = resArray[0];
 	let resID = resArray[1];
-	console.log(resString);
 	if(resType == "O") {
 		
 		let orderid = resID;
