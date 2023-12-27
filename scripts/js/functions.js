@@ -413,6 +413,7 @@ function processScan(result, qrScanner) {
 			})
 		})	
 	}
+	
 	if(resType == "I") {
 		let itemid = resID;
 		$.get('/snippets/itemmenu.php', function(data) {
@@ -438,6 +439,49 @@ function processScan(result, qrScanner) {
 		})
 	}
 	
+	if(resType == "L" || resType == "V") {
+		$.get('/snippets/locationmenu.php', function(data) {
+			$("#middle").html(data);
+		}).done(function (){
+			initLocItemTab(resID);
+		})
+	}
+	
+} //end of function to process QR scan 
+
+function initLocItemTab(resid) {
+	let columnDefs = [
+		{
+			data: "itemorder",
+			title: "Order",
+			type: "readonly"
+		},
+		{
+			data: "itemdesc",
+			title: "Item Description",
+			type: "readonly"
+		}
+	];
+	
+	let formData = {
+		locid: resid,
+	}
+	
+	$("#locitemheading").text("Items in " + resid);
+	
+	$.ajax({
+		url: '/scripts/php/locitems.php',
+		type: "POST",
+		data: formData,
+		dataType: "json",
+		encode: true
+	}).done(function(data) {
+		$('#locitemtable').DataTable({
+			columns: columnDefs,
+			data: data,
+			select: 'single'
+		});
+	});
 }
 
 // Function to handle qr and pdf generation for orders
