@@ -9,6 +9,7 @@ function initorderfull(orderid) {
 	initializeItemTable(orderid);
 	initpdforder(orderid);
 	initializeHistTable(orderid);
+	whsearch();
 }
 
 // function to initialize manage loc page and tables
@@ -947,7 +948,8 @@ function fillreginfo(orderid){
 		// Fill form value fields with appropriate values
 		$('#reginput').val(data["orderid"]);
 		$("#hiddenorderid").val(data["orderid"]);
-		$('#regwhinput').val(data["orderwh"]);
+		var newOption = new Option(data["orderwh"]);
+		$('#regwhinput').append(newOption).trigger('change');
 		$('#regdateininput').val(data["datein"]);
 		$('#regdatemodinput').val(data["histtime"]);
 		$('#regweightinput').val(data["weight"]);
@@ -1003,6 +1005,26 @@ function fillcustinfo(orderid){
 		// Fill locator sheet with appropriate values
 		$("#loccustname").text("Customer: " + data["custfirst"] + " " + data["custlast"]);
 		
+	});
+}
+
+function whsearch() {
+	$('#regwhinput').select2({
+		theme: 'bootstrap-5',
+		width: "100%",
+		placeholder: "Select Warehouse...",
+		ajax: {
+			type: "POST",
+			url: '/scripts/select2scripts/whlist.php',
+			data: function(term){
+				return term;
+			},
+			dataType: "json",
+			encode: true,
+			processResults: function (data){
+				return data;
+			}
+		}
 	});
 }
 
