@@ -175,6 +175,7 @@ $(document).ready(function () {
 		if ($("#hiddencustid").val()) {
 			custformdata["custid"] = $("#hiddencustid").val();
 		}
+		console.log(custformdata);
 		$.ajax({
 			url: "/scripts/php/updatecustinfo.php",
 			type: "POST",
@@ -193,8 +194,11 @@ $(document).ready(function () {
 					}).done(function(){
 						$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
 							$("#middle").html(data);
-						}).done(function(){
-							initorderfull(custformdata["orderid"]);
+						}).done(function (){
+							$.get('/snippets/vaultinfo/vaultinforight.php', function(data) {
+								$("#right").html(data);
+								initorderfull(custformdata["orderid"]);			
+							})
 						})
 					})
 				})
@@ -422,7 +426,7 @@ $(document).ready(function () {
 		let regformdata ={
 			oldorderid: $("#hiddenorderid").val(),
 			orderid: $('#reginput').val(),
-			orderwh: $('#regwhinput').val(),
+			orderwh: $('#select2-regwhinput-container').text(),
 			datein: $('#regdateininput').val(),
 			weight: $('#regweightinput').val()
 		}
@@ -454,8 +458,11 @@ $(document).ready(function () {
 					}).done(function(){
 						$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
 							$("#middle").html(data);
-						}).done(function(){
-							initorderfull(regformdata["orderid"]);
+						}).done(function (){
+							$.get('/snippets/vaultinfo/vaultinforight.php', function(data) {
+								$("#right").html(data);
+								initorderfull(regformdata["orderid"]);
+							})
 						})
 					})
 				})
