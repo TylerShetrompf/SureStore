@@ -31,6 +31,8 @@ if ($_POST["custid"]) {
 	if (pg_affected_rows($custupquery) == 0){
 		$data["success"] = "false";
 	} else {
+		//update customer for order
+		$ordercustquery = pg_query_params($surestore_db, "update sureorders set ordercust = $1 where orderid = $2", array($custid, $orderid));
 		// Log in surehistory
 		$updatetext = $userid." updated customer information for ".$custfirst." ".$custlast.".";
 		$histquery = pg_query_params($surestore_db, "insert into surehistory(historder, histdesc) values($1, $2)", array($orderid,$updatetext));
@@ -42,7 +44,7 @@ if ($_POST["custid"]) {
 		$data["success"] = "false";
 	} else {
 		$newcustrow = pg_fetch_assoc($custcreatequery);
-		$custid = $newcustrow[0];
+		$custid = $newcustrow["custid"];
 		$ordercustquery = pg_query_params($surestore_db, "update sureorders set ordercust = $1 where orderid = $2", array($custid, $orderid));
 		if(pg_affected_rows($ordercustquery) == 0){
 			$data["success"] = "false";
