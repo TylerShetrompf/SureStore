@@ -8,6 +8,10 @@ echo ('
 	<div class="d-grid gap-2 my-2" id="manageLocButton">
 		<button type="button" class="btn btn-success btn-lg btn-block">Manage Vaults and Loose</button>
 	</div>
+	
+	<div class="d-grid gap-2 my-2" id="manageWhButton">
+		<button type="button" class="btn btn-success btn-lg btn-block">Manage Warehouses</button>
+	</div>
 
 	<div class="d-grid gap-2 my-2" id="reportsButton">
 		<button type="button" class="btn btn-secondary btn-lg btn-block" disabled>Reports</button>
