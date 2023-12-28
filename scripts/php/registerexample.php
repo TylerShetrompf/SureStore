@@ -23,8 +23,8 @@ $pwlength = strlen($_POST['password']);
 
 $usernamearray = explode("@", $userid);
 $userdomain = $usernamearray[1];
-// ($userdomain != "example.com" || $userdomain != "example2.com" || $userdomain != "example3.com") for multiple domains
-if ($userdomain != "example.com") {
+
+if (!in_array($userdomain, ["example.com", "example2.com","example3.com"],false)) {
 	header('Location: https://www.surestore.store');
 	die();
 }
