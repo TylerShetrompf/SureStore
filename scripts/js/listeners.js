@@ -10,6 +10,15 @@ $(document).ready(function () {
 		})
 	}); // end of listener for vault and loose manage button
 	
+	// Listener for warehouse manage button
+	$("body").on("click", "#manageWhButton", function(event) {
+		event.preventDefault();
+		$.get("/snippets/managewh.php", function(data) {
+			$("#appcontainer").html(data);
+			initManageWh();
+		})
+	}); // end of listener for warehouse manage button
+	
 	// Listener for Order Info button on item menu
 	$('body').on("click", "#infoOrder", function(event) {
 		event.preventDefault();
@@ -494,12 +503,11 @@ $(document).ready(function () {
 		
 		$.ajax({
 			type: "POST",
-			url: "/scripts/php/register.php",
+			url: '/scripts/php/register.php',
 			data: formData,
 			dataType: "json",
 			encode: true,
 		}).done(function (data) {
-
 			if (!data.success) {
 				
 				if (data.errors.password) {
