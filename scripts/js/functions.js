@@ -12,6 +12,133 @@ function initorderfull(orderid) {
 	whsearch();
 }
 
+// Function to initialize manage wh page and table
+function initManageWh() {
+	let columnDefs = [
+		{
+			data: "whid",
+			title: "Warehouse ID",
+		},
+		{
+			data: "whaddress",
+			title: "Street Address",
+		},
+		{
+			data: "whcity",
+			title: "City",
+		},
+		{
+			data: "whstate",
+			title: "State",
+			pattern: '[A-Za-z][A-Za-z]',
+		},
+		{
+			data: "whzip",
+			title: "Zip",
+		},
+		{
+			data: "whcountry",
+			title: "Country",
+			pattern: '[A-Za-z][A-Za-z][A-Za-z]'
+		},
+	];
+	
+	//ajax for wh table
+	$.ajax({
+		url: "/scripts/php/whinfo.php",
+		type: 'POST',
+		dataType: 'json',
+		encode: true,
+	}).done(function (data){
+		$("#whtab").DataTable({
+			"sPaginationType": "full_numbers",
+			columns: columnDefs,
+			data: data,
+			dom: 'Bfrtip',
+			select: 'single',
+			responsive: true,
+			altEditor: true,
+			buttons: [
+				{
+					text: 'Add',
+					name: 'add'
+				},
+				{
+					extend: 'selected',
+					text: 'Edit',
+					name: 'edit'
+				},
+				{
+					extend: 'selected',
+					text: 'Delete',
+					name: 'delete'
+				},
+				{
+					text: 'Refresh',
+					name: 'refresh'
+				}
+			],
+			onAddRow: function(datatable, rowdata, success, error){
+				$.ajax({
+					url: '/scripts/editorscripts/whadd.php',
+					type: 'POST',
+					dataType: 'json',
+					encode: true,
+					data: rowdata,
+					success: success,
+					error: error
+				}).done(function (returndata){
+					if (returndata.errors){
+						alert("Warehouse add failed. Please contact system administrator.");
+					}
+				});
+			},
+			onDeleteRow: function(datatable, rowdata, success, error) {
+				
+				// assign whid to be passed
+				let delwhid = {
+					whid: $("tr.selected > td").eq(0).text()
+				}
+				
+				// ajax for delete
+				$.ajax({
+					url: '/scripts/editorscripts/whdel.php',
+					type: 'POST',
+					dataType: 'json',
+					encode: true,
+					data: delwhid,
+					success: success,
+					error: error
+				}).done(function(returndata) {
+					if (returndata.errors){
+						alert("Warehouse delete failed. Please contact system administrator.");
+					}
+				});
+				
+			},
+			onEditRow: function(datatable, rowdata, success, error) {
+				rowdata["oldid"] = $("tr.selected > td").eq(0).text();
+				
+				// ajax for wh edit
+				$.ajax({
+					url: '/scripts/editorscripts/whedit.php',
+					type: 'POST',
+					dataType: 'json',
+					encode: true,
+					data: rowdata,
+					success: success,
+					error: error
+				}).done(function(returndata) {
+					if (returndata.errors){
+						alert("Warehouse edit failed. Please contact system administrator.");
+					}
+				});
+			}
+		})
+	})
+	
+} // end of function to initialize manage wh page and table
+
 // function to initialize manage loc page and tables
 function initManageLoc() {
 	// Define columns for vault table
