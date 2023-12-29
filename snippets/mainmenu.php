@@ -48,15 +48,15 @@ echo('
 	<div class="col-sm-4" id="left"></div>
 
 	<!-- Middle row -->
-	<div class="col-sm-4" id="middle">
+	<div class="col-sm-4 bg-light px-2 my-2 border rounded" id="middle">
 
 		<div class="d-grid gap-2 my-2" id="locButton">
-			<button type="button" class="btn btn-success btn-lg btn-block">Locator</button>
+			<button type="button" class="btn btn-success btn-lg btn-block shadow-sm">Locator</button>
 		</div>
 		
 		<!-- Show Scanner button -->
 		<div class="d-grid gap-2 my-2">
-			<button type="button" class="btn btn-success btn-large btn-block" data-bs-toggle="modal" id="scanButton" data-bs-target="#scanModal">Scan</button>
+			<button type="button" class="btn btn-success btn-lg btn-block shadow-sm" data-bs-toggle="modal" id="scanButton" data-bs-target="#scanModal">Scan</button>
 		</div>
 		
 ');
@@ -65,7 +65,7 @@ if ($userresult["useracl"] >= "2") {
 	
 echo ('	
 		<div class="d-grid gap-2 my-2" id="maintButton">
-			<button type="button" class="btn btn-warning btn-lg btn-block">Maintenance</button>
+			<button type="button" class="btn btn-warning btn-lg btn-block shadow-sm">Maintenance</button>
 		</div>'
 );
 	
@@ -75,7 +75,7 @@ if ($userresult["useracl"] == "3") {
 	
 echo ('	
 		<div class="d-grid gap-2 my-2" id="adminButton">
-			<button type="button" class="btn btn-danger btn-lg btn-block">Admin</button>
+			<button type="button" class="btn btn-danger btn-lg btn-block shadow-sm">Admin</button>
 		</div>'
 );
 	
@@ -88,6 +88,6 @@ echo ('
 	<!-- Right row -->
 	<div class="col-sm-4" id="right"></div>
 	
-</div>'
-);
+</div>
+');
 ?>
