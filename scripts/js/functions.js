@@ -12,6 +12,24 @@ function initorderfull(orderid) {
 	whsearch();
 }
 
+// Function to initialize session checker
+function initSessionChecker() {
+	$('body').click(function() {
+		
+		$.ajax({
+			type: "POST",
+			dataType: "json",
+			encode: true,
+			url: "/scripts/php/verifysession.php"
+		}).done(function(result) {
+			if (result["success"] == false){
+				window.location.replace("https://surestore.store/");
+			}
+		});
+		
+	})
+}
+
 // Function to initialize manage wh page and table
 function initManageWh() {
 	let columnDefs = [
@@ -568,11 +586,16 @@ function processScan(result, qrScanner) {
 	}
 	
 	if(resType == "L" || resType == "V") {
-		$.get('/snippets/locationmenu.php', function(data) {
-			$("#middle").html(data);
-		}).done(function (){
-			initLocItemTab(resID);
+		$.get('/snippets/vaultinfo/vaultinfo.php', function(data) {
+			$("#appcontainer").html(data);
+		}).done(function(){
+			$.get('/snippets/locationmenu.php', function(data) {
+				$("#middle").html(data);
+			}).done(function (){
+				initLocItemTab(resID);
+			})
 		})
+
 	}
 	
 } //end of function to process QR scan 
