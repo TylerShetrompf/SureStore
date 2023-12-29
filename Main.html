@@ -67,20 +67,33 @@
 				<img class="mx-auto d-block" src="images/logoSmol.png" alt="SureStore Logo">
 				
 				<!-- The login Form -->
-				<form action="/scripts/php/process.php" id="LoginForm">
-					<div class="form-group my-2" id="FormUsername">
+				<form class="bg-light px-2 my-2 border rounded" id="LoginForm">
+					<div class="form-group my-2 shadow-sm" id="FormUsername">
 						<input type="email" class="form-control" id="email" placeholder="Email">
 					</div>
-					<div class="form-group my-2" id="FormPassword">
+					<div class="form-group my-2 shadow-sm" id="FormPassword">
 						<input type="password" class="form-control" id="password" placeholder="Password">
 					</div>
-					<div class="d-grid gap-2 my-2">
-						<button type="submit" class="btn btn-success btn-large btn-block">Submit</button>
+					<div class="row">
+						<div class="col">
+							<!-- Login Button -->
+							<div class="d-grid my-1">
+								<button type="submit" class="btn btn-success btn-large btn-block shadow-sm">Submit</button>
+							</div>
+						</div>
+					
+						<div class="col">
+							<!-- Register Button -->
+							<div class="d-grid my-1" id="regButton">
+								<button type="button" class="btn btn-info btn-large btn-block shadow-sm">Register</button>
+							</div>
+						</div>
 					</div>
 					
-					<!-- Register Button -->
-					<div class="d-grid gap-2 my-2" id="regButton">
-						<button type="button" class="btn btn-info btn-large btn-block">Register</button>
+					
+					<!-- Forgot Password Button -->
+					<div class="d-grid gap-2 my-2" id="respwButton">
+						<button type="button" class="btn btn-info btn-danger btn-sm shadow-sm">Forgot Password?</button>
 					</div>
 				</form>
 				
