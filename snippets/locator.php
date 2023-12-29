@@ -3,7 +3,7 @@
 include '/var/www/html/scripts/php/reverifysession.php';
 
 echo('
-<div class="bg-light px-2 my-2 border rounded">
+<div class="">
 	<!-- Select2 -->
 	<div class="my-2">
 		<select class="form-select" name="search" id="search"></select>
