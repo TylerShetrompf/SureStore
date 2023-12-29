@@ -14,7 +14,7 @@
 			</div>
 			<div class="col">
 				<div class="form-group my-2" id="regwh">
-					<input type="input" class="form-control shadow-sm" id="regwhinput" required>
+					<select class="form-select shadow-sm" name="regwhinput" id="regwhinput"></select>
 					<small id="regwhHelp" class="form-text text-muted">Warehouse</small>
 				</div>
 			</div>
