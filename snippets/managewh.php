@@ -9,7 +9,7 @@ echo('
 	
 	<!-- Scanner Modal -->
 		<div class="modal" id="scanModal">
-			<div class="bg-light px-2 my-2 border rounded" id="histmodaldiv">
+			<div class="bg-light px-2 my-2 border rounded" id="scanModalDiv">
 				<div class="modal-dialog">
 					<div class="modal-content">
 
