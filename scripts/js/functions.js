@@ -893,6 +893,7 @@ function pdfitem(itemid) {
 function initordernew(orderid) {
 	initializeSelect2();
 	custsearch();
+	whsearch();
 	$('#reginput').val(orderid);
 }
 
