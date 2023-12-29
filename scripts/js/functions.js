@@ -30,6 +30,120 @@ function initSessionChecker() {
 	})
 }
 
+// Function to initialize manage vaulter page and table
+function initManageVaulter() {
+	let columnDefs = [
+		{
+			data: "vaulterid",
+			title: "Vaulter ID",
+			type: "readonly"
+		},
+		{
+			data: "vaulterfirst",
+			title: "First Name",
+		},
+		{
+			data: "vaulterlast",
+			title: "Last Name",
+		}
+	];
+	
+	//ajax for vaulter table
+	$.ajax({
+		url: "/scripts/php/vaulterinfo.php",
+		type: 'POST',
+		dataType: 'json',
+		encode: true,
+	}).done(function (data){
+		$("#vaultertab").DataTable({
+			"sPaginationType": "full_numbers",
+			columns: columnDefs,
+			data: data,
+			dom: 'Bfrtip',
+			select: 'single',
+			responsive: true,
+			altEditor: true,
+			buttons: [
+				{
+					text: 'Add',
+					name: 'add'
+				},
+				{
+					extend: 'selected',
+					text: 'Edit',
+					name: 'edit'
+				},
+				{
+					extend: 'selected',
+					text: 'Delete',
+					name: 'delete'
+				},
+				{
+					text: 'Refresh',
+					name: 'refresh'
+				}
+			],
+			onAddRow: function(datatable, rowdata, success, error){
+				$.ajax({
+					url: '/scripts/editorscripts/vaulteradd.php',
+					type: 'POST',
+					dataType: 'json',
+					encode: true,
+					data: rowdata,
+					success: success,
+					error: error
+				}).done(function (returndata){
+					if (returndata.errors){
+						alert("Vaulter add failed. Please contact system administrator.");
+					}
+				});
+			},
+			onDeleteRow: function(datatable, rowdata, success, error) {
+				
+				// assign whid to be passed
+				let delvaulterid = {
+					vaulterid: $("tr.selected > td").eq(0).text()
+				}
+				
+				// ajax for delete
+				$.ajax({
+					url: '/scripts/editorscripts/vaulterdel.php',
+					type: 'POST',
+					dataType: 'json',
+					encode: true,
+					data: delvaulterid,
+					success: success,
+					error: error
+				}).done(function(returndata) {
+					if (returndata.errors){
+						alert("Vaulter delete failed. Please contact system administrator.");
+					}
+				});
+				
+			},
+			onEditRow: function(datatable, rowdata, success, error) {
+				rowdata["oldid"] = $("tr.selected > td").eq(0).text();
+				console.log(rowdata);
+				// ajax for wh edit
+				$.ajax({
+					url: '/scripts/editorscripts/vaulteredit.php',
+					type: 'POST',
+					dataType: 'json',
+					encode: true,
+					data: rowdata,
+					success: success,
+					error: error
+				}).done(function(returndata) {
+					if (returndata.errors){
+						alert("Vaulter edit failed. Please contact system administrator.");
+					}
+				});
+			}
+		})
+	})
+	
+} // end of function to initialize manage vaulter page and table
+
 // Function to initialize manage wh page and table
 function initManageWh() {
 	let columnDefs = [
