@@ -769,7 +769,7 @@ function initpdforder (orderid) {
 			encode: true,
 		}).done(function (results){
 			let width = $('#printbtn').width();
-			let height = $('#middle').height();
+			let height = $('#heightcontainer').height();
 			$('#pdfframe').attr('style','width:' + width + 'px; height:' + height + 'px;');
 			$('#pdfframe').attr('src', 'https://docs.google.com/gview?url=https://surestore.store/QR/' + results + '&embedded=true');
 
@@ -1109,6 +1109,8 @@ function initializeItemTable(itemorderid) {
 				}).done(function(returndata){
 					if (returndata.errors){
 						alert("Item add failed. Please contact system administrator.");
+					} else {
+						initpdforder(itemorderid);
 					}
 				});
 			},
@@ -1128,6 +1130,8 @@ function initializeItemTable(itemorderid) {
 				}).done(function(returndata){
 					if (returndata.errors){
 						alert("Item delete failed. Please contact system administrator.");
+					} else {
+						initpdforder(itemorderid);
 					}
 				});
 			},
@@ -1169,6 +1173,8 @@ function initializeItemTable(itemorderid) {
 				}).done(function(returndata){
 					if (returndata.errors){
 						alert("Item edit failed. Please contact system administrator.");
+					} else {
+						initpdforder(itemorderid);
 					}
 				});
 			}
