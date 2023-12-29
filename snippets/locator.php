@@ -18,7 +18,7 @@ echo('
 				<input type="input" class="form-control shadow-sm" id="regidinput">
 			</div>
 			<div class="col">
-				<button type="submit" class="btn btn-success btn-large btn-block">Create Reg</button>
+				<button type="submit" class="btn btn-success btn-large btn-block">Create Order</button>
 			</div>
 		</div>
 	</form>
