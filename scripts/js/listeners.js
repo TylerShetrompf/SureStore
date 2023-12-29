@@ -154,12 +154,23 @@ $(document).ready(function () {
 			custcity: $('#custcityinput').val(),
 			custzip: $('#custzipinput').val(),
 			orderid: $('#reginput').val(),
-			orderwh: $('#regwhinput').val(),
+			orderwh: $('#select2-regwhinput-container').text(),
 			datein: $('#regdateininput').val(),
 			weight: $('#regweightinput').val(),
 			custstate: $('#custstateinput').val(),
-			custcountry: $('#custcountryinput').val()
+			custcountry: $('#custcountryinput').val(),
 		}
+		
+		if ($("#milcheck").attr("checked") == "checked"){
+			formData["ordermil"] = true;
+		} else {
+			formData["ordermil"] = false;
+		}
+		
+		if ($("#hiddencustid").val()) {
+			formData["custid"] = $("#hiddencustid").val();
+		}
+		
 		$.ajax({
 			url: "/scripts/php/createorder.php",
 			type: "POST",
@@ -170,24 +181,23 @@ $(document).ready(function () {
 			if (data["success"] == "false") {
 				$("#neworderdiv").prepend('<div class="alert alert-danger" role="alert"><h4 class="alert-heading">ERROR</h4><p>ORDER CREATION OR CUSTOMER CREATION HAS FAILED. YOUR CHANGES MAY NOT HAVE BEEN SAVED.</p><hr><p class="mb-0">PLEASE CONTACT SYSTEM ADMINISTRATOR.</p></div>');
 			} else {
+				let orderid = $('#reginput').val();
 				$.get('/snippets/vaultinfo/vaultinfo.php', function(data) {
 					$("#appcontainer").html(data);
-				})
-
-				$.get('/snippets/vaultinfo/vaultinfoleft.php', function(data) {
-					$("#left").html(data);
 				}).done(function(){
-					initializeItemTable(formData["orderid"]);
-				})
-
-				$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
-					$("#middle").html(data);
-				}).done(function(){
-					initializeSelect2();
-					fillreginfo(formData["orderid"]);
-					fillcustinfo(formData["orderid"]);
-					custsearch();
-				})
+					$.get('/snippets/vaultinfo/vaultinfoleft.php', function(data) {
+						$("#left").html(data);
+					}).done(function(){
+						$.get('/snippets/vaultinfo/vaultinfomiddle.php', function(data) {
+							$("#middle").html(data);
+						}).done(function(){
+							$.get('/snippets/vaultinfo/vaultinforight.php', function(data) {
+								$("#right").html(data);
+								initorderfull(orderid);						
+							})
+						})
+					})
+				})				
 			}
 		});
 		
