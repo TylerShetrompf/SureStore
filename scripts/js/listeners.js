@@ -30,6 +30,15 @@ $(document).ready(function () {
 		})
 	}); // end of listener for vault and loose manage button
 	
+	// Listener for vaulters manage button
+	$("body").on("click", "#manageVaulterButton", function(event) {
+		event.preventDefault();
+		$.get("/snippets/managevaulter.php", function(data) {
+			$("#appcontainer").html(data);
+			initManageVaulter();
+		})
+	}); // end of listener for vaulters manage button
+	
 	// Listener for warehouse manage button
 	$("body").on("click", "#manageWhButton", function(event) {
 		event.preventDefault();
