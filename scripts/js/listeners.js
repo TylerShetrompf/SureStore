@@ -1,6 +1,26 @@
 // JavaScript Document containing jquery listeners
 $(document).ready(function () {
 	
+	// Listener for resetpwbutton
+	$("body").on("click", "#sendrespwButton", function(event) {
+		event.preventDefault();
+		let userid = $("#email").val();
+		let formData = { 
+			userid: userid,
+		}
+		$.ajax({
+			type: "POST",
+			data: formData,
+			dataType: "json",
+			encode: true,
+			url: "/scripts/php/pwreset.php"
+		}).done(function() {
+			$.get("/snippets/resetsuccess.php", function(data) {
+				$("#appcontainer").html(data);
+			})
+		})
+	})
+	
 	// Listener for vault and loose manage button
 	$("body").on("click", "#manageLocButton", function(event) {
 		event.preventDefault();
@@ -485,6 +505,14 @@ $(document).ready(function () {
 	$("#regButton").click(function () {
 		
 		$.get('/snippets/registration.html', function(data) {
+			$("#middle").html(data);
+		})
+	}); // end of listener for main menu register button
+	
+	// Listener for main menu resetpw button
+	$("#respwButton").click(function () {
+		
+		$.get('/snippets/resetpw.html', function(data) {
 			$("#middle").html(data);
 		})
 	}); // end of listener for main menu register button
