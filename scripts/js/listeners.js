@@ -366,6 +366,9 @@ $(document).ready(function () {
 				$.get('/snippets/navbar.php', function(newHTMLdata) {
 					$("body").prepend(newHTMLdata);
 				})
+				
+				// initialize session checking function
+				initSessionChecker();
 			}
 		});
 		
