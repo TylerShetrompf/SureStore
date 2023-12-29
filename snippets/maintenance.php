@@ -4,13 +4,17 @@
 include '/var/www/html/scripts/php/reverifysession.php';
 
 echo ('
-<div class="bg-light px-2 my-2 border rounded" id="maintdiv">
+<div id="maintdiv">
 	<div class="d-grid gap-2 my-2" id="manageLocButton">
-		<button type="button" class="btn btn-success btn-lg btn-block">Manage Vaults and Loose</button>
+		<button type="button" class="btn btn-success btn-lg btn-block">Manage Locations</button>
 	</div>
 	
 	<div class="d-grid gap-2 my-2" id="manageWhButton">
 		<button type="button" class="btn btn-success btn-lg btn-block">Manage Warehouses</button>
+	</div>
+	
+	<div class="d-grid gap-2 my-2" id="manageVaulterButton">
+		<button type="button" class="btn btn-success btn-lg btn-block">Manage Vaulters</button>
 	</div>
 
 	<div class="d-grid gap-2 my-2" id="reportsButton">
