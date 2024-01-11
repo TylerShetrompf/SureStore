@@ -25,7 +25,6 @@ while ($ordersqueryresult = pg_fetch_assoc($ordersquery)) {
 	$entry = [];
 	$entry ["orderid"] = $ordersqueryresult["orderid"];
 	$entry ["orderwh"] = $ordersqueryresult["orderwh"];
-	$entry ["datein"] = $ordersqueryresult["datein"];
 	
 	array_push($custorders, $entry);
 }
