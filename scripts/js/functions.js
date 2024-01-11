@@ -911,10 +911,6 @@ function initcustorderstab(orderid) {
 		{
 			data: "orderwh",
 			title: "Warehouse"
-		},
-		{
-			data: "datein",
-			title: "Date In"
 		}
 	];
 	
@@ -1266,10 +1262,6 @@ function fillreginfo(orderid){
 		$('#regdateininput').val(data["datein"]);
 		$('#regdatemodinput').val(data["histtime"]);
 		$('#regweightinput').val(data["weight"]);
-		// Fill locator sheet with appropriate values
-		$("#locorderid").text("Orderid: " + data["orderid"]);
-		$("#locorderweight").text("Weight: " + data["weight"]);
-		$("#locin").text("Order in: " + data["datein"]);
 		
 		// Check if order is closed
 		if (data["dateout"] != null){
