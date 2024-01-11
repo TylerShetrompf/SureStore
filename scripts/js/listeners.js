@@ -479,7 +479,6 @@ $(document).ready(function () {
 			oldorderid: $("#hiddenorderid").val(),
 			orderid: $('#reginput').val(),
 			orderwh: $('#select2-regwhinput-container').text(),
-			datein: $('#regdateininput').val(),
 			weight: $('#regweightinput').val(),
 			ordertype: $('#typeselect').val()
 		}
