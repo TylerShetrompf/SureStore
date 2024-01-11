@@ -520,8 +520,38 @@ echo('
 			<div class="d-grid gap-2 my-1">
 				<button type="submit" class="btn btn-success btn-large btn-block">Update Customer Info</button>
 			</div>
-
 		</form>
+	</div>
+	
+	<!-- custorders Modal -->
+	<div class="modal" id="custordersModal">
+		<div class="bg-light px-2 my-2 border rounded" id="custordersmodaldiv">
+			<div class="modal-dialog">
+				<div class="modal-content">
+
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title" id="custordersheading"></h4>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
+
+					<!-- Modal Body -->
+					<div class="modal-body">
+						<table id="custorderstab" class="display" style="width:100%"></table>
+					</div>
+					<!-- Modal Footer -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Show custorders button -->
+	<div class="d-grid gap-2 my-2">
+		<button type="button" class="btn btn-secondary btn-large btn-block" data-bs-toggle="modal" data-bs-target="#custordersModal">Show Customer Orders</button>
 	</div>
 </div>
 ')
