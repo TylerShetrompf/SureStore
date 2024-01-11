@@ -18,7 +18,7 @@ echo ('
 	</div>
 
 	<div class="d-grid gap-2 my-2" id="reportsButton">
-		<button type="button" class="btn btn-secondary btn-lg btn-block" disabled>Reports</button>
+		<button type="button" class="btn btn-dark btn-lg btn-block">Reports</button>
 	</div>
 
 	<!-- Show history button -->
