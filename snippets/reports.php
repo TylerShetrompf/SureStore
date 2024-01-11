@@ -68,7 +68,6 @@ echo('
 				<div class="d-grid gap-2 my-2">
 					<select class="form-select" id="reportselect">
 						<option selected>Select a report...</option>
-						<option id="custorderlist" value="custorderlist">List Orders By Customer</option>
 					</select>
 				</div>
 				<div class="d-grid gap-2 mb-2">
