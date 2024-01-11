@@ -446,7 +446,7 @@ echo('
 		<input type="text" class="visually-hidden" id="hiddencustid">
 		<!-- submit button-->
 		<div class="d-grid gap-2 my-2">
-			<button type="submit" class="btn btn-success btn-large btn-block">Update Order Info</button>
+			<button type="submit" class="btn btn-success btn-large btn-block">Create Order</button>
 		</div>
 		
 	</form>
