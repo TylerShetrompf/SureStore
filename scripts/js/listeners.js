@@ -48,6 +48,22 @@ $(document).ready(function () {
 		})
 	}); // end of listener for warehouse manage button
 	
+	// Listener for reports button
+	$("body").on("click", "#reportsButton", function(event) {
+		event.preventDefault();
+		$.get("/snippets/reports.php", function(data) {
+			$("#appcontainer").html(data);
+		})
+	}); // end of listener for for reports button
+	
+	// Listener for report select
+	$("body").on("submit", "#reportselectform", function(event) {
+		event.preventDefault();
+		let reportid = $("#reportselect").val();
+		$('#reportModal').modal('toggle');
+		
+	}); // end of listener for report select
+	
 	// Listener for Order Info button on item menu
 	$('body').on("click", "#infoOrder", function(event) {
 		event.preventDefault();
