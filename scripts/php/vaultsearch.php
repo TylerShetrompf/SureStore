@@ -12,7 +12,7 @@ $results = [];
 $userinput = $_POST['term']."%";
 
 // Query
-$dbquery = pg_query_params($surestore_db, "select distinct surecustomer.custfirst, surecustomer.custlast, sureorders.orderid, sureitems.itemvault, sureitems.itemloose from sureorders left join surecustomer on sureorders.ordercust=surecustomer.custid left join sureitems on sureorders.orderid=sureitems.itemorder WHERE LOWER(sureorders.orderid) like LOWER($1) OR LOWER(surecustomer.custfirst) like LOWER($1) OR LOWER(surecustomer.custlast) like LOWER($1) OR LOWER(sureitems.itemvault) like LOWER($1)", array($userinput));
+$dbquery = pg_query_params($surestore_db, "select distinct surecustomer.custfirst, surecustomer.custlast, sureorders.orderid, sureorders.dateout, sureitems.itemvault, sureitems.itemloose from sureorders left join surecustomer on sureorders.ordercust=surecustomer.custid left join sureitems on sureorders.orderid=sureitems.itemorder WHERE(LOWER(sureorders.orderid) like LOWER($1) OR LOWER(surecustomer.custfirst) like LOWER($1) OR LOWER(surecustomer.custlast) like LOWER($1) OR LOWER(sureitems.itemvault) like LOWER($1)) AND sureorders.dateout IS NULL", array($userinput));
 
 // Initialize ID variable
 $id = 1;
