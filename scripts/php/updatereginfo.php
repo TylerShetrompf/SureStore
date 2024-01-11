@@ -12,7 +12,6 @@ $data = [];
 $oldorderid = $_POST["oldorderid"];
 $orderid = $_POST["orderid"];
 $orderwh = $_POST["orderwh"];
-$datein = $_POST["datein"];
 $weight = $_POST["weight"];
 
 // initialize userid variable from cookie
@@ -31,7 +30,7 @@ if ($oldorderid != $orderid) {
 
 if ($_POST["dateout"]) {
 	$dateout = $_POST["dateout"];
-	$dateoutquery = pg_query_params($surestore_db, "update sureorders set dateout = $1 where orderid = $2", array($dateout, $orderid));
+	$dateoutquery = pg_query_params($surestore_db, "update sureitems set dateout = $1 where itemorder = $2 and dateout IS NULL", array($dateout, $orderid));
 	if(pg_affected_rows($dateoutquery) == 0){
 		$data["success"] = "false";
 	} else {
@@ -52,12 +51,12 @@ if ($_POST["ordertype"]) {
 	}
 }
 
-$updatequery = pg_query_params($surestore_db, "update sureorders set orderwh = $1, datein = $2, weight = $3 where orderid = $4", array($orderwh, $datein, $weight, $orderid));
+$updatequery = pg_query_params($surestore_db, "update sureorders set orderwh = $1, weight = $2 where orderid = $3", array($orderwh, $weight, $orderid));
 if(pg_affected_rows($updatequery) == 0){
 	$data["success"] = "false";
 } else {
 		// Log in surehistory
-		$updatetext = $userid." updated ".$orderid." warehouse to ".$orderwh.", date-in to ".$datein.", and weight to ".$weight.".";
+		$updatetext = $userid." updated ".$orderid." warehouse to ".$orderwh.", and weight to ".$weight.".";
 		$histquery = pg_query_params($surestore_db, "insert into surehistory(historder, histdesc) values($1, $2)", array($orderid,$updatetext));
 }
 echo json_encode($data);
