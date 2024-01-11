@@ -10,6 +10,7 @@ function initorderfull(orderid) {
 	initpdforder(orderid);
 	initializeHistTable(orderid);
 	whsearch();
+	initcustorderstab(orderid);
 }
 
 // Function to initialize session checker
@@ -897,6 +898,47 @@ function initordernew(orderid) {
 	$('#reginput').val(orderid);
 }
 
+// Function to initialize DataTables for custorders table
+function initcustorderstab(orderid) {
+	
+	// NOTE: custorders Modal heading is handled in fillcustinfo function
+	// Define Columns for table
+	let columnDefs = [
+		{
+			data: "orderid",
+			title: "Order ID"
+		},
+		{
+			data: "orderwh",
+			title: "Warehouse"
+		},
+		{
+			data: "datein",
+			title: "Date In"
+		}
+	];
+	
+	// Form data for ajax req
+	let formData ={
+		orderid: orderid,
+	};
+	
+	// Ajax to get customer orders and populate table
+	$.ajax({
+		url: '/scripts/php/custorders.php',
+		type: 'POST',
+		data: formData,
+		dataType: "json",
+		encode: true,
+	}).done(function(data) {
+		$('#custorderstab').DataTable({
+			columns: columnDefs,
+			data: data,
+			select: 'single'
+		});
+	});
+}
+
 // Function to initialize DataTables for orderhist table
 function initializeHistTable(orderid) {
 	let columnDefs = [
@@ -1276,6 +1318,14 @@ function fillcustinfo(orderid){
 		
 		// Fill locator sheet with appropriate values
 		$("#loccustname").text("Customer: " + data["custfirst"] + " " + data["custlast"]);
+		
+		// NOTE: Following is for custorders modal
+		// Fill custorders modal heading
+		let custfirst = data["custfirst"];
+		let custlast = data["custlast"];
+		let custname = custfirst + " " + custlast;
+		
+		$("#custordersheading").text(custname + "'s Orders");
 		
 	});
 }
