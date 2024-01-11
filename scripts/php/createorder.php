@@ -21,7 +21,6 @@ $custcountry = $_POST["custcountry"];
 // Initialize order vars
 $orderid = $_POST["orderid"];
 $orderwh = $_POST["orderwh"];
-$datein = $_POST["datein"];
 $weight = $_POST["weight"];
 $ordertype = $_POST["ordertype"];
 
@@ -42,7 +41,7 @@ if ($_POST["custid"]) {
 		$histquery = pg_query_params($surestore_db, "insert into surehistory(historder, histdesc) values($1, $2)", array($orderid,$updatetext));
 		
 		// order query
-		$orderquery = pg_query_params($surestore_db, "insert into sureorders(orderid, orderwh, datein, weight, ordercust, ordertype) values($1, $2, $3, $4, $5, $6)", array($orderid, $orderwh, $datein, $weight, $custid, $ordertype));
+		$orderquery = pg_query_params($surestore_db, "insert into sureorders(orderid, orderwh, weight, ordercust, ordertype) values($1, $2, $3, $4, $5)", array($orderid, $orderwh, $weight, $custid, $ordertype));
 
 		// check if row created
 		if (pg_affected_rows($orderquery) == 0){
@@ -79,7 +78,7 @@ if ($_POST["custid"]) {
 	} else {
 		$data["custid"] = $custresult;
 		// order query
-		$orderquery = pg_query_params($surestore_db, "insert into sureorders(orderid, orderwh, datein, weight, ordercust, ordertype) values($1, $2, $3, $4, $5, $6)", array($orderid, $orderwh, $datein, $weight, $custresult["custid"], $ordertype));
+		$orderquery = pg_query_params($surestore_db, "insert into sureorders(orderid, orderwh, weight, ordercust, ordertype) values($1, $2, $3, $4, $5)", array($orderid, $orderwh, $datein, $weight, $custresult["custid"], $ordertype));
 
 		// check if row created
 		if (pg_affected_rows($orderquery) == 0){

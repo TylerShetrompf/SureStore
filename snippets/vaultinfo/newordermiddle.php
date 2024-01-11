@@ -1,7 +1,8 @@
 <?php
-	// PHP to check session
-	include '/var/www/html/scripts/php/reverifysession.php';
-	echo('
+// PHP to check session
+include '/var/www/html/scripts/php/reverifysession.php';
+echo('
+
 <div class="bg-light px-2 my-2 border rounded" id="neworderdiv">
 	<form action="/scripts/php/reginfo.php" id="neworderform">
 		<div class="row">
@@ -18,27 +19,6 @@
 					<small id="regwhHelp" class="form-text text-muted">Warehouse</small>
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col">
-				<!-- Date checked in -->
-				<div class="form-group my-2" id="regdatein">
-					<input type="date" class="form-control shadow-sm" id="regdateininput" required>
-					<small id="regdateinHelp" class="form-text text-muted">Date In  (Required)</small>
-				</div>
-			</div>
-			<div class="col">
-				<!-- Date checked out -->
-				<div class="form-group my-2" id="regdateout">
-					<input type="date" class="form-control shadow-sm" id="regdateoutinput">
-					<small id="regdateoutHelp" class="form-text text-muted">Date Out (Optional)</small>
-				</div>
-			</div>
-		</div>
-		<!-- Date modified -->
-		<div class="form-group my-2" id="regdatemod">
-			<input type="datetime-local" class="form-control shadow-sm" id="regdatemodinput" readonly>
-			<small id="regdatemodHelp" class="form-text text-muted">Date Last Modified (Automatic)</small>
 		</div>
 		
 		<div class="row">
@@ -470,5 +450,6 @@
 		</div>
 		
 	</form>
-</div>')
-?>
+</div>
+
+')?>
