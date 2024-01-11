@@ -21,7 +21,7 @@ $orderidqueryresult = pg_fetch_assoc($orderidquery);
 $orderinfo["custid"] = $orderidqueryresult["ordercust"];
 $orderinfo["datein"] = $orderidqueryresult["datein"];
 $orderinfo["dateout"] = $orderidqueryresult["dateout"];
-$orderinfo["ordermil"] = $orderidqueryresult["ordermil"];
+$orderinfo["ordertype"] = $orderidqueryresult["ordertype"];
 
 // Customer query
 $custquery = pg_query_params($surestore_db, "select * from surecustomer where LOWER(custid) = LOWER($1)", array($orderinfo["custid"]));

@@ -159,12 +159,7 @@ $(document).ready(function () {
 			weight: $('#regweightinput').val(),
 			custstate: $('#custstateinput').val(),
 			custcountry: $('#custcountryinput').val(),
-		}
-		
-		if ($("#milcheck").attr("checked") == "checked"){
-			formData["ordermil"] = true;
-		} else {
-			formData["ordermil"] = false;
+			ordertype: $('#typeselect').val()
 		}
 		
 		if ($("#hiddencustid").val()) {
@@ -460,16 +455,6 @@ $(document).ready(function () {
 	}); // end of listener for navbar home button
 	
 	
-	// Listener for military check switch
-	$("body").on("click", "#milcheck", function (){
-		if ($("#milcheck").attr("checked") == "checked"){
-			$("#milcheck").attr("checked", false);
-		} else if ($("#milcheck").attr("checked") == undefined){
-			$("#milcheck").attr("checked", true);
-		}
-	}); // end of listener for military check switch
-	
-	
 	// Listener for reg update form submits
 	$('body').on("submit", "#reginfoform", function (event){
 		event.preventDefault();
@@ -479,17 +464,14 @@ $(document).ready(function () {
 			orderid: $('#reginput').val(),
 			orderwh: $('#select2-regwhinput-container').text(),
 			datein: $('#regdateininput').val(),
-			weight: $('#regweightinput').val()
+			weight: $('#regweightinput').val(),
+			ordertype: $('#typeselect').val()
 		}
 		
 		if ($('#regdateoutinput').val() != ""){
 			regformdata["dateout"] = $('#regdateoutinput').val();
 		}
 		
-		// Check if ordermil box is ticked and if so add to regformdata
-		if ($("#milcheck").attr("checked") == "checked"){
-			regformdata["ordermil"] = true;
-		}
 		
 		$.ajax({
 			url: "/scripts/php/updatereginfo.php",

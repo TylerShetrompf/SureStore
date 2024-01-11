@@ -1224,7 +1224,6 @@ function fillreginfo(orderid){
 		$('#regdateininput').val(data["datein"]);
 		$('#regdatemodinput').val(data["histtime"]);
 		$('#regweightinput').val(data["weight"]);
-		
 		// Fill locator sheet with appropriate values
 		$("#locorderid").text("Orderid: " + data["orderid"]);
 		$("#locorderweight").text("Weight: " + data["weight"]);
@@ -1235,10 +1234,12 @@ function fillreginfo(orderid){
 			$('#regdateoutinput').val(data["dateout"]);
 		}
 		
-		// Check if order is mil, toggle button if so
-		if (data["ordermil"] == "t") {
-			$("#milcheck").attr("checked", true);
+		// Check if ordertype is set
+		if (data["ordertype"] != null){
+			$('#selectedType').val(data["ordertype"]);
+			$('#selectedType').text(data["ordertype"]);
 		}
+		
 	});	
 }
 

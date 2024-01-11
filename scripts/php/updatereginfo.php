@@ -40,14 +40,14 @@ if ($_POST["dateout"]) {
 		$histquery = pg_query_params($surestore_db, "insert into surehistory(historder, histdesc) values($1, $2)", array($orderid,$updatetext));
 	}
 }
-if ($_POST["ordermil"]) {
-	$ordermil = $_POST["ordermil"];
-	$ordermilquery = pg_query_params($surestore_db, "update sureorders set ordermil = $1 where orderid = $2", array($ordermil, $orderid));
-	if(pg_affected_rows($ordermilquery) == 0){
+if ($_POST["ordertype"]) {
+	$ordertype = $_POST["ordertype"];
+	$ordertypequery = pg_query_params($surestore_db, "update sureorders set ordertype = $1 where orderid = $2", array($ordertype, $orderid));
+	if(pg_affected_rows($ordertypequery) == 0){
 		$data["success"] = "false";
 	} else {
 		// Log in surehistory
-		$updatetext = $userid." labeled order ".$orderid." as a military order.";
+		$updatetext = $userid." labeled order ".$orderid." as type ".$ordertype.".";
 		$histquery = pg_query_params($surestore_db, "insert into surehistory(historder, histdesc) values($1, $2)", array($orderid,$updatetext));
 	}
 }

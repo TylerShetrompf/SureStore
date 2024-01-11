@@ -60,11 +60,17 @@ echo('
 				</div>
 
 				<div class="col">
-					<!-- Military checkbox -->
-					<div class="form-check form-switch">
-						<input class="form-check-input" type="checkbox" id="milcheck" value="">
-						<label class="form-check-label" for="milcheck">Military</label>
-					</div>
+					<!-- Order Type -->
+					<select class="form-select" id="typeselect" required>
+						<option selected id="selectedType"></option>
+						<option value="SIRVA SIT">SIRVA SIT</option>
+						<option value="NTS">NTS</option>
+						<option value="MIL SIT">MIL SIT</option>
+						<option value="PERM STG (HHG)">PERM STG (HHG)</option>
+						<option value="PERM STG (Non-HHG)">PERM STG (Non-HHG)</option>
+						<option value="OTHER">OTHER</option>
+					</select>
+					<small id="regTypeHelp" class="form-text text-muted">Order Type (Required)</small>
 				</div>
 			</div>
 
