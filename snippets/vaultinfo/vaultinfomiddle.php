@@ -31,8 +31,8 @@ echo('
 				<div class="col">
 					<!-- Date checked in -->
 					<div class="form-group my-2" id="regdatein">
-						<input type="date" class="form-control shadow-sm" id="regdateininput" required>
-						<small id="regdateinHelp" class="form-text text-muted">Date In  (Required)</small>
+						<input type="date" class="form-control shadow-sm" id="regdateininput" readonly>
+						<small id="regdateinHelp" class="form-text text-muted">Date In  (Automatic)</small>
 					</div>
 				</div>
 				<div class="col">
