@@ -18,7 +18,7 @@ $custidres = pg_fetch_assoc($custidquery);
 $custid = $custidres["ordercust"];
 
 // Get customers other active orders
-$ordersquery = pg_query_params($surestore_db, "select orderid, orderwh, datein from sureorders where ordercust = $1 AND dateout is NULL", array($custid));
+$ordersquery = pg_query_params($surestore_db, "select distinct sureorders.orderid, sureorders.orderwh from sureorders left join sureitems on sureorders.orderid = sureitems.itemorder where sureorders.ordercust = $1 AND sureitems.dateout is NULL order by sureorders.orderid", array($custid));
 
 //iterate through results, push entries to custorders array
 while ($ordersqueryresult = pg_fetch_assoc($ordersquery)) {
