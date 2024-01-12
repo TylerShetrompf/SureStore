@@ -51,6 +51,30 @@ if ($_POST["ordertype"]) {
 	}
 }
 
+if ($_POST["valtype"]) {
+	$valtype = $_POST["valtype"];
+	$valtypequery = pg_query_params($surestore_db, "update sureorders set valtype = $1 where orderid = $2", array($valtype, $orderid));
+	if(pg_affected_rows($valtypequery) == 0){
+		$data["success"] = "false";
+	} else {
+		// Log in surehistory
+		$updatetext = $userid." labeled order ".$orderid." valtype as type ".$valtype.".";
+		$histquery = pg_query_params($surestore_db, "insert into surehistory(historder, histdesc) values($1, $2)", array($orderid,$updatetext));
+	}
+}
+
+if ($_POST["orderval"]) {
+	$orderval = $_POST["orderval"];
+	$ordervalquery = pg_query_params($surestore_db, "update sureorders set orderval = $1 where orderid = $2", array($orderval, $orderid));
+	if(pg_affected_rows($ordervalquery) == 0){
+		$data["success"] = "false";
+	} else {
+		// Log in surehistory
+		$updatetext = $userid." set order ".$orderid." value as ".$orderval.".";
+		$histquery = pg_query_params($surestore_db, "insert into surehistory(historder, histdesc) values($1, $2)", array($orderid,$updatetext));
+	}
+}
+
 $updatequery = pg_query_params($surestore_db, "update sureorders set orderwh = $1, weight = $2 where orderid = $3", array($orderwh, $weight, $orderid));
 if(pg_affected_rows($updatequery) == 0){
 	$data["success"] = "false";
