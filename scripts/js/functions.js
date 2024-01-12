@@ -1301,6 +1301,28 @@ function fillreginfo(orderid){
 		if (data["dateout"] != null){
 			$('#regdateoutinput').val(data["dateout"]);
 		}
+		if (data["valtype"] == "60l") {
+			$("#valtypeselect").val("60l").change();
+			let value = $('#regweightinput').val() * 0.6;
+			value = value.toFixed(2);
+			$("#regvalueinput").val("$" + value);
+			$("#regvalueinput").prop('disabled', true);
+			$("#regvalueHelp").text("Value (Automatic)");
+		}
+		
+		if (data["valtype"] == "frc") {
+			$("#valtypeselect").val("frc").change();
+			$("#regvalueinput").val(data["orderval"]);
+			$("#regvalueinput").prop('disabled', false);
+			$("#regvalueHelp").text("Value (Required)");	
+		}
+		
+		if (data["valtype"] == "oth") {
+			$("#valtypeselect").val("oth").change();
+			$("#regvalueinput").val(data["orderval"]);
+			$("#regvalueinput").prop('disabled', false);
+			$("#regvalueHelp").text("Value (Required)");
+		}
 		
 		// Check if ordertype is set
 		if (data["ordertype"] != null){
