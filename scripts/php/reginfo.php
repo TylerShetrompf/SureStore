@@ -12,7 +12,7 @@ $data = [];
 $orderid = $_POST["orderid"];
 
 //query for reginfo
-$reginfoquery = pg_query_params($surestore_db, "select sureorders.orderid, sureorders.orderwh, sureorders.weight, sureorders.ordertype from sureorders where sureorders.orderid=$1", array($orderid));
+$reginfoquery = pg_query_params($surestore_db, "select sureorders.orderid, sureorders.orderwh, sureorders.weight, sureorders.ordertype, sureorders.valtype, sureorders.orderval from sureorders where sureorders.orderid=$1", array($orderid));
 
 // assign results to assoc array
 $reginforesults = pg_fetch_assoc($reginfoquery);
