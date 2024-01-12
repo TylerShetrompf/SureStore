@@ -11,6 +11,12 @@ $itemvault = $_POST["itemvault"];
 $itemloose = $_POST["itemloose"];
 $itemorder = $_POST["itemorder"];
 $userid = $_COOKIE["userid"];
+$datein = $_POST["datein"];
+$dateout = $_POST["dateout"];
+
+if ($dateout == ''){
+	$dateout = NULL;
+}
 
 // Turn vaulter name into vaulterid 
 $itemvaultername = $_POST["itemvaulter"];
@@ -22,7 +28,7 @@ $vaulteridresult = pg_fetch_assoc($vaulteridquery);
 $itemvaulter = $vaulteridresult["vaulterid"];
 
 if ($itemvault && !$itemloose){
-	$itemcreatequery = pg_query_params($surestore_db, "INSERT INTO sureitems (itemdesc, itemvault, itemorder, itemvaulter) VALUES ($1, $2, $3, $4) RETURNING *;", array($itemdesc, $itemvault, $itemorder, $itemvaulter));
+	$itemcreatequery = pg_query_params($surestore_db, "INSERT INTO sureitems (itemdesc, itemvault, itemorder, itemvaulter, datein, dateout) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;", array($itemdesc, $itemvault, $itemorder, $itemvaulter, $datein, $dateout));
 	$createqueryresult = pg_fetch_assoc($itemcreatequery);
 	$createqueryresult["itemvaulter"] = $itemvaultername;
 	
@@ -39,7 +45,7 @@ if ($itemvault && !$itemloose){
 }
 
 if ($itemloose && !$itemvault){
-	$itemcreatequery = pg_query_params($surestore_db, "INSERT INTO sureitems (itemdesc, itemloose, itemorder, itemvaulter) VALUES ($1, $2, $3, $4) RETURNING *;", array($itemdesc, $itemloose, $itemorder, $itemvaulter));
+	$itemcreatequery = pg_query_params($surestore_db, "INSERT INTO sureitems (itemdesc, itemloose, itemorder, itemvaulter, datein, dateout) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *;", array($itemdesc, $itemloose, $itemorder, $itemvaulter, $datein, $dateout));
 	$createqueryresult = pg_fetch_assoc($itemcreatequery);
 	$createqueryresult["itemvaulter"] = $itemvaultername;
 	
