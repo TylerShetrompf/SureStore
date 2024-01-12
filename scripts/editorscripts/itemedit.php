@@ -12,6 +12,12 @@ $itemvault = $_POST["itemvault"];
 $itemloose = $_POST["itemloose"];
 $userid = $_COOKIE["userid"];
 $orderid = $_POST["itemorder"];
+$datein = $_POST["datein"];
+$dateout = $_POST["dateout"];
+
+if ($dateout == ''){
+	$dateout = NULL;
+}
 
 // Turn vaulter name into vaulterid 
 $itemvaultername = $_POST["itemvaulter"];
@@ -37,7 +43,7 @@ if($itemidresult == false){
 		if ($itemloose && !$itemvault){
 
 			// update the item row
-			$itemupdatequery = pg_query_params($surestore_db, "UPDATE sureitems SET itemdesc = $1, itemloose = $2, itemvault = NULL, itemvaulter = $3 WHERE itemid = $4", array($itemdesc, $itemloose, $itemvaulter, $itemid));
+			$itemupdatequery = pg_query_params($surestore_db, "UPDATE sureitems SET itemdesc = $1, itemloose = $2, itemvault = NULL, itemvaulter = $3, datein = $4, dateout = $5 WHERE itemid = $6", array($itemdesc, $itemloose, $itemvaulter, $datein, $dateout, $itemid));
 
 			// Turn vaulterid into vaulter name
 			// Get new vaulterid
@@ -66,7 +72,7 @@ if($itemidresult == false){
 		if ($itemvault && !$itemloose){
 
 			// update the item row
-			$itemupdatequery = pg_query_params($surestore_db, "UPDATE sureitems SET itemdesc = $1, itemvault = $2, itemloose = NULL, itemvaulter = $3 WHERE itemid = $4", array($itemdesc, $itemvault, $itemvaulter, $itemid));
+			$itemupdatequery = pg_query_params($surestore_db, "UPDATE sureitems SET itemdesc = $1, itemvault = $2, itemloose = NULL, itemvaulter = $3, datein = $4, dateout = $5 WHERE itemid = $6", array($itemdesc, $itemvault, $itemvaulter, $datein, $dateout, $itemid));
 
 			// Turn vaulterid into vaulter name
 			// Get new vaulterid
@@ -94,7 +100,7 @@ if($itemidresult == false){
 		if ($itemloose && !$itemvault){
 
 			// update the item row
-			$itemupdatequery = pg_query_params($surestore_db, "UPDATE sureitems SET itemdesc = $1, itemloose = $2, itemvault = NULL WHERE itemid = $3", array($itemdesc, $itemloose, $itemid));
+			$itemupdatequery = pg_query_params($surestore_db, "UPDATE sureitems SET itemdesc = $1, itemloose = $2, itemvault = NULL, datein = $3, dateout = $4 WHERE itemid = $5", array($itemdesc, $itemloose, $datein, $dateout, $itemid));
 
 			// Turn vaulterid into vaulter name
 			// Get new vaulterid
@@ -122,7 +128,7 @@ if($itemidresult == false){
 		if ($itemvault && !$itemloose){
 
 			// update the item row
-			$itemupdatequery = pg_query_params($surestore_db, "UPDATE sureitems SET itemdesc = $1, itemvault = $2, itemloose = NULL WHERE itemid = $3", array($itemdesc, $itemvault, $itemid));
+			$itemupdatequery = pg_query_params($surestore_db, "UPDATE sureitems SET itemdesc = $1, itemvault = $2, itemloose = NULL, datein = $3, dateout = $4 WHERE itemid = $5", array($itemdesc, $itemvault, $datein, $dateout, $itemid));
 
 			// Turn vaulterid into vaulter name
 			// Get new vaulterid
