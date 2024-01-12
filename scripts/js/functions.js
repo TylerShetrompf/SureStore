@@ -1109,6 +1109,16 @@ function initializeItemTable(itemorderid) {
 					}
 				}
 			}
+		},
+		{
+			data: "datein",
+			title: "Item In",
+			type: "date",
+		},
+		{
+			data: "dateout",
+			title: "Item Out",
+			type: "date",
 		}
 	];
 	
