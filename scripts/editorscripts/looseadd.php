@@ -26,6 +26,13 @@ if(pg_affected_rows($loosecreatequery) == 0){
 } else {
 	$updatetext = $userid." Added loose ".$loosecreateresult["looseid"]." to warehouse ".$loosecreateresult["loosewh"].".";
 	$histquery = pg_query_params($surestore_db, "insert into surehistory(histdesc) values($1)", array($updatetext));
+	
+	if ($loosecreateresult["disabled"] == "f"){
+		$loosecreateresult["disabled"] = "Enabled";
+	}
+	if ($loosecreateresult["disabled"] == "t"){
+		$loosecreateresult["disabled"] = "Disabled";
+	}
 	echo json_encode($loosecreateresult);
 }
 

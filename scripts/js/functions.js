@@ -345,6 +345,20 @@ function initManageLoc() {
 				}
 				
 			}
+		},
+		{
+			data: "disabled",
+			title: "Loose Status",
+			placeholder: "Unchanged",
+			type: "select",
+			select2: {
+				width: "100%",
+				placeholder: "Unchanged",
+			},
+			options: {
+				"t":"Disabled",
+				"f":"Enabled"
+			}
 		}
 	];
 	
@@ -557,6 +571,9 @@ function initManageLoc() {
 					rowdata["loosewh"] = $("tr.selected > td").eq(1).text();
 				} else {
 					rowdata["oldwh"] = $("tr.selected > td").eq(1).text();
+				}
+				if (rowdata["disabled"] == null) {
+					rowdata["disabled"] = $("tr.selected > td").eq(2).text();
 				}
 				
 				// ajax for loose edit

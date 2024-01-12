@@ -20,6 +20,14 @@ while ($looseresult = pg_fetch_assoc($loosequery)) {
 	$entry["looseid"] = $looseresult["looseid"];
 	$entry["loosewh"] = $looseresult["loosewh"];
 	
+	// if statement for disabled/enabled
+	if ($looseresult["disabled"] == "f"){
+		$entry["disabled"] = "Enabled";
+	}
+	if ($looseresult["disabled"] == "t"){
+		$entry["disabled"] = "Disabled";
+	}
+	
 	// push entry array to looses array
 	array_push($loose, $entry);
 	
