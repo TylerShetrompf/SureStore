@@ -174,7 +174,9 @@ $(document).ready(function () {
 			weight: $('#regweightinput').val(),
 			custstate: $('#custstateinput').val(),
 			custcountry: $('#custcountryinput').val(),
-			ordertype: $('#typeselect').val()
+			ordertype: $('#typeselect').val(),
+			valtype: $('#valtypeselect').val(),
+			value: $('#regvalueinput').val(),
 		}
 		
 		if ($("#hiddencustid").val()) {
@@ -540,6 +542,17 @@ $(document).ready(function () {
 			$("#regvalueHelp").text("Value (Required)");
 		}
 	}); // End of listener for reg value type changes
+	
+	// Listener for weight changes
+	$("body").on("keyup", "#regweightinput", function(){
+		if ($("#valtypeselect").val() == "60l") {
+			let value = $('#regweightinput').val() * 0.6;
+			value = value.toFixed(2);
+			$("#regvalueinput").val("$" + value);
+			$("#regvalueinput").prop('disabled', true);
+			$("#regvalueHelp").text("Value (Automatic)");
+		}
+	});
 	
 	// Listener for main menu register button
 	$("#regButton").click(function () {
