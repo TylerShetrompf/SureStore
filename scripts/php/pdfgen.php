@@ -19,8 +19,16 @@ $orderresults = pg_fetch_assoc($orderquery);
 
 // Assign results from order query to variables
 $weight = $orderresults["weight"];
-$datein = $orderresults["datein"];
 $custid = $orderresults["ordercust"];
+
+// Query for date in
+$datequery = pg_query_params($surestore_db,"select datein from sureitems where itemorder = $1 order by datein asc limit 1", array($orderid));
+
+// get results for date query
+$dateresults = pg_fetch_assoc($datequery);
+
+// assign result from date query to variable
+$datein = $dateresults["datein"];
 
 // Query for cust info
 $custquery = pg_query_params($surestore_db, "select * from surecustomer where custid = $1", array($custid));
@@ -32,7 +40,7 @@ $custresult = pg_fetch_assoc($custquery);
 $custname = $custresult["custfirst"]." ".$custresult["custlast"];
 
 // Query for vaults and loose
-$vaultloosequery = pg_query_params($surestore_db, "select distinct itemvault, itemloose from sureitems where itemorder = $1", array($orderid));
+$vaultloosequery = pg_query_params($surestore_db, "select distinct itemvault, itemloose from sureitems where itemorder = $1 and dateout IS NULL", array($orderid));
 
 // Counter variable for vault loose results
 $vaultcounter = 0;
