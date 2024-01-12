@@ -479,7 +479,9 @@ $(document).ready(function () {
 			orderid: $('#reginput').val(),
 			orderwh: $('#select2-regwhinput-container').text(),
 			weight: $('#regweightinput').val(),
-			ordertype: $('#typeselect').val()
+			ordertype: $('#typeselect').val(),
+			valtype: $('#valtypeselect').val(),
+			orderval: $('#regvalueinput').val(),
 		}
 		
 		if ($('#regdateoutinput').val() != ""){
@@ -518,6 +520,26 @@ $(document).ready(function () {
 		
 	}); // end of listener for reg update form submits
 	
+	// Listener for reg value type changes
+	$("body").on("change", "#valtypeselect", function(){
+		if ($("#valtypeselect").val() == "60l") {
+			let value = $('#regweightinput').val() * 0.6;
+			value = value.toFixed(2);
+			$("#regvalueinput").val("$" + value);
+			$("#regvalueinput").prop('disabled', true);
+			$("#regvalueHelp").text("Value (Automatic)");
+		}
+		
+		if ($("#valtypeselect").val() == "frc") {
+			$("#regvalueinput").prop('disabled', false);
+			$("#regvalueHelp").text("Value (Required)");
+		}
+		
+		if ($("#valtypeselect").val() == "oth") {
+			$("#regvalueinput").prop('disabled', false);
+			$("#regvalueHelp").text("Value (Required)");
+		}
+	}); // End of listener for reg value type changes
 	
 	// Listener for main menu register button
 	$("#regButton").click(function () {
