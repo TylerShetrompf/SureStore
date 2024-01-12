@@ -26,6 +26,13 @@ if(pg_affected_rows($vaultcreatequery) == 0){
 } else {
 	$updatetext = $userid." Added vault ".$vaultcreateresult["vaultid"]." to warehouse ".$vaultcreateresult["vaultwh"].".";
 	$histquery = pg_query_params($surestore_db, "insert into surehistory(histdesc) values($1)", array($updatetext));
+	
+	if ($vaultcreateresult["disabled"] == "f"){
+		$vaultcreateresult["disabled"] = "Enabled";
+	}
+	if ($vaultcreateresult["disabled"] == "t"){
+		$vaultcreateresult["disabled"] = "Disabled";
+	}
 	echo json_encode($vaultcreateresult);
 }
 
