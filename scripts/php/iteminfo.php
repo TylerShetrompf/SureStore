@@ -19,6 +19,8 @@ while ($itemqueryresult = pg_fetch_assoc($itemquery)) {
 	$entry ["itemdesc"] = $itemqueryresult["itemdesc"];
 	$entry ["itemvault"] = $itemqueryresult["itemvault"];
 	$entry ["itemloose"] = $itemqueryresult["itemloose"];
+	$entry ["datein"] = $itemqueryresult["datein"];
+	$entry ["dateout"] = $itemqueryresult["dateout"];
 	
 	// Get Vaulters name
 	$vaulterid = $itemqueryresult["itemvaulter"];
