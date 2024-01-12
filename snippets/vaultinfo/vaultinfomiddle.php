@@ -52,14 +52,6 @@ echo('
 			<div class="row">
 
 				<div class="col">
-					<!-- Order Weight -->
-					<div class="form-group" id="regweight">
-						<input type="input" class="form-control shadow-sm" id="regweightinput" required>
-						<small id="regweightHelp" class="form-text text-muted">Weight (Required)</small>
-					</div>
-				</div>
-
-				<div class="col">
 					<!-- Order Type -->
 					<select class="form-select" id="typeselect" required>
 						<option selected id="selectedType"></option>
@@ -71,6 +63,36 @@ echo('
 						<option value="OTHER">OTHER</option>
 					</select>
 					<small id="regTypeHelp" class="form-text text-muted">Order Type (Required)</small>
+				</div>
+
+				<div class="col">
+					<!-- Order Weight -->
+					<div class="form-group" id="regweight">
+						<input type="input" class="form-control shadow-sm" id="regweightinput" required>
+						<small id="regweightHelp" class="form-text text-muted">Weight - LBS (Required)</small>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+
+				<div class="col">
+					<!-- Valuation Type -->
+					<select class="form-select" id="valtypeselect" required>
+						<option selected id="valselectedType"></option>
+						<option value="60l">$0.60/lb</option>
+						<option value="frc">Full Replacement Charge</option>
+						<option value="oth">OTHER</option>
+					</select>
+					<small id="valTypeHelp" class="form-text text-muted">Valuation Type (Required)</small>
+				</div>
+
+				<div class="col">
+					<!-- Valuation Value -->
+					<div class="form-group" id="regvalue">
+						<input type="input" class="form-control shadow-sm" id="regvalueinput" required>
+						<small id="regvalueHelp" class="form-text text-muted">Value (Required)</small>
+					</div>
 				</div>
 			</div>
 
