@@ -1306,6 +1306,7 @@ function fillreginfo(orderid){
 		$('#regdateininput').val(data["datein"]);
 		$('#regdatemodinput').val(data["histtime"]);
 		$('#regweightinput').val(data["weight"]);
+		$('#sitnuminput').val(data["sitnum"]);
 		
 		// Check if order is closed
 		if (data["dateout"] != null){
@@ -1338,6 +1339,42 @@ function fillreginfo(orderid){
 		if (data["ordertype"] != null){
 			$('#selectedType').val(data["ordertype"]);
 			$('#selectedType').text(data["ordertype"]);
+		}
+		
+		if (data["ordertype"] == "SIRVA SIT") {
+			$("#sitnuminput").prop('disabled', false);
+			$("#sitnuminput").prop('required', true);
+			$("#sitnumHelp").text("SIT# (Required)");
+		}
+		
+		if (data["ordertype"] == "MIL SIT") {
+			$("#sitnuminput").prop('disabled', false);
+			$("#sitnuminput").prop('required', true);
+			$("#sitnumHelp").text("SIT# (Required)");
+		}
+		
+		if (data["ordertype"] == "NTS") {
+			$("#sitnuminput").prop('disabled', true);
+			$("#sitnuminput").prop('required', false);
+			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
+		}
+		
+		if (data["ordertype"] == "PERM STG (HHG)") {
+			$("#sitnuminput").prop('disabled', true);
+			$("#sitnuminput").prop('required', false);
+			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
+		}
+		
+		if (data["ordertype"] == "PERM STG (Non-HHG)") {
+			$("#sitnuminput").prop('disabled', true);
+			$("#sitnuminput").prop('required', false);
+			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
+		}
+		
+		if (data["ordertype"] == "OTHER") {
+			$("#sitnuminput").prop('disabled', true);
+			$("#sitnuminput").prop('required', false);
+			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
 		}
 		
 	});	
