@@ -26,6 +26,12 @@ $ordertype = $_POST["ordertype"];
 $valtype = $_POST["valtype"];
 $orderval = $_POST["value"];
 
+$sitnum = NULL;
+
+if ($_POST["sitnum"]){
+	$sitnum = $_POST["sitnum"];
+}
+
 // Userid from cookie
 $userid = $_COOKIE["userid"];
 
@@ -43,7 +49,7 @@ if ($_POST["custid"]) {
 		$histquery = pg_query_params($surestore_db, "insert into surehistory(historder, histdesc) values($1, $2)", array($orderid,$updatetext));
 		
 		// order query
-		$orderquery = pg_query_params($surestore_db, "insert into sureorders(orderid, orderwh, weight, ordercust, ordertype, valtype, orderval) values($1, $2, $3, $4, $5, $6, $7)", array($orderid, $orderwh, $weight, $custid, $ordertype, $valtype, $orderval));
+		$orderquery = pg_query_params($surestore_db, "insert into sureorders(orderid, orderwh, weight, ordercust, ordertype, valtype, orderval, sitnum) values($1, $2, $3, $4, $5, $6, $7, $8)", array($orderid, $orderwh, $weight, $custid, $ordertype, $valtype, $orderval, $sitnum));
 
 		// check if row created
 		if (pg_affected_rows($orderquery) == 0){
@@ -80,7 +86,7 @@ if ($_POST["custid"]) {
 	} else {
 		$data["custid"] = $custresult;
 		// order query
-		$orderquery = pg_query_params($surestore_db, "insert into sureorders(orderid, orderwh, weight, ordercust, ordertype, valtype, orderval) values($1, $2, $3, $4, $5, $6, $7)", array($orderid, $orderwh, $weight, $custresult["custid"], $ordertype, $valtype, $orderval));
+		$orderquery = pg_query_params($surestore_db, "insert into sureorders(orderid, orderwh, weight, ordercust, ordertype, valtype, orderval, sitnum) values($1, $2, $3, $4, $5, $6, $7, $8)", array($orderid, $orderwh, $weight, $custresult["custid"], $ordertype, $valtype, $orderval, $sitnum));
 
 		// check if row created
 		if (pg_affected_rows($orderquery) == 0){
