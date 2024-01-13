@@ -543,6 +543,49 @@ $(document).ready(function () {
 		}
 	}); // End of listener for reg value type changes
 	
+	// Listener for order type changes
+	$("body").on("change", "#typeselect", function(){
+		if ($("#typeselect").val() == "SIRVA SIT") {
+			$("#sitnuminput").prop('disabled', false);
+			$("#sitnuminput").prop('required', true);
+			$("#sitnumHelp").text("SIT# (Required)");
+		}
+		
+		if ($("#typeselect").val() == "MIL SIT") {
+			$("#sitnuminput").prop('disabled', false);
+			$("#sitnuminput").prop('required', true);
+			$("#sitnumHelp").text("SIT# (Required)");
+		}
+		
+		if ($("#typeselect").val() == "NTS") {
+			$("#sitnuminput").val('');
+			$("#sitnuminput").prop('disabled', true);
+			$("#sitnuminput").prop('required', false);
+			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
+		}
+		
+		if ($("#typeselect").val() == "PERM STG (HHG)") {
+			$("#sitnuminput").val('');
+			$("#sitnuminput").prop('disabled', true);
+			$("#sitnuminput").prop('required', false);
+			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
+		}
+		
+		if ($("#typeselect").val() == "PERM STG (Non-HHG)") {
+			$("#sitnuminput").val('');
+			$("#sitnuminput").prop('disabled', true);
+			$("#sitnuminput").prop('required', false);
+			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
+		}
+		
+		if ($("#typeselect").val() == "OTHER") {
+			$("#sitnuminput").val('');
+			$("#sitnuminput").prop('disabled', true);
+			$("#sitnuminput").prop('required', false);
+			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
+		}
+	});
+	
 	// Listener for weight changes
 	$("body").on("keyup", "#regweightinput", function(){
 		if ($("#valtypeselect").val() == "60l") {
