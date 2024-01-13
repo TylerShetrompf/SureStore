@@ -75,6 +75,18 @@ if ($_POST["orderval"]) {
 	}
 }
 
+if ($_POST["sitnum"]) {
+	$sitnum = $_POST["sitnum"];
+	$sitnumquery = pg_query_params($surestore_db, "update sureorders set sitnum = $1 where orderid = $2", array($sitnum, $orderid));
+	if(pg_affected_rows($sitnumquery) == 0){
+		$data["success"] = "false";
+	} else {
+		// Log in surehistory
+		$updatetext = $userid." set order ".$orderid." SIT number as ".$sitnum.".";
+		$histquery = pg_query_params($surestore_db, "insert into surehistory(historder, histdesc) values($1, $2)", array($orderid,$updatetext));
+	}
+}
+
 $updatequery = pg_query_params($surestore_db, "update sureorders set orderwh = $1, weight = $2 where orderid = $3", array($orderwh, $weight, $orderid));
 if(pg_affected_rows($updatequery) == 0){
 	$data["success"] = "false";
