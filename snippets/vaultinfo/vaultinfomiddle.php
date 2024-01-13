@@ -95,7 +95,13 @@ echo('
 					</div>
 				</div>
 			</div>
-
+			
+			<div class="row">
+				<div class="form-group" id="sitnum">
+					<input type="input" class="form-control shadow-sm" id="sitnuminput">
+					<small id="sitnumHelp" class="form-text text-muted">SIT #</small>
+				</div>
+			</div>
 
 			<!-- submit button-->
 			<div class="d-grid gap-2 my-2">
