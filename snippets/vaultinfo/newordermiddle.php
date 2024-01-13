@@ -48,25 +48,32 @@ echo('
 		
 		<div class="row">
 
-				<div class="col">
-					<!-- Valuation Type -->
-					<select class="form-select" id="valtypeselect" required>
-						<option selected id="valselectedType"></option>
-						<option value="60l">$0.60/lb</option>
-						<option value="frc">Full Replacement Charge</option>
-						<option value="oth">OTHER</option>
-					</select>
-					<small id="valTypeHelp" class="form-text text-muted">Valuation Type (Required)</small>
-				</div>
+			<div class="col">
+				<!-- Valuation Type -->
+				<select class="form-select" id="valtypeselect" required>
+					<option selected id="valselectedType"></option>
+					<option value="60l">$0.60/lb</option>
+					<option value="frc">Full Replacement Charge</option>
+					<option value="oth">OTHER</option>
+				</select>
+				<small id="valTypeHelp" class="form-text text-muted">Valuation Type (Required)</small>
+			</div>
 
-				<div class="col">
-					<!-- Valuation Value -->
-					<div class="form-group" id="regvalue">
-						<input type="input" class="form-control shadow-sm" id="regvalueinput" required>
-						<small id="regvalueHelp" class="form-text text-muted">Value (Required)</small>
-					</div>
+			<div class="col">
+				<!-- Valuation Value -->
+				<div class="form-group" id="regvalue">
+					<input type="input" class="form-control shadow-sm" id="regvalueinput" required>
+					<small id="regvalueHelp" class="form-text text-muted">Value (Required)</small>
 				</div>
 			</div>
+		</div>
+		
+		<div class="row">
+			<div class="form-group" id="sitnum">
+				<input type="input" class="form-control shadow-sm" id="sitnuminput">
+				<small id="sitnumHelp" class="form-text text-muted">SIT #</small>
+			</div>
+		</div>
 		
 		<div  class="row">
 			<div class="form-group my-1" id="custid">
