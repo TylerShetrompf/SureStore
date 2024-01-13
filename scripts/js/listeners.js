@@ -183,6 +183,10 @@ $(document).ready(function () {
 			formData["custid"] = $("#hiddencustid").val();
 		}
 		
+		if ($('#sitnuminput').val() != ""){
+			formData["sitnum"] = $('#sitnuminput').val();
+		}
+		
 		$.ajax({
 			url: "/scripts/php/createorder.php",
 			type: "POST",
@@ -490,6 +494,9 @@ $(document).ready(function () {
 			regformdata["dateout"] = $('#regdateoutinput').val();
 		}
 		
+		if ($('#sitnuminput').val() != ""){
+			regformdata["sitnum"] = $('#sitnuminput').val();
+		}
 		
 		$.ajax({
 			url: "/scripts/php/updatereginfo.php",
