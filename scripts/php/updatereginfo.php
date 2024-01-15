@@ -28,6 +28,30 @@ if ($oldorderid != $orderid) {
 	}
 }
 
+if ($_POST["sitex"]) {
+	$sitex = $_POST["sitex"];
+	
+	if (str_contains($sitex,"-")){
+		$sitexquery = pg_query_params($surestore_db, "update sureorders set sitex = $1 where orderid = $2", array($sitex, $orderid));
+		if(pg_affected_rows($sitexquery) == 0){
+			$data["success"] = "false";
+		} else {
+			// Log in surehistory
+			$updatetext = $userid." set SIT expiration of order ".$orderid." to ".$sitex.".";
+			$histquery = pg_query_params($surestore_db, "insert into surehistory(historder, histdesc) values($1, $2)", array($orderid,$updatetext));
+		}
+	} else {
+		$sitexquery = pg_query_params($surestore_db, "update sureorders set sitex = CURRENT_DATE + $1::int where orderid = $2", array($sitex, $orderid));
+		if(pg_affected_rows($sitexquery) == 0){
+			$data["success"] = "false";
+		} else {
+			// Log in surehistory
+			$updatetext = $userid." set SIT expiration of order ".$orderid." to ".$sitex.".";
+			$histquery = pg_query_params($surestore_db, "insert into surehistory(historder, histdesc) values($1, $2)", array($orderid,$updatetext));
+		}
+	}
+}
+
 if ($_POST["dateout"]) {
 	$dateout = $_POST["dateout"];
 	$dateoutquery = pg_query_params($surestore_db, "update sureitems set dateout = $1 where itemorder = $2 and dateout IS NULL", array($dateout, $orderid));
