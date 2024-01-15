@@ -187,6 +187,10 @@ $(document).ready(function () {
 			formData["sitnum"] = $('#sitnuminput').val();
 		}
 		
+		if ($('#sitexinput').val() != ""){
+			formData["sitex"] = $('#sitexinput').val();
+		}
+		
 		$.ajax({
 			url: "/scripts/php/createorder.php",
 			type: "POST",
@@ -561,6 +565,7 @@ $(document).ready(function () {
 			$("#sitnuminput").prop('required', true);
 			$("#sitnumHelp").text("SIT# (Required)");
 			$('#sitexcol').html('<div class="form-group" id="sitex"><input type="date" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Date (Required)</small></div>');
+			$('#sitexcolnew').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (Required)</small></div>');
 			$("#sitexinput").prop('disabled', false);
 			$("#sitexinput").prop('required', true);
 		}
@@ -570,6 +575,7 @@ $(document).ready(function () {
 			$("#sitnuminput").prop('required', true);
 			$("#sitnumHelp").text("SIT# (Required)");
 			$('#sitexcol').html('<div class="form-group" id="sitex"><input type="date" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Date (Required)</small></div>');
+			$('#sitexcolnew').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (Required)</small></div>');
 			$("#sitexinput").prop('disabled', false);
 			$("#sitexinput").prop('required', true);
 		}
@@ -580,6 +586,7 @@ $(document).ready(function () {
 			$("#sitnuminput").prop('required', false);
 			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
 			$('#sitexcol').html('<div class="form-group" id="sitex"><input type="date" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Date (Required)</small></div>');
+			$('#sitexcolnew').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (Required)</small></div>');
 			$("#sitexinput").prop('disabled', false);
 			$("#sitexinput").prop('required', true);
 		}
@@ -590,6 +597,7 @@ $(document).ready(function () {
 			$("#sitnuminput").prop('required', false);
 			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
 			$('#sitexcol').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (SIT/NTS Only)</small></div>');
+			$('#sitexcolnew').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (SIT/NTS Only)</small></div>');
 			$("#sitexinput").prop('disabled', true);
 			$("#sitexinput").prop('required', false);
 		}
@@ -600,6 +608,7 @@ $(document).ready(function () {
 			$("#sitnuminput").prop('required', false);
 			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
 			$('#sitexcol').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (SIT/NTS Only)</small></div>');
+			$('#sitexcolnew').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (SIT/NTS Only)</small></div>');
 			$("#sitexinput").prop('disabled', true);
 			$("#sitexinput").prop('required', false);
 		}
@@ -610,6 +619,7 @@ $(document).ready(function () {
 			$("#sitnuminput").prop('required', false);
 			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
 			$('#sitexcol').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (SIT/NTS Only)</small></div>');
+			$('#sitexcolnew').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (SIT/NTS Only)</small></div>');
 			$("#sitexinput").prop('disabled', true);
 			$("#sitexinput").prop('required', false);
 		}
