@@ -1308,6 +1308,12 @@ function fillreginfo(orderid){
 		$('#regweightinput').val(data["weight"]);
 		$('#sitnuminput').val(data["sitnum"]);
 		
+		if (data["sitex"] != null) {
+			$('#sitexcol').html('<div class="form-group" id="sitex"><input type="date" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Date</small></div>');
+			$('#sitexinput').val(data["sitex"]);
+			
+		}
+		
 		// Check if order is closed
 		if (data["dateout"] != null){
 			$('#regdateoutinput').val(data["dateout"]);
@@ -1345,36 +1351,48 @@ function fillreginfo(orderid){
 			$("#sitnuminput").prop('disabled', false);
 			$("#sitnuminput").prop('required', true);
 			$("#sitnumHelp").text("SIT# (Required)");
+			$("#sitexinput").prop('disabled', false);
+			$("#sitexinput").prop('required', true);
 		}
 		
 		if (data["ordertype"] == "MIL SIT") {
 			$("#sitnuminput").prop('disabled', false);
 			$("#sitnuminput").prop('required', true);
 			$("#sitnumHelp").text("SIT# (Required)");
+			$("#sitexinput").prop('disabled', false);
+			$("#sitexinput").prop('required', true);
 		}
 		
 		if (data["ordertype"] == "NTS") {
 			$("#sitnuminput").prop('disabled', true);
 			$("#sitnuminput").prop('required', false);
 			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
+			$("#sitexinput").prop('disabled', false);
+			$("#sitexinput").prop('required', true);
 		}
 		
 		if (data["ordertype"] == "PERM STG (HHG)") {
 			$("#sitnuminput").prop('disabled', true);
 			$("#sitnuminput").prop('required', false);
 			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
+			$("#sitexinput").prop('disabled', true);
+			$("#sitexinput").prop('required', false);
 		}
 		
 		if (data["ordertype"] == "PERM STG (Non-HHG)") {
 			$("#sitnuminput").prop('disabled', true);
 			$("#sitnuminput").prop('required', false);
 			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
+			$("#sitexinput").prop('disabled', true);
+			$("#sitexinput").prop('required', false);
 		}
 		
 		if (data["ordertype"] == "OTHER") {
 			$("#sitnuminput").prop('disabled', true);
 			$("#sitnuminput").prop('required', false);
 			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
+			$("#sitexinput").prop('disabled', true);
+			$("#sitexinput").prop('required', false);
 		}
 		
 	});	
