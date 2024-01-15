@@ -69,10 +69,18 @@ echo('
 		</div>
 		
 		<div class="row">
-			<div class="form-group" id="sitnum">
-				<input type="input" class="form-control shadow-sm" id="sitnuminput">
-				<small id="sitnumHelp" class="form-text text-muted">SIT #</small>
+			<div class="col">
+				<div class="form-group" id="sitnum">
+					<input type="input" class="form-control shadow-sm" id="sitnuminput">
+					<small id="sitnumHelp" class="form-text text-muted">SIT #</small>
+				</div>
 			</div>
+			<div class="col" id="sitexcolnew">
+				<div class="form-group" id="sitex">
+					<input type="input" class="form-control shadow-sm" id="sitexinput">
+					<small id="sitexHelp" class="form-text text-muted">Expiration Days</small>
+				</div>
+			</div>				
 		</div>
 		
 		<div  class="row">
