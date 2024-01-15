@@ -113,4 +113,16 @@ if ($_POST["custid"]) {
 	
 }
 
+if ($_POST["sitex"]) {
+	$sitex = $_POST["sitex"];
+	$sitexquery = pg_query_params($surestore_db, "update sureorders set sitex = CURRENT_DATE + $1::int where orderid = $2", array($sitex, $orderid));
+	if(pg_affected_rows($sitexquery) == 0){
+		$data["success"] = "false";
+	} else {
+		// Log in surehistory
+		$updatetext = $userid." set SIT expiration of order ".$orderid." to ".$sitex.".";
+		$histquery = pg_query_params($surestore_db, "insert into surehistory(historder, histdesc) values($1, $2)", array($orderid,$updatetext));
+	}
+}
+
 pg_close($surestore_db);
