@@ -68,10 +68,12 @@ echo('
 				<div class="d-grid gap-2 my-2">
 					<select class="form-select" id="reportselect">
 						<option selected>Select a report...</option>
+						<option value="whval">Warehouse Valuations</option>
+						<option value="sitex">Expired SIT #\'s</option>
 					</select>
 				</div>
 				<div class="d-grid gap-2 mb-2">
-					<button type="submit" class="btn btn-success btn-large btn-block">Open</button>
+					<button type="submit" class="btn btn-success btn-large btn-block">Submit</button>
 				</div>
 			</form>
 		</div>
