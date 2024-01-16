@@ -8,7 +8,7 @@ use PHPMailer\PHPMailer\Exception;
 // Include db connection
 include '/var/www/html/scripts/php/connectdb.php';
 
-$exsitquery = pg_query($surestore_db, "select orderid, sitex, sitnum from sureorders where sitex > CURRENT_DATE");
+$exsitquery = pg_query($surestore_db, "select orderid, sitex, sitnum from sureorders where sitex < CURRENT_DATE");
 
 $opencsv = fopen('../../temp/tempsitex.csv', 'w');
 
