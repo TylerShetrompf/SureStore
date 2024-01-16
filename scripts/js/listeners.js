@@ -59,9 +59,24 @@ $(document).ready(function () {
 	// Listener for report select
 	$("body").on("submit", "#reportselectform", function(event) {
 		event.preventDefault();
-		let reportid = $("#reportselect").val();
-		$('#reportModal').modal('toggle');
+		//$('#reportModal').modal('toggle');
+		if ($("#reportselect").val() == "whval"){
+			$.ajax({
+				type: "POST",
+				url: "/scripts/reports/valuations.php"
+			}).done(function(){
+				window.open('/temp/valuations.csv', '_blank');
+			})
+		}
 		
+		if ($("#reportselect").val() == "sitex"){
+			$.ajax({
+				type: "POST",
+				url: "/scripts/reports/expiredsit.php"
+			}).done(function(){
+				window.open('/temp/sitex.csv', '_blank');
+			})
+		}
 	}); // end of listener for report select
 	
 	// Listener for Order Info button on item menu
