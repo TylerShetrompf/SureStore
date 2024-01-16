@@ -34,3 +34,6 @@ https://raw.githubusercontent.com/Setasign/FPDF/master/license.txt
 
 LICENSE FOR qr-scanner CAN BE FOUND AT:
 https://raw.githubusercontent.com/nimiq/qr-scanner/master/LICENSE
+
+LICENSE FOR PHPMailer CAN BE FOUND AT:
+https://raw.githubusercontent.com/PHPMailer/PHPMailer/master/LICENSE
