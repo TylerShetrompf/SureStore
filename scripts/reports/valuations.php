@@ -31,6 +31,9 @@ while ($whrow = pg_fetch_assoc($whquery)){
 		if ($row["valtype"] == "oth"){
 			$valtype = "OTHER";
 		}
+		if ($row["valtype"] == "nts"){
+			$valtype = "NTS";
+		}
 		
 		fputcsv($opencsv, array($row["orderid"], $row["ordertype"], $row["weight"], $valtype, "$".$row["orderval"]));
 		$total += $row["orderval"];
