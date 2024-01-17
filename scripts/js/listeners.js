@@ -567,6 +567,20 @@ $(document).ready(function () {
 			$("#regvalueHelp").text("Value (Required)");
 		}
 		
+		if ($("#valtypeselect").val() == "nts") {
+			let value = $('#regweightinput').val() * 6.0;
+			if (value < 7500){
+				value = 7500;
+			}
+			if (value > 75000){
+				value = 75000;
+			}
+			value = value.toFixed(2);
+			$("#regvalueinput").val("$" + value);
+			$("#regvalueinput").prop('disabled', true);
+			$("#regvalueHelp").text("Value (Automatic)");
+		}
+		
 		if ($("#valtypeselect").val() == "oth") {
 			$("#regvalueinput").prop('disabled', false);
 			$("#regvalueHelp").text("Value (Required)");
@@ -599,6 +613,9 @@ $(document).ready(function () {
 			$("#sitnuminput").val('');
 			$("#sitnuminput").prop('disabled', true);
 			$("#sitnuminput").prop('required', false);
+			$("#valtypeselect").val("nts").trigger("change");
+			$("#valtypeselect").prop('disabled', true);
+			$("#sitnuminput").prop('required', true);
 			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
 			$('#sitexcol').html('<div class="form-group" id="sitex"><input type="date" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Date (Required)</small></div>');
 			$('#sitexcolnew').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (Required)</small></div>');
@@ -644,6 +661,20 @@ $(document).ready(function () {
 	$("body").on("keyup", "#regweightinput", function(){
 		if ($("#valtypeselect").val() == "60l") {
 			let value = $('#regweightinput').val() * 0.6;
+			value = value.toFixed(2);
+			$("#regvalueinput").val("$" + value);
+			$("#regvalueinput").prop('disabled', true);
+			$("#regvalueHelp").text("Value (Automatic)");
+		}
+		
+		if ($("#valtypeselect").val() == "nts") {
+			let value = $('#regweightinput').val() * 6.0;
+			if (value < 7500){
+				value = 7500;
+			}
+			if (value > 75000){
+				value = 75000;
+			}
 			value = value.toFixed(2);
 			$("#regvalueinput").val("$" + value);
 			$("#regvalueinput").prop('disabled', true);
