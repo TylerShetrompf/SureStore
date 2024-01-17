@@ -468,6 +468,7 @@ function initManageLoc() {
 					rowdata["disabled"] = $("tr.selected > td").eq(3).text();
 				}
 				
+				
 				// ajax for vault edit
 				$.ajax({
 					url: '/scripts/editorscripts/vaultedit.php',
@@ -986,14 +987,17 @@ function initOpenVaultsTable(orderwh){
 			data: "vaultid",
 			tite: "Vault ID",
 			type: "readonly"
+		},
+		{
+			data: "vaultrow",
+			title: "Vault Row",
+			type: "readonly"
 		}
 	];
 	
 	let formData ={
 		whid: orderwh,
 	};
-	
-	console.log(formData);
 	
 	$.ajax({
 		url: '/scripts/php/emptyvaults.php',
@@ -1002,7 +1006,6 @@ function initOpenVaultsTable(orderwh){
 		dataType: 'json',
 		encode: true,
 	}).done(function(data){
-		console.log(data);
 		$('#openvaultstab').DataTable({
 			columns: columnDefs,
 			data: data,
