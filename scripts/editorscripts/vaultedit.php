@@ -13,6 +13,7 @@ $vaultwh = $_POST["vaultwh"];
 $disabled = $_POST["disabled"];
 $oldid = $_POST["oldid"];
 $oldwh = $_POST["oldwh"];
+$vaultrow = $_POST["vaultrow"];
 
 if ($disabled == "Enabled"){
 	$disabled = "f";
@@ -22,7 +23,7 @@ if ($disabled == "Disabled"){
 }
 
 // query to update vault row
-$vaultupdatequery = pg_query_params($surestore_db, "UPDATE surevault SET vaultid = $1, vaultwh = $2, disabled = $3 WHERE vaultid = $4", array($vaultid, $vaultwh, $disabled, $oldid));
+$vaultupdatequery = pg_query_params($surestore_db, "UPDATE surevault SET vaultid = $1, vaultwh = $2, disabled = $3, vaultrow = $4 WHERE vaultid = $5", array($vaultid, $vaultwh, $disabled, $vaultrow, $oldid));
 
 //assign result to assoc array
 $vaultupdateresult = pg_fetch_assoc($vaultupdatequery);
