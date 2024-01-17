@@ -1373,6 +1373,20 @@ function fillreginfo(orderid){
 			$("#regvalueHelp").text("Value (Automatic)");
 		}
 		
+		if (data["valtype"] == "nts") {
+			let value = $('#regweightinput').val() * 6.0;
+			if (value < 7500){
+				value = 7500;
+			}
+			if (value > 75000){
+				value = 75000;
+			}
+			value = value.toFixed(2);
+			$("#regvalueinput").val("$" + value);
+			$("#regvalueinput").prop('disabled', true);
+			$("#regvalueHelp").text("Value (Automatic)");
+		}
+		
 		if (data["valtype"] == "frc") {
 			$("#valtypeselect").val("frc").change();
 			$("#regvalueinput").val(data["orderval"]);
