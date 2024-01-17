@@ -303,6 +303,11 @@ function initManageLoc() {
 			}
 		},
 		{
+			data: "vaultrow",
+			title: "Vault Row",
+			placeholder: "Unchanged"
+		},
+		{
 			data: "disabled",
 			title: "Vault Status",
 			placeholder: "Unchanged",
@@ -456,8 +461,11 @@ function initManageLoc() {
 				} else {
 					rowdata["oldwh"] = $("tr.selected > td").eq(1).text();
 				}
+				if (rowdata["vaultrow"] == null) {
+					rowdata["vaultrow"] = $("tr.selected > td").eq(3).text();
+				}
 				if (rowdata["disabled"] == null) {
-					rowdata["disabled"] = $("tr.selected > td").eq(2).text();
+					rowdata["disabled"] = $("tr.selected > td").eq(3).text();
 				}
 				
 				// ajax for vault edit
@@ -967,7 +975,42 @@ function initcustorderstab(orderid) {
 			select: 'single'
 		});
 	});
-}
+} // End of Function to initialize DataTables for custorders table
+
+// Function to initialize openvaults table
+function initOpenVaultsTable(orderwh){
+	$("#openvaultsheading").text("Open Vaults at " + orderwh);
+	
+	let columnDefs = [
+		{
+			data: "vaultid",
+			tite: "Vault ID",
+			type: "readonly"
+		}
+	];
+	
+	let formData ={
+		whid: orderwh,
+	};
+	
+	console.log(formData);
+	
+	$.ajax({
+		url: '/scripts/php/emptyvaults.php',
+		type: 'POST',
+		data: formData,
+		dataType: 'json',
+		encode: true,
+	}).done(function(data){
+		console.log(data);
+		$('#openvaultstab').DataTable({
+			columns: columnDefs,
+			data: data,
+			select: 'single'
+		});
+	}); 
+	
+} // end of function to initialize openvaults table
 
 // Function to initialize DataTables for orderhist table
 function initializeHistTable(orderid) {
