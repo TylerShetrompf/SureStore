@@ -649,7 +649,7 @@ $(document).ready(function () {
 			$("#regvalueinput").prop('disabled', true);
 			$("#regvalueHelp").text("Value (Automatic)");
 		}
-	});
+	}); // end of Listener for weight changes
 	
 	// Listener for main menu register button
 	$("#regButton").click(function () {
@@ -666,6 +666,15 @@ $(document).ready(function () {
 			$("#middle").html(data);
 		})
 	}); // end of listener for main menu register button
+	
+	// Listener for show open vaults button
+	$("body").on("click","#showopenvaultsbtn", function (){
+		let regwh = $("#regwhinput").val();
+		
+		if($("#openvaultsheading").text() == ""){
+			initOpenVaultsTable(regwh);
+		}
+	})// end of Listener for show open vaults button
 	
 	// Listener for registerform submissions
 	$("body").on("submit", "#RegisterForm", function(event) {
