@@ -54,6 +54,7 @@ echo('
 					<option selected id="valselectedType"></option>
 					<option value="60l">$0.60/lb</option>
 					<option value="frc">Full Replacement Charge</option>
+					<option value="nts">NTS</option>
 					<option value="oth">OTHER</option>
 				</select>
 				<small id="valTypeHelp" class="form-text text-muted">Valuation Type (Required)</small>
