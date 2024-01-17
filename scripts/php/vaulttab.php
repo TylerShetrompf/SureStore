@@ -19,7 +19,7 @@ while ($vaultresult = pg_fetch_assoc($vaultquery)) {
 	//assign values from result to entry array
 	$entry["vaultid"] = $vaultresult["vaultid"];
 	$entry["vaultwh"] = $vaultresult["vaultwh"];
-	
+	$entry["vaultrow"] = $vaultresult["vaultrow"];
 	// if statement for disabled/enabled
 	if ($vaultresult["disabled"] == "f"){
 		$entry["disabled"] = "Enabled";
