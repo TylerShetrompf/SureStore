@@ -6,7 +6,7 @@ include '/var/www/html/scripts/php/connectdb.php';
 
 $wh = $_POST["whid"];
 
-$emptyquery = pg_query_params($surestore_db, "SELECT surevault.vaultid from surevault where surevault.vaultwh = $1 and surevault.vaultid not in (select surevault.vaultid from surevault full outer join sureitems on surevault.vaultid = sureitems.itemvault where sureitems.datein is not null and sureitems.dateout is null and sureitems.itemvault is not null)", array($wh));
+$emptyquery = pg_query_params($surestore_db, "SELECT surevault.vaultid, surevault.vaultrow from surevault where surevault.vaultwh = $1 and surevault.vaultid not in (select surevault.vaultid from surevault full outer join sureitems on surevault.vaultid = sureitems.itemvault where sureitems.datein is not null and sureitems.dateout is null and sureitems.itemvault is not null)", array($wh));
 
 $result = pg_fetch_all($emptyquery);
 
