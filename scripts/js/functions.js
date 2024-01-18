@@ -1315,6 +1315,7 @@ function initializeSelect2(){
 	$('#search').select2({
 		theme: 'bootstrap-5',
 		width: "100%",
+		minimumInputLength: 2,
 		placeholder: "Search by order, customer name, or vault...",
 		ajax: {
 			type: "POST",
