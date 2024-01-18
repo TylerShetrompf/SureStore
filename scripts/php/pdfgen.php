@@ -77,26 +77,23 @@ if (file_exists($imgname)) {
 	$pdf->Text(3.5,2.5,'Weight: '.$weight);
 	$pdf->Text(2.5,4,'Vaults and Loose: ');
 	$pdf->SetFont('Arial','B',20);
-	$listx = 4.5;
-	$listcount = 0;
-	$listy = 1.0;
+	$listy = 4.5;
+	$listx = 1.0;
 	foreach ($vaults as $rowvault){
-		if ($listcount >= 3) {
-			$listx = $listx + 0.5;
-			$listcount = 0;
-			$listy = 1.0;
+		if ($listx >= 8) {
+			$listy = $listy + 0.5;
+			$listx = 1.0;
 		}
-		$pdf->Text($listy,$listx,$rowvault);
-		$listy = $listy + 2;
+		$pdf->Text($listx,$listy,$rowvault);
+		$listx = $listx + 1;
 	}
 	foreach ($loose as $rowloose){
-		if ($listcount >= 3) {
-			$listx = $listx + 0.5;
-			$listcount = 0;
-			$listy = 1.0;
+		if ($listx >= 8) {
+			$listy = $listy + 0.5;
+			$listx = 1.0;
 		}
-		$pdf->Text($listy,$listx,$rowloose);
-		$listy = $listy + 2;
+		$pdf->Text($listx,$listy,$rowloose);
+		$listx = $listx + 1;
 	}
 
 	
@@ -129,26 +126,24 @@ if (file_exists($imgname)) {
 	$pdf->Text(3.5,2.5,'Weight: '.$weight);
 	$pdf->Text(2.5,4,'Vaults and Loose: ');
 	$pdf->SetFont('Arial','B',20);
-	$listx = 4.5;
-	$listcount = 0;
-	$listy = 1.0;
+	$listy = 4.5;
+	$listx = 1.0;
 	foreach ($vaults as $rowvault){
-		if ($listcount >= 3) {
-			$listx = $listx + 0.5;
-			$listcount = 0;
-			$listy = 1.0;
+		if ($listx >= 8) {
+			$listy = $listy + 0.5;
+			$listx = 1.0;
 		}
-		$pdf->Text($listy,$listx,$rowvault);
-		$listy = $listy + 2;
+		$pdf->Text($listx,$listy,$rowvault);
+		$listx = $listx + 1;
+		$listcount++;
 	}
 	foreach ($loose as $rowloose){
-		if ($listcount >= 3) {
-			$listx = $listx + 0.5;
-			$listcount = 0;
-			$listy = 1.0;
+		if ($listx >= 8) {
+			$listy = $listy + 0.5;
+			$listx = 1.0;
 		}
-		$pdf->Text($listy,$listx,$rowloose);
-		$listy = $listy + 2;
+		$pdf->Text($listx,$listy,$rowloose);
+		$listx = $listx + 1;
 	}
 
 	
