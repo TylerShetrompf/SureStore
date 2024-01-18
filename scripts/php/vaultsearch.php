@@ -12,7 +12,7 @@ $results = [];
 $userinput = $_POST['term']."%";
 
 // Query
-$dbquery = pg_query_params($surestore_db, "select distinct surecustomer.custfirst, surecustomer.custlast, sureorders.orderid, sureitems.itemvault, sureitems.dateout, sureitems.itemloose from sureorders left join surecustomer on sureorders.ordercust=surecustomer.custid left join sureitems on sureorders.orderid=sureitems.itemorder WHERE(surevault.disabled = 'false' AND LOWER(sureorders.orderid) like LOWER($1) OR LOWER(surecustomer.custfirst) like LOWER($1) OR LOWER(surecustomer.custlast) like LOWER($1) OR LOWER(sureitems.itemvault) like LOWER($1))", array($userinput));
+$dbquery = pg_query_params($surestore_db, "select distinct on (sureorders.orderid) sureorders.orderid, min(surecustomer.custfirst) as custfirst, min(surecustomer.custlast) as custlast, string_agg(sureitems.itemvault, ',') as itemvault, string_agg(sureitems.itemloose, ',') as itemloose from sureorders left join surecustomer on sureorders.ordercust=surecustomer.custid left join sureitems on sureorders.orderid=sureitems.itemorder WHERE(LOWER(sureorders.orderid) like LOWER($1) OR LOWER(surecustomer.custfirst) like LOWER($1) OR LOWER(surecustomer.custlast) like LOWER($1) OR LOWER(sureitems.itemvault) like LOWER($1) OR LOWER(sureitems.itemloose) like LOWER($1)) group by sureorders.orderid", array($userinput));
 
 // Initialize ID variable
 $id = 1;
@@ -21,7 +21,13 @@ $id = 1;
 while ($dbresult = pg_fetch_assoc($dbquery)) {
 	$entry = [];
 	$entry["id"] = $id;
-	$entry["text"] = "Order: ".$dbresult["orderid"]." Cust: ".$dbresult["custfirst"]." ".$dbresult["custlast"]." Location: ".$dbresult["itemvault"].$dbresult["itemloose"];
+	
+	$locstring = $dbresult["itemvault"];
+	if (strlen($dbresult["itemvault"] > 15)){
+		$locstring = substr($dbresult["itemvault"], 0, 15);
+	}
+	
+	$entry["text"] = "Order: ".$dbresult["orderid"]." Cust: ".$dbresult["custfirst"]." ".$dbresult["custlast"]." Vaults: ".$locstring;
 	array_push($results, $entry);
 	$id++;
 }
