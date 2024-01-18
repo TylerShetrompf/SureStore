@@ -813,14 +813,9 @@ function initpdforder (orderid) {
 			encode: true,
 		}).done(function (results){
 			let width = $('#printbtn').width();
-			let height = $('#heightcontainer').height()*0.5;
-			
-			setTimeout(disPDF, 500);
-			
-			function disPDF(){
-				$('#pdfframe').attr('style','width:' + width + 'px; height:' + height + 'px;');
-				$('#pdfframe').attr('src', 'https://docs.google.com/gview?url=https://surestore.store/QR/' + results + '&embedded=true');
-			}
+			let height = $('#reginfoform').height();
+			$('#pdfframe').attr('style','width:' + width + 'px; height:' + height + 'px;');
+			$('#pdfframe').attr('src', 'https://surestore.store/QR/' + results);
 		})
 	})
 }
