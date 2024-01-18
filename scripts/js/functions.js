@@ -1424,6 +1424,7 @@ function fillreginfo(orderid){
 		}
 		
 		if (data["ordertype"] == "NTS") {
+			$("#valtypeselect").val("nts").change();
 			$("#sitnuminput").prop('disabled', true);
 			$("#sitnuminput").prop('required', false);
 			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
