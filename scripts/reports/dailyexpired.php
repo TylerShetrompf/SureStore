@@ -10,7 +10,7 @@ include '/var/www/html/scripts/php/connectdb.php';
 
 $exsitquery = pg_query($surestore_db, "select orderid, sitex, sitnum from sureorders where sitex < CURRENT_DATE");
 
-$opencsv = fopen('../../temp/tempsitex.csv', 'w');
+$opencsv = fopen('/var/www/html/temp/tempsitex.csv', 'w');
 
 fputcsv($opencsv, array("OrderID","Expiration","SIT Number"));
 
@@ -27,7 +27,7 @@ $email->Subject   = 'Expired SIT Report';
 $email->Body      = "See attached for report.";
 $email->AddAddress( 'tyler@shetrompf.com' );
 
-$file_to_attach = '../../temp/tempsitex.csv';
+$file_to_attach = '/var/www/html/temp/tempsitex.csv';
 
 $email->AddAttachment( $file_to_attach , 'report.csv' );
 
