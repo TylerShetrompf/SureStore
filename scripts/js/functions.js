@@ -1448,6 +1448,14 @@ function fillreginfo(orderid){
 			$("#sitexinput").prop('required', false);
 		}
 		
+		if (data["ordertype"] == "R19/Local Pickup") {
+			$("#sitnuminput").prop('disabled', true);
+			$("#sitnuminput").prop('required', false);
+			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
+			$("#sitexinput").prop('disabled', true);
+			$("#sitexinput").prop('required', false);
+		}
+		
 		if (data["ordertype"] == "OTHER") {
 			$("#sitnuminput").prop('disabled', true);
 			$("#sitnuminput").prop('required', false);
