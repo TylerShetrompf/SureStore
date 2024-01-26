@@ -60,6 +60,7 @@ echo('
 						<option value="MIL SIT">MIL SIT</option>
 						<option value="PERM STG (HHG)">PERM STG (HHG)</option>
 						<option value="PERM STG (Non-HHG)">PERM STG (Non-HHG)</option>
+						<option value="R19/Local Pickup">R19/Local Pickup</option>
 						<option value="OTHER">OTHER</option>
 					</select>
 					<small id="regTypeHelp" class="form-text text-muted">Order Type (Required)</small>
