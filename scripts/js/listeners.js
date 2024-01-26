@@ -645,6 +645,17 @@ $(document).ready(function () {
 			$("#sitexinput").prop('required', false);
 		}
 		
+		if ($("#typeselect").val() == "R19/Local Pickup") {
+			$("#sitnuminput").val('');
+			$("#sitnuminput").prop('disabled', true);
+			$("#sitnuminput").prop('required', false);
+			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
+			$('#sitexcol').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (SIT/NTS Only)</small></div>');
+			$('#sitexcolnew').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (SIT/NTS Only)</small></div>');
+			$("#sitexinput").prop('disabled', true);
+			$("#sitexinput").prop('required', false);
+		}
+		
 		if ($("#typeselect").val() == "OTHER") {
 			$("#sitnuminput").val('');
 			$("#sitnuminput").prop('disabled', true);
