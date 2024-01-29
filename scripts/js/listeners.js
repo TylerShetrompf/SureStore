@@ -77,6 +77,15 @@ $(document).ready(function () {
 				window.open('/temp/sitex.csv', '_blank');
 			})
 		}
+		
+		if ($("#reportselect").val() == "sitempty"){
+			$.ajax({
+				type: "POST",
+				url: "/scripts/reports/emptysit.php"
+			}).done(function(){
+				window.open('/temp/sitempty.csv', '_blank');
+			})
+		}
 	}); // end of listener for report select
 	
 	// Listener for Order Info button on item menu
