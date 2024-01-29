@@ -70,6 +70,7 @@ echo('
 						<option selected>Select a report...</option>
 						<option value="whval">Warehouse Valuations</option>
 						<option value="sitex">Expired SIT #\'s</option>
+						<option value="sitempty">Empty SIT #\'s</option>
 					</select>
 				</div>
 				<div class="d-grid gap-2 mb-2">
