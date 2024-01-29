@@ -86,6 +86,15 @@ $(document).ready(function () {
 				window.open('/temp/sitempty.csv', '_blank');
 			})
 		}
+		
+		if ($("#reportselect").val() == "inout"){
+			$.ajax({
+				type: "POST",
+				url: "/scripts/reports/inout.php"
+			}).done(function(){
+				window.open('/temp/inout.csv', '_blank');
+			})
+		}
 	}); // end of listener for report select
 	
 	// Listener for Order Info button on item menu
