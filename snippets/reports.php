@@ -71,8 +71,8 @@ echo('
 						<option value="whval">Warehouse Valuations</option>
 						<option value="sitex">Expired SIT #\'s</option>
 						<option value="sitempty">Empty SIT #\'s</option>
+						<option value="inout">Daily Orders In/Out</option>
 					</select>
-					<option value="inout">Daily Orders In/Out</option>
 				</div>
 				<div class="d-grid gap-2 mb-2">
 					<button type="submit" class="btn btn-success btn-large btn-block">Submit</button>
