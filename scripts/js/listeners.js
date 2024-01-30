@@ -617,26 +617,37 @@ $(document).ready(function () {
 	// Listener for order type changes
 	$("body").on("change", "#typeselect", function(){
 		if ($("#typeselect").val() == "SIRVA SIT") {
+			$('#sitcheckrow').removeAttr('hidden');
+			$('#sitex').attr('hidden', true);
+			$('#sitnum').attr('hidden', true);
 			$("#sitnuminput").prop('disabled', false);
-			$("#sitnuminput").prop('required', true);
 			$("#sitnumHelp").text("SIT# (Required)");
 			$('#sitexcol').html('<div class="form-group" id="sitex"><input type="date" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Date (Required)</small></div>');
 			$('#sitexcolnew').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (Required)</small></div>');
+			$('#sitex').attr('hidden', true);
 			$("#sitexinput").prop('disabled', false);
-			$("#sitexinput").prop('required', true);
+			
+			$("#valtypeselect").prop('disabled', false);
 		}
 		
 		if ($("#typeselect").val() == "MIL SIT") {
+			$('#sitcheckrow').removeAttr('hidden');
+			$('#sitex').attr('hidden', true);
+			$('#sitnum').attr('hidden', true);
 			$("#sitnuminput").prop('disabled', false);
-			$("#sitnuminput").prop('required', true);
 			$("#sitnumHelp").text("SIT# (Required)");
 			$('#sitexcol').html('<div class="form-group" id="sitex"><input type="date" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Date (Required)</small></div>');
 			$('#sitexcolnew').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (Required)</small></div>');
+			$('#sitex').attr('hidden', true);
 			$("#sitexinput").prop('disabled', false);
-			$("#sitexinput").prop('required', true);
+			
+			$("#valtypeselect").prop('disabled', false);
 		}
 		
 		if ($("#typeselect").val() == "NTS") {
+			$('#sitcheckrow').attr('hidden', true);
+			$('#sitnum').attr('hidden', true);
+			$('#sitex').removeAttr('hidden');
 			$("#sitnuminput").val('');
 			$("#sitnuminput").prop('disabled', true);
 			$("#sitnuminput").prop('required', false);
@@ -651,49 +662,99 @@ $(document).ready(function () {
 		}
 		
 		if ($("#typeselect").val() == "PERM STG (HHG)") {
+			$('#sitcheckrow').attr('hidden', true);
+			$('#sitnum').attr('hidden', true);
 			$("#sitnuminput").val('');
 			$("#sitnuminput").prop('disabled', true);
 			$("#sitnuminput").prop('required', false);
 			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
 			$('#sitexcol').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (SIT/NTS Only)</small></div>');
 			$('#sitexcolnew').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (SIT/NTS Only)</small></div>');
+			$('#sitex').attr('hidden', true);
 			$("#sitexinput").prop('disabled', true);
 			$("#sitexinput").prop('required', false);
+			
+			$("#valtypeselect").prop('disabled', false);
 		}
 		
 		if ($("#typeselect").val() == "PERM STG (Non-HHG)") {
+			$('#sitcheckrow').attr('hidden', true);
+			$('#sitex').attr('hidden', true);
+			$('#sitnum').attr('hidden', true);
 			$("#sitnuminput").val('');
 			$("#sitnuminput").prop('disabled', true);
 			$("#sitnuminput").prop('required', false);
 			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
 			$('#sitexcol').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (SIT/NTS Only)</small></div>');
 			$('#sitexcolnew').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (SIT/NTS Only)</small></div>');
+			$('#sitex').attr('hidden', true);
 			$("#sitexinput").prop('disabled', true);
 			$("#sitexinput").prop('required', false);
+			
+			$("#valtypeselect").prop('disabled', false);
 		}
 		
 		if ($("#typeselect").val() == "R19/Local Pickup") {
+			$('#sitcheckrow').attr('hidden', true);
+			$('#sitex').attr('hidden', true);
+			$('#sitnum').attr('hidden', true);
 			$("#sitnuminput").val('');
 			$("#sitnuminput").prop('disabled', true);
 			$("#sitnuminput").prop('required', false);
 			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
 			$('#sitexcol').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (SIT/NTS Only)</small></div>');
 			$('#sitexcolnew').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (SIT/NTS Only)</small></div>');
+			$('#sitex').attr('hidden', true);
 			$("#sitexinput").prop('disabled', true);
 			$("#sitexinput").prop('required', false);
+			
+			$("#valtypeselect").prop('disabled', false);
 		}
 		
 		if ($("#typeselect").val() == "OTHER") {
+			$('#sitcheckrow').attr('hidden', true);
+			$('#sitex').attr('hidden', true);
+			$('#sitnum').attr('hidden', true);
 			$("#sitnuminput").val('');
 			$("#sitnuminput").prop('disabled', true);
 			$("#sitnuminput").prop('required', false);
 			$("#sitnumHelp").text("SIT# (SIT Orders Only)");
 			$('#sitexcol').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (SIT/NTS Only)</small></div>');
 			$('#sitexcolnew').html('<div class="form-group" id="sitex"><input type="input" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Days (SIT/NTS Only)</small></div>');
+			$('#sitex').attr('hidden', true);
 			$("#sitexinput").prop('disabled', true);
 			$("#sitexinput").prop('required', false);
+			
+			$("#valtypeselect").prop('disabled', false);
 		}
-	});
+	}); //end of listener for order type changes
+	
+	
+		// Listener for sit checkbox
+	$('body').on("change", "#sitcheck", function() {
+		
+		if ($('#sitcheck').prop("checked") == true) {
+			
+			$('#sitnum').removeAttr('hidden');
+			$('#sitex').removeAttr('hidden');
+			
+			$("#sitnuminput").prop('required', true);
+			$("#sitexinput").prop('required', true);
+			
+		}
+		
+		if ($('#sitcheck').prop("checked") == false) {
+			
+			$('#sitnum').attr('hidden', true);
+			$('#sitex').attr('hidden', true);
+			
+			$("#sitnuminput").prop('required', false);
+			$("#sitexinput").prop('required', false);
+
+		}
+		
+	}); // end of listener for sit checkbox
+	
 	
 	// Listener for weight changes
 	$("body").on("keyup", "#regweightinput", function(){
