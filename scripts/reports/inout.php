@@ -1,10 +1,6 @@
 <?php
-// include PHPMailer
-require_once('/var/www/html/scripts/phpmailer/PHPMailer.php');
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
+// PHP to check session
+include '/var/www/html/scripts/php/reverifysession.php';
 // Include db connection
 include '/var/www/html/scripts/php/connectdb.php';
 
