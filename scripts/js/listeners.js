@@ -738,6 +738,9 @@ $(document).ready(function () {
 			$('#sitnum').removeAttr('hidden');
 			$('#sitex').removeAttr('hidden');
 			
+			$("#sitnuminput").prop('disabled', false);
+			$("#sitexinput").prop('disabled', false);
+			
 			$("#sitnuminput").prop('required', true);
 			$("#sitexinput").prop('required', true);
 			
