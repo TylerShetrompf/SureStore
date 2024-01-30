@@ -40,7 +40,7 @@ $custresult = pg_fetch_assoc($custquery);
 $custname = $custresult["custfirst"]." ".$custresult["custlast"];
 
 // Query for vaults and loose
-$vaultloosequery = pg_query_params($surestore_db, "select distinct itemvault, itemloose from sureitems where itemorder = $1 and dateout IS NULL", array($orderid));
+$vaultloosequery = pg_query_params($surestore_db, "select distinct itemvault, itemloose, itemdesc from sureitems where itemorder = $1 and dateout IS NULL", array($orderid));
 
 // Counter variable for vault loose results
 $vaultcounter = 0;
@@ -55,7 +55,7 @@ while ($row = pg_fetch_assoc($vaultloosequery)){
 		$vaultcounter++;
 	}
 	if ($row["itemloose"] != NULL){
-		$loose[$loosecounter] = $row["itemloose"];
+		$loose[$loosecounter] = $row["itemloose"]." - ".$row["itemdesc"];
 		$loosecounter++;
 	}
 }
@@ -75,7 +75,7 @@ if (file_exists($imgname)) {
 	$pdf->SetFont('Arial','B',25);
 	$pdf->Text(3,1.2,'Date In: '.$datein);
 	$pdf->Text(3,1.7,'Weight: '.$weight);
-	$pdf->Text(2.5,4,'Vaults and Loose: ');
+	$pdf->Text(3.0,4,'Vaults:');
 	$pdf->SetFont('Arial','B',20);
 	$listy = 4.5;
 	$listx = 1.0;
@@ -84,16 +84,36 @@ if (file_exists($imgname)) {
 			$listy = $listy + 0.5;
 			$listx = 1.0;
 		}
+		
+		if ($listy >= 10){
+			$pdf->AddPage();
+			$listx = 1.0;
+			$listy = 1.0;
+		}
+		
 		$pdf->Text($listx,$listy,$rowvault);
 		$listx = $listx + 1;
 	}
+	$listy = $listy + 0.5;
+	$pdf->SetFont('Arial','B',25);
+	$pdf->Text(3.0,$listy,'Loose:');
+	$pdf->SetFont('Arial','B',15);
+	$listx = 1.0;
+	$listy = $listy + 0.5;
 	foreach ($loose as $rowloose){
 		if ($listx >= 8) {
-			$listy = $listy + 0.5;
+			$listy = $listy + 1.0;
 			$listx = 1.0;
 		}
+		
+		if ($listy >= 10){
+			$pdf->AddPage();
+			$listx = 1.0;
+			$listy = 1.0;
+		}
+		
 		$pdf->Text($listx,$listy,$rowloose);
-		$listx = $listx + 1;
+		$listx = $listx + 3;
 	}
 
 	
@@ -124,7 +144,7 @@ if (file_exists($imgname)) {
 	$pdf->SetFont('Arial','B',25);
 	$pdf->Text(3,1.2,'Date In: '.$datein);
 	$pdf->Text(3,1.7,'Weight: '.$weight);
-	$pdf->Text(2.5,4,'Vaults and Loose: ');
+	$pdf->Text(3.0,4,'Vaults:');
 	$pdf->SetFont('Arial','B',20);
 	$listy = 4.5;
 	$listx = 1.0;
@@ -133,17 +153,35 @@ if (file_exists($imgname)) {
 			$listy = $listy + 0.5;
 			$listx = 1.0;
 		}
+		
+		if ($listy >= 10){
+			$pdf->AddPage();
+			$listx = 1.0;
+			$listy = 1.0;
+		}
 		$pdf->Text($listx,$listy,$rowvault);
 		$listx = $listx + 1;
-		$listcount++;
 	}
+	$listy = $listy + 0.5;
+	$pdf->SetFont('Arial','B',25);
+	$pdf->Text(3.0,$listy,'Loose:');
+	$pdf->SetFont('Arial','B',15);
+	$listx = 1.0;
+	$listy = $listy + 0.5;
 	foreach ($loose as $rowloose){
 		if ($listx >= 8) {
-			$listy = $listy + 0.5;
+			$listy = $listy + 1.0;
 			$listx = 1.0;
 		}
+		
+		if ($listy >= 10){
+			$pdf->AddPage();
+			$listx = 1.0;
+			$listy = 1.0;
+		}
+		
 		$pdf->Text($listx,$listy,$rowloose);
-		$listx = $listx + 1;
+		$listx = $listx + 3;
 	}
 
 	

@@ -139,29 +139,46 @@ if (file_exists($imgname)) {
 	$pdf->Text(3.5,1.5,'Customer: '.$custname);
 	$pdf->Text(3.5,2,'Date In: '.$datein);
 	$pdf->Text(3.5,2.5,'Weight: '.$weight);
-	$pdf->Text(2.5,4,'Vaults and Loose: ');
+	$pdf->Text(3.0,4,'Vaults:');
 	$pdf->SetFont('Arial','B',20);
-	$listx = 4.5;
-	$listcount = 0;
-	$listy = 1.0;
+	$listy = 4.5;
+	$listx = 1.0;
 	foreach ($vaults as $rowvault){
-		if ($listcount >= 3) {
-			$listx = $listx + 0.5;
-			$listcount = 0;
+		if ($listx >= 8) {
+			$listy = $listy + 0.5;
+			$listx = 1.0;
+		}
+		
+		if ($listy >= 10){
+			$pdf->AddPage();
+			$listx = 1.0;
 			$listy = 1.0;
 		}
-		$pdf->Text($listy,$listx,$rowvault);
-		$listy = $listy + 2;
+		$pdf->Text($listx,$listy,$rowvault);
+		$listx = $listx + 1;
 	}
+	$listy = $listy + 0.5;
+	$pdf->SetFont('Arial','B',25);
+	$pdf->Text(3.0,$listy,'Loose:');
+	$pdf->SetFont('Arial','B',15);
+	$listx = 1.0;
+	$listy = $listy + 0.5;
 	foreach ($loose as $rowloose){
-		if ($listcount >= 3) {
-			$listx = $listx + 0.5;
-			$listcount = 0;
+		if ($listx >= 8) {
+			$listy = $listy + 1.0;
+			$listx = 1.0;
+		}
+		
+		if ($listy >= 10){
+			$pdf->AddPage();
+			$listx = 1.0;
 			$listy = 1.0;
 		}
-		$pdf->Text($listy,$listx,$rowloose);
-		$listy = $listy + 2;
+		
+		$pdf->Text($listx,$listy,$rowloose);
+		$listx = $listx + 3;
 	}
+
 
 	foreach ($items as $key => $value) {
 		$pdf->AddPage();
@@ -212,30 +229,45 @@ if (file_exists($imgname)) {
 	$pdf->Text(3.5,1.5,'Customer: '.$custname);
 	$pdf->Text(3.5,2,'Date In: '.$datein);
 	$pdf->Text(3.5,2.5,'Weight: '.$weight);
-	$pdf->Text(2.5,4,'Vaults and Loose: ');
+	$pdf->Text(3.0,4,'Vaults:');
 	$pdf->SetFont('Arial','B',20);
-	$listx = 4.5;
-	$listcount = 0;
-	$listy = 1.0;
+	$listy = 4.5;
+	$listx = 1.0;
 	foreach ($vaults as $rowvault){
-		if ($listcount >= 3) {
-			$listx = $listx + 0.5;
-			$listcount = 0;
+		if ($listx >= 8) {
+			$listy = $listy + 0.5;
+			$listx = 1.0;
+		}
+		
+		if ($listy >= 10){
+			$pdf->AddPage();
+			$listx = 1.0;
 			$listy = 1.0;
 		}
-		$pdf->Text($listy,$listx,$rowvault);
-		$listy = $listy + 2;
+		$pdf->Text($listx,$listy,$rowvault);
+		$listx = $listx + 1;
 	}
+	$listy = $listy + 0.5;
+	$pdf->SetFont('Arial','B',25);
+	$pdf->Text(3.0,$listy,'Loose:');
+	$pdf->SetFont('Arial','B',15);
+	$listx = 1.0;
+	$listy = $listy + 0.5;
 	foreach ($loose as $rowloose){
-		if ($listcount >= 3) {
-			$listx = $listx + 0.5;
-			$listcount = 0;
+		if ($listx >= 8) {
+			$listy = $listy + 1.0;
+			$listx = 1.0;
+		}
+		
+		if ($listy >= 10){
+			$pdf->AddPage();
+			$listx = 1.0;
 			$listy = 1.0;
 		}
-		$pdf->Text($listy,$listx,$rowloose);
-		$listy = $listy + 2;
+		
+		$pdf->Text($listx,$listy,$rowloose);
+		$listx = $listx + 3;
 	}
-
 	
 	$pdf->Output('F', $pdfpath);
 	echo json_encode($pdfname);
