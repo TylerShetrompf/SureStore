@@ -72,6 +72,7 @@ echo('
 						<option value="sitex">Expired SIT #\'s</option>
 						<option value="sitempty">Empty SIT #\'s</option>
 						<option value="inout">Daily Orders In/Out</option>
+						<option value="used">Vaults In Use</option>
 					</select>
 				</div>
 				<div class="d-grid gap-2 mb-2">
