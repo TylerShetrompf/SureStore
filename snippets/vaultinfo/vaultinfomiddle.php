@@ -98,15 +98,24 @@ echo('
 				</div>
 			</div>
 			
-			<div class="row">
+			<div class="row" id="sitcheckrow" hidden>
+				<div class="col" id="sitcheckcol">
+					<div class="form-check form-switch">
+						<input class="form-check-input" type="checkbox" id="sitcheck">
+						<label class="form-check-label" for="sitcheck">SIT#?</label>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row" id="sitrow">
 				<div class="col">
-					<div class="form-group" id="sitnum">
+					<div class="form-group" id="sitnum" hidden>
 						<input type="input" class="form-control shadow-sm" id="sitnuminput">
 						<small id="sitnumHelp" class="form-text text-muted">SIT #</small>
 					</div>
 				</div>
 				<div class="col" id="sitexcol">
-					<div class="form-group" id="sitex">
+					<div class="form-group" id="sitex" hidden>
 						<input type="input" class="form-control shadow-sm" id="sitexinput">
 						<small id="sitexHelp" class="form-text text-muted">Expiration Days</small>
 					</div>
