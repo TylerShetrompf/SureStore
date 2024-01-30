@@ -95,6 +95,15 @@ $(document).ready(function () {
 				window.open('/temp/inout.csv', '_blank');
 			})
 		}
+		
+		if ($("#reportselect").val() == "used"){
+			$.ajax({
+				type: "POST",
+				url: "/scripts/reports/used.php"
+			}).done(function(){
+				window.open('/temp/used.csv', '_blank');
+			})
+		}
 	}); // end of listener for report select
 	
 	// Listener for Order Info button on item menu
