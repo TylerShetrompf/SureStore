@@ -1353,11 +1353,6 @@ function fillreginfo(orderid){
 		$('#regdatemodinput').val(data["histtime"]);
 		$('#regweightinput').val(data["weight"]);
 		
-		if(data["sitnum"] != null){
-			$('#sitnuminput').val(data["sitnum"]);
-			$('#sitnum').removeAttr('hidden');
-		}
-		
 		if (data["sitex"] != null) {
 			$('#sitexcol').html('<div class="form-group" id="sitex"><input type="date" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Date</small></div>');
 			$('#sitexinput').val(data["sitex"]);
@@ -1415,29 +1410,50 @@ function fillreginfo(orderid){
 		if (data["ordertype"] == "SIRVA SIT") {
 			$('#sitcheckrow').removeAttr("hidden");
 			if(data["sitnum"] != null){
+				$('#sitnuminput').val(data["sitnum"]);
 				$('#sitcheck').prop("checked", true);
 				$('#sitex').removeAttr("hidden");
 				$('#sitnum').removeAttr("hidden");
+				$("#sitnuminput").prop('disabled', false);
+				$("#sitnuminput").prop('required', true);
+				$("#sitnumHelp").text("SIT# (Required)");
+				$("#sitexinput").prop('disabled', false);
+				$("#sitexinput").prop('required', true);
+			} else {
+				$('#sitcheck').prop("checked", false);
+				$('#sitex').attr("hidden", true);
+				$('#sitnum').attr("hidden", true);
+				$("#sitnuminput").prop('disabled', true);
+				$("#sitnuminput").prop('required', false);
+				$("#sitnumHelp").text("SIT# (Required)");
+				$("#sitexinput").prop('disabled', true);
+				$("#sitexinput").prop('required', false);
 			}
-			$("#sitnuminput").prop('disabled', false);
-			$("#sitnuminput").prop('required', true);
-			$("#sitnumHelp").text("SIT# (Required)");
-			$("#sitexinput").prop('disabled', false);
-			$("#sitexinput").prop('required', true);
+			
 		}
 		
 		if (data["ordertype"] == "MIL SIT") {
 			$('#sitcheckrow').removeAttr("hidden");
 			if(data["sitnum"] != null){
+				$('#sitnuminput').val(data["sitnum"]);
 				$('#sitcheck').prop("checked", true);
 				$('#sitex').removeAttr("hidden");
 				$('#sitnum').removeAttr("hidden");
+				$("#sitnuminput").prop('disabled', false);
+				$("#sitnuminput").prop('required', true);
+				$("#sitnumHelp").text("SIT# (Required)");
+				$("#sitexinput").prop('disabled', false);
+				$("#sitexinput").prop('required', true);
+			} else {
+				$('#sitcheck').prop("checked", false);
+				$('#sitex').attr("hidden", true);
+				$('#sitnum').attr("hidden", true);
+				$("#sitnuminput").prop('disabled', true);
+				$("#sitnuminput").prop('required', false);
+				$("#sitnumHelp").text("SIT# (Required)");
+				$("#sitexinput").prop('disabled', true);
+				$("#sitexinput").prop('required', false);
 			}
-			$("#sitnuminput").prop('disabled', false);
-			$("#sitnuminput").prop('required', true);
-			$("#sitnumHelp").text("SIT# (Required)");
-			$("#sitexinput").prop('disabled', false);
-			$("#sitexinput").prop('required', true);
 		}
 		
 		if (data["ordertype"] == "NTS") {
