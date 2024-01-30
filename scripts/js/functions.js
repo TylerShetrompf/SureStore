@@ -1352,11 +1352,16 @@ function fillreginfo(orderid){
 		$('#regdateininput').val(data["datein"]);
 		$('#regdatemodinput').val(data["histtime"]);
 		$('#regweightinput').val(data["weight"]);
-		$('#sitnuminput').val(data["sitnum"]);
+		
+		if(data["sitnum"] != null){
+			$('#sitnuminput').val(data["sitnum"]);
+			$('#sitnum').removeAttr('hidden');
+		}
 		
 		if (data["sitex"] != null) {
 			$('#sitexcol').html('<div class="form-group" id="sitex"><input type="date" class="form-control shadow-sm" id="sitexinput"><small id="sitexHelp" class="form-text text-muted">Expiration Date</small></div>');
 			$('#sitexinput').val(data["sitex"]);
+			$('#sitex').removeAttr('hidden');
 			
 		}
 		
@@ -1408,6 +1413,12 @@ function fillreginfo(orderid){
 		}
 		
 		if (data["ordertype"] == "SIRVA SIT") {
+			$('#sitcheckrow').removeAttr("hidden");
+			if(data["sitnum"] != null){
+				$('#sitcheck').prop("checked", true);
+				$('#sitex').removeAttr("hidden");
+				$('#sitnum').removeAttr("hidden");
+			}
 			$("#sitnuminput").prop('disabled', false);
 			$("#sitnuminput").prop('required', true);
 			$("#sitnumHelp").text("SIT# (Required)");
@@ -1416,6 +1427,12 @@ function fillreginfo(orderid){
 		}
 		
 		if (data["ordertype"] == "MIL SIT") {
+			$('#sitcheckrow').removeAttr("hidden");
+			if(data["sitnum"] != null){
+				$('#sitcheck').prop("checked", true);
+				$('#sitex').removeAttr("hidden");
+				$('#sitnum').removeAttr("hidden");
+			}
 			$("#sitnuminput").prop('disabled', false);
 			$("#sitnuminput").prop('required', true);
 			$("#sitnumHelp").text("SIT# (Required)");
@@ -1424,6 +1441,7 @@ function fillreginfo(orderid){
 		}
 		
 		if (data["ordertype"] == "NTS") {
+			$('#sitex').removeAttr("hidden");
 			$("#valtypeselect").val("nts").change();
 			$("#sitnuminput").prop('disabled', true);
 			$("#sitnuminput").prop('required', false);
